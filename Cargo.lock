@@ -34,9 +34,9 @@ dependencies = [
 
 [[package]]
 name = "anyhow"
-version = "1.0.44"
+version = "1.0.45"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "61604a8f862e1d5c3229fdd78f8b02c68dcf73a4c4b05fd636d12240aaa242c1"
+checksum = "ee10e43ae4a853c0a3591d4e2ada1719e553be18199d9da9d4a83f5927c2f5c7"
 
 [[package]]
 name = "atty"
@@ -403,9 +403,9 @@ checksum = "830d08ce1d1d941e6b30645f1a0eb5643013d835ce3779a5fc208261dbe10f55"
 
 [[package]]
 name = "libc"
-version = "0.2.106"
+version = "0.2.107"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a60553f9a9e039a333b4e9b20573b9e9b9c0bb3a11e201ccc48ef4283456d673"
+checksum = "fbe5e23404da5b4f555ef85ebed98fb4083e55a00c317800bc2a50ede9f3d219"
 
 [[package]]
 name = "lock_api"
@@ -451,9 +451,9 @@ dependencies = [
 
 [[package]]
 name = "minimal-lexical"
-version = "0.1.4"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9c64630dcdd71f1a64c435f54885086a0de5d6a12d104d69b165fb7d5286d677"
+checksum = "68354c5c6bd36d73ff3feceb05efa59b6acb7626617f4962be322a825e61f79a"
 
 [[package]]
 name = "mio"
@@ -533,9 +533,9 @@ dependencies = [
 
 [[package]]
 name = "nom"
-version = "7.0.0"
+version = "7.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7ffd9d26838a953b4af82cbeb9f1592c6798916983959be223a7124e992742c1"
+checksum = "1b1d11e1ef389c76fe5b81bcaf2ea32cf88b62bc494e19f493d0b30e7a930109"
 dependencies = [
  "memchr",
  "minimal-lexical",
@@ -661,6 +661,27 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ba508cc11742c0dc5c1659771673afbab7a0efab23aa17e854cbab0837ed0b43"
 dependencies = [
  "unicode-xid",
+]
+
+[[package]]
+name = "pufferwatch"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "crossbeam",
+ "crossterm 0.22.1",
+ "dirs",
+ "hotwatch",
+ "indexmap",
+ "itertools",
+ "nom",
+ "notify",
+ "ouroboros",
+ "tracing",
+ "tracing-subscriber",
+ "tui",
+ "unicode-width",
 ]
 
 [[package]]
@@ -800,27 +821,6 @@ name = "smallvec"
 version = "1.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1ecab6c735a6bb4139c0caafd0cc3635748bbb3acf4550e8138122099251f309"
-
-[[package]]
-name = "smapi_log_parser"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "clap",
- "crossbeam",
- "crossterm 0.22.1",
- "dirs",
- "hotwatch",
- "indexmap",
- "itertools",
- "nom",
- "notify",
- "ouroboros",
- "tracing",
- "tracing-subscriber",
- "tui",
- "unicode-width",
-]
 
 [[package]]
 name = "stable_deref_trait"

@@ -26,7 +26,7 @@ const OUTPUT_LOG_ARG: &'static str = "output-log";
 
 pub fn start() -> anyhow::Result<()> {
     // Parse options
-    let matches = App::new("SMAPI Log Parser")
+    let matches = App::new("Pufferwatch")
         .version(crate_version!())
         .author(crate_authors!())
         .about(crate_description!())

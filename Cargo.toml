@@ -1,9 +1,9 @@
 [package]
-name = "smapi_log_parser"
+name = "pufferwatch"
 version = "0.1.0"
 edition = "2021"
 description = """
-A simple command-line SMAPI log parser.
+A CLI application for filtering and monitoring SMAPI logs.
 """
 publish = false
 
