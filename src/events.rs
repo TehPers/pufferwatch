@@ -28,7 +28,7 @@ impl EventController {
         let (event_tx, event_rx) = crossbeam::channel::unbounded();
         let ping_handle = std::thread::spawn({
             let running = running.clone();
-            move || Self::read_events(event_tx, running)
+            move || Self::read_events(&event_tx, running.as_ref())
         });
 
         (
@@ -40,7 +40,7 @@ impl EventController {
         )
     }
 
-    fn read_events(event_tx: Sender<AppEvent>, running: Arc<AtomicBool>) {
+    fn read_events(event_tx: &Sender<AppEvent>, running: &AtomicBool) {
         while running.load(Ordering::Relaxed) {
             // Poll for an event
             let poll = crossterm::event::poll(Self::POLL_INTERVAL)

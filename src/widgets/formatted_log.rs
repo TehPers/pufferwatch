@@ -26,8 +26,7 @@ pub struct FormattedLog<'i> {
 impl<'i> FormattedLog<'i> {
     fn get_level_color(level: Level) -> Color {
         match level {
-            Level::Trace => Color::DarkGray,
-            Level::Debug => Color::DarkGray,
+            Level::Trace | Level::Debug => Color::DarkGray,
             Level::Info => Color::White,
             Level::Alert => Color::Magenta,
             Level::Warn => Color::Yellow,
@@ -35,18 +34,13 @@ impl<'i> FormattedLog<'i> {
         }
     }
 
-    fn render_logs(
-        &self,
-        area: Rect,
-        buf: &mut Buffer,
-        state: &mut <Self as StatefulWidget>::State,
-    ) {
+    fn render_logs(area: Rect, buf: &mut Buffer, state: &mut <Self as StatefulWidget>::State) {
         let fg_override = (!state.selected).then(|| Color::DarkGray);
         let fg_color = fg_override.unwrap_or(Color::White);
         LazyParagraph::new(|index| {
             let formatted_line = state.lines.get(index)?;
-            let spans = match formatted_line {
-                &FormattedLine::Start { message, line } => {
+            let spans = match *formatted_line {
+                FormattedLine::Start { message, line } => {
                     let mut spans = Vec::with_capacity(7);
 
                     // Timestamp
@@ -87,7 +81,7 @@ impl<'i> FormattedLog<'i> {
 
                     spans
                 }
-                &FormattedLine::Continued { message, line } => {
+                FormattedLine::Continued { message, line } => {
                     let mut spans = Vec::with_capacity(2);
                     let ellipsis_style =
                         Style::default().fg(fg_override.unwrap_or(Color::DarkGray));
@@ -140,14 +134,14 @@ impl<'i> StatefulWidget for FormattedLog<'i> {
     fn render(self, area: Rect, buf: &mut Buffer, state: &mut Self::State) {
         if state.filters_list_state.is_none() {
             // Logs only
-            self.render_logs(area, buf, state);
+            Self::render_logs(area, buf, state);
         } else {
             // Logs + filters
             let layout = Layout::default()
                 .direction(Direction::Vertical)
                 .constraints([Constraint::Min(0), Constraint::Length(1)].as_ref())
                 .split(area);
-            self.render_logs(layout[0], buf, state);
+            Self::render_logs(layout[0], buf, state);
             let filters_list_state = state.filters_list_state.as_mut().unwrap();
             let style_override =
                 (!state.selected).then(|| Style::default().fg(Color::Black).bg(Color::DarkGray));
@@ -204,11 +198,7 @@ impl<'i> FormattedLogState<'i> {
         }
     }
 
-    pub fn get_selected(&self) -> bool {
-        self.selected
-    }
-
-    pub fn set_selected(&mut self, selected: bool) {
+    pub fn selected(&mut self, selected: bool) {
         self.selected = selected;
     }
 
@@ -255,8 +245,9 @@ impl<'i> FormattedLogState<'i> {
 impl<'i> State for FormattedLogState<'i> {
     fn update(&mut self, event: &AppEvent) -> bool {
         // Events handled by the formatted log widget
-        match event {
-            &AppEvent::TermEvent(Event::Key(key_event)) => match key_event.code {
+        #[allow(clippy::single_match)] // TODO: Add mouse support
+        match *event {
+            AppEvent::TermEvent(Event::Key(key_event)) => match key_event.code {
                 KeyCode::Char('f') if self.filters_list_state.is_none() => {
                     self.filters_list_state = Some(FiltersListState::levels());
                     return true;
@@ -478,7 +469,7 @@ impl<'f, 'i: 'f> StatefulWidget for FiltersList<'f, 'i> {
         }
 
         // Group controls into lines
-        let mut start_line = 0usize;
+        let mut start_line = 0_usize;
         let lines = labels
             .enumerate()
             .map(|(index, label)| {
@@ -491,36 +482,33 @@ impl<'f, 'i: 'f> StatefulWidget for FiltersList<'f, 'i> {
                 let mut line = Vec::new();
                 while let Some(&(index, _, label_width)) = labels.peek() {
                     // Check if the label fits on the current line
-                    match remaining_width.checked_sub(label_width) {
-                        Some(new_remaining_width) => {
-                            // Label fits on the current line
-                            remaining_width = new_remaining_width.saturating_sub(1);
+                    if let Some(new_remaining_width) = remaining_width.checked_sub(label_width) {
+                        // Label fits on the current line
+                        remaining_width = new_remaining_width.saturating_sub(1);
 
-                            // Add "More" label (for previous page)
-                            if index > 0 && line.is_empty() {
-                                line.push(more_label.clone());
-                            }
-
-                            // Add label and padding
-                            let (_, label, _) = labels.next().unwrap();
-                            line.push(label);
-                            line.push(Span::raw(" "));
-                        }
-                        None => {
-                            // Check if empty page because area isn't big enough
-                            if line.is_empty() {
-                                return None;
-                            }
-
-                            // Track the start line
-                            if index <= state.selected {
-                                start_line = start_line.saturating_add(1);
-                            }
-
-                            // Add "More" label (for next page)
+                        // Add "More" label (for previous page)
+                        if index > 0 && line.is_empty() {
                             line.push(more_label.clone());
-                            return Some(Spans::from(line));
                         }
+
+                        // Add label and padding
+                        let (_, label, _) = labels.next().unwrap();
+                        line.push(label);
+                        line.push(Span::raw(" "));
+                    } else {
+                        // Check if empty page because area isn't big enough
+                        if line.is_empty() {
+                            return None;
+                        }
+
+                        // Track the start line
+                        if index <= state.selected {
+                            start_line = start_line.saturating_add(1);
+                        }
+
+                        // Add "More" label (for next page)
+                        line.push(more_label.clone());
+                        return Some(Spans::from(line));
                     }
                 }
 

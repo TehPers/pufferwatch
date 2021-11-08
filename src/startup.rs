@@ -5,7 +5,7 @@ use crate::{
     widgets::{Root, RootState, State, WithLog},
 };
 use anyhow::Context;
-use clap::{crate_authors, crate_description, crate_version, App, Arg};
+use clap::{crate_authors, crate_description, crate_version, App, Arg, ArgMatches};
 use crossterm::{
     event::{Event, KeyCode, KeyModifiers},
     terminal::{EnterAlternateScreen, LeaveAlternateScreen},
@@ -26,62 +26,10 @@ const OUTPUT_LOG_ARG: &str = "output-log";
 
 pub fn start() -> anyhow::Result<()> {
     // Parse options
-    let matches = App::new("Pufferwatch")
-        .version(crate_version!())
-        .author(crate_authors!())
-        .about(crate_description!())
-        .arg(
-            Arg::with_name(LOG_ARG)
-                .help("The path to the log file.")
-                .index(1)
-                .takes_value(true)
-                .value_name("LOG PATH"),
-        )
-        .arg(
-            Arg::with_name(FOLLOW_ARG)
-                .long("follow")
-                .help("Watch the log file for changes.")
-                .short("f"),
-        )
-        .arg(
-            Arg::with_name(OUTPUT_LOG_ARG)
-                .help("The path to output this application's logs to (not SMAPI logs). Set RUST_LOG to configure the output.")
-                .long("output-log")
-                .takes_value(true)
-                .value_name("OUTPUT LOG PATH"),
-        )
-        .get_matches();
+    let matches = parse_args();
 
     // Setup tracing
-    if let Some(output_logs) = matches.value_of(OUTPUT_LOG_ARG) {
-        let log_path = PathBuf::from(output_logs);
-        if let Some(parent_dir) = log_path.parent() {
-            std::fs::create_dir_all(parent_dir).with_context(|| {
-                format!(
-                    "Failed to create output logs directory: {}",
-                    parent_dir.display()
-                )
-            })?;
-        }
-        let output_logs = std::fs::OpenOptions::new()
-            .create(true)
-            .write(true)
-            .open(&log_path)
-            .with_context(|| format!("Failed to open output logs file: {}", log_path.display()))?;
-        let fmt_layer = tracing_subscriber::fmt::layer()
-            .compact()
-            .with_ansi(false)
-            .with_writer(output_logs);
-        Registry::default()
-            .with(EnvFilter::from_default_env())
-            .with(fmt_layer)
-            .try_init()
-            .context("error creating logger")?;
-    } else {
-        Registry::default()
-            .try_init()
-            .context("error creating logger")?;
-    }
+    setup_tracing(&matches)?;
 
     // Setup log source
     info!("Starting SMAPI Log Parser");
@@ -156,6 +104,66 @@ pub fn start() -> anyhow::Result<()> {
     terminal.show_cursor()?;
     crossterm::terminal::disable_raw_mode()?;
     Ok(())
+}
+
+fn parse_args() -> ArgMatches<'static> {
+    App::new("Pufferwatch")
+        .version(crate_version!())
+        .author(crate_authors!())
+        .about(crate_description!())
+        .arg(
+            Arg::with_name(LOG_ARG)
+                .help("The path to the log file.")
+                .index(1)
+                .takes_value(true)
+                .value_name("LOG PATH"),
+        )
+        .arg(
+            Arg::with_name(FOLLOW_ARG)
+                .long("follow")
+                .help("Watch the log file for changes.")
+                .short("f"),
+        )
+        .arg(
+            Arg::with_name(OUTPUT_LOG_ARG)
+                .help("The path to output this application's logs to (not SMAPI logs). Set RUST_LOG to configure the output.")
+                .long("output-log")
+                .takes_value(true)
+                .value_name("OUTPUT LOG PATH"),
+        )
+        .get_matches()
+}
+
+fn setup_tracing(matches: &ArgMatches) -> anyhow::Result<()> {
+    if let Some(output_logs) = matches.value_of(OUTPUT_LOG_ARG) {
+        let log_path = PathBuf::from(output_logs);
+        if let Some(parent_dir) = log_path.parent() {
+            std::fs::create_dir_all(parent_dir).with_context(|| {
+                format!(
+                    "Failed to create output logs directory: {}",
+                    parent_dir.display()
+                )
+            })?;
+        }
+        let output_logs = std::fs::OpenOptions::new()
+            .create(true)
+            .write(true)
+            .open(&log_path)
+            .with_context(|| format!("Failed to open output logs file: {}", log_path.display()))?;
+        let fmt_layer = tracing_subscriber::fmt::layer()
+            .compact()
+            .with_ansi(false)
+            .with_writer(output_logs);
+        Registry::default()
+            .with(EnvFilter::from_default_env())
+            .with(fmt_layer)
+            .try_init()
+            .context("error initializing tracing")
+    } else {
+        Registry::default()
+            .try_init()
+            .context("error initializing tracing")
+    }
 }
 
 fn default_log_path() -> Option<PathBuf> {

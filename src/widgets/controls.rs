@@ -12,6 +12,7 @@ use tui::{
 };
 use unicode_width::UnicodeWidthStr;
 
+#[allow(dead_code)] // TODO: Add support for mouse events
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
 pub enum BindingDisplay {
     Key {
@@ -49,6 +50,7 @@ impl BindingDisplay {
     pub const ESC_ICON: &'static str = "\u{238b}";
     pub const SPACE_ICON: &'static str = "\u{2423}";
 
+    #[allow(dead_code)] // For future use
     pub const UP_DOWN: &'static str = "\u{2191}\u{2193}";
     pub const LEFT_RIGHT: &'static str = "\u{2192}\u{2190}";
     pub const ARROWS: &'static str = "\u{2191}\u{2193}\u{2192}\u{2190}";
@@ -137,15 +139,7 @@ impl StatefulWidget for Controls {
     type State = ControlsState;
 
     fn render(self, area: Rect, buf: &mut Buffer, state: &mut Self::State) {
-        // Get labels for each control
-        let labels: Vec<_> = state
-            .controls
-            .iter()
-            .map(|(control, label)| {
-                format!("{label} [{control}]", control = control, label = label)
-            })
-            .map(|label| Span::styled(label, self.style))
-            .collect();
+        // Create the "More" label
         let more_label = Span::styled("More [.]", self.style);
 
         // Get the available width for the controls, excluding the "More" label
@@ -154,10 +148,18 @@ impl StatefulWidget for Controls {
             return;
         }
 
+        // Get labels for each control
+        let labels = state
+            .controls
+            .iter()
+            .map(|(control, label)| {
+                format!("{label} [{control}]", control = control, label = label)
+            })
+            .map(|label| Span::styled(label, self.style));
+
         // Group controls into lines
         let mut lines = labels
-            .into_iter()
-            .scan((0usize, controls_width), |state, label| {
+            .scan((0_usize, controls_width), |state, label| {
                 let (line, remaining_width) = *state;
 
                 // Get label width + padding

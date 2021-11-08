@@ -28,8 +28,8 @@ where
     pub fn new(get_line: F) -> Self {
         LazyParagraph {
             get_line,
-            block: Default::default(),
-            style: Default::default(),
+            block: None,
+            style: Style::default(),
         }
     }
 
@@ -158,7 +158,7 @@ impl LazyParagraphState {
     pub fn new(lines: usize) -> Self {
         LazyParagraphState {
             lines,
-            offset: Default::default(),
+            offset: Offset::default(),
         }
     }
 
