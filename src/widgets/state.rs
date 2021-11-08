@@ -1,9 +1,14 @@
-use crate::{events::AppEvent, log::Log, widgets::BindingDisplay};
+use crate::{
+    events::AppEvent,
+    log::Log,
+    widgets::{BindingDisplay, IconPack},
+};
 use indexmap::IndexMap;
 
 pub trait State {
     fn update(&mut self, event: &AppEvent) -> bool;
-    fn add_controls(&self, _controls: &mut IndexMap<BindingDisplay, &'static str>) {}
+    fn add_controls<I: IconPack>(&self, _controls: &mut IndexMap<BindingDisplay<I>, &'static str>) {
+    }
 }
 
 impl State for () {
