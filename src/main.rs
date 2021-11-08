@@ -1,14 +1,11 @@
 #![forbid(unsafe_code)]
-#![cfg_attr(
-    not(debug_assertions),
-    deny(clippy::all, clippy::pedantic, clippy::perf)
-)]
+#![deny(clippy::all, clippy::pedantic, clippy::perf)]
 #![allow(
     clippy::module_name_repetitions,
     clippy::cast_possible_truncation,
     clippy::cast_sign_loss,
     clippy::cast_precision_loss,
-    clippy::cast_lossless
+    clippy::cast_lossless,
 )]
 
 mod ast;
