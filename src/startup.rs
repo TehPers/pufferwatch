@@ -164,6 +164,7 @@ fn default_log_path() -> Option<PathBuf> {
     let mut path = {
         let mut path = dirs::home_dir()?;
         path.push(".config");
+        path
     };
 
     path.push("StardewValley/ErrorLogs/SMAPI-latest.txt");
