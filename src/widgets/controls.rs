@@ -1,8 +1,14 @@
-use crate::{events::AppEvent, widgets::State};
+use crate::{
+    events::AppEvent,
+    widgets::{DefaultIconPack, IconPack, State},
+};
 use crossterm::event::{KeyCode, KeyModifiers, MouseButton};
 use indexmap::IndexMap;
 use itertools::Itertools;
-use std::fmt::{Display, Formatter};
+use std::{
+    fmt::{Display, Formatter},
+    marker::PhantomData,
+};
 use tui::{
     buffer::Buffer,
     layout::Rect,
@@ -14,61 +20,32 @@ use unicode_width::UnicodeWidthStr;
 
 #[allow(dead_code)] // TODO: Add support for mouse events
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
-pub enum BindingDisplay {
+pub enum BindingDisplay<I: IconPack> {
     Key {
         key_code: KeyCode,
         modifiers: KeyModifiers,
     },
     Mouse(MouseButton),
     Custom(&'static str),
+    #[doc(hidden)]
+    __Marker(PhantomData<*const I>),
 }
 
-impl BindingDisplay {
-    pub const CONTROL_ICON: &'static str = if cfg!(target_os = "macos") {
-        "\u{2318}"
-    } else {
-        "\u{2303}"
-    };
-    pub const ALT_ICON: &'static str = "\u{2325}";
-    pub const SHIFT_ICON: &'static str = "\u{21e7}";
-
-    pub const BACKSPACE_ICON: &'static str = "\u{232b}";
-    pub const ENTER_ICON: &'static str = "\u{23ce}";
-    pub const LEFT_ICON: &'static str = "\u{2190}";
-    pub const RIGHT_ICON: &'static str = "\u{2192}";
-    pub const UP_ICON: &'static str = "\u{2191}";
-    pub const DOWN_ICON: &'static str = "\u{2193}";
-    pub const HOME_ICON: &'static str = "\u{2196}";
-    pub const END_ICON: &'static str = "\u{2198}";
-    pub const PAGEUP_ICON: &'static str = "\u{21de}";
-    pub const PAGEDOWN_ICON: &'static str = "\u{21df}";
-    pub const TAB_ICON: &'static str = "\u{21e5}";
-    pub const BACKTAB_ICON: &'static str = "\u{21e4}";
-    pub const DELETE_ICON: &'static str = "\u{2326}";
-    pub const INSERT_ICON: &'static str = "INS";
-    pub const NULL_ICON: &'static str = "NUL";
-    pub const ESC_ICON: &'static str = "\u{238b}";
-    pub const SPACE_ICON: &'static str = "\u{2423}";
-
-    #[allow(dead_code)] // For future use
-    pub const UP_DOWN: &'static str = "\u{2191}\u{2193}";
-    pub const LEFT_RIGHT: &'static str = "\u{2192}\u{2190}";
-    pub const ARROWS: &'static str = "\u{2191}\u{2193}\u{2192}\u{2190}";
-
+impl<I: IconPack> BindingDisplay<I> {
     const MODIFIER_DISPLAYS: [(KeyModifiers, &'static str); 3] = [
-        (KeyModifiers::CONTROL, BindingDisplay::CONTROL_ICON),
-        (KeyModifiers::ALT, BindingDisplay::ALT_ICON),
-        (KeyModifiers::SHIFT, BindingDisplay::SHIFT_ICON),
+        (KeyModifiers::CONTROL, I::CONTROL_ICON),
+        (KeyModifiers::ALT, I::ALT_ICON),
+        (KeyModifiers::SHIFT, I::SHIFT_ICON),
     ];
 
-    pub const fn key(key_code: KeyCode, modifiers: KeyModifiers) -> Self {
+    pub fn key(key_code: KeyCode, modifiers: KeyModifiers) -> Self {
         BindingDisplay::Key {
             key_code,
             modifiers,
         }
     }
 
-    pub const fn simple_key(key_code: KeyCode) -> Self {
+    pub fn simple_key(key_code: KeyCode) -> Self {
         BindingDisplay::Key {
             key_code,
             modifiers: KeyModifiers::empty(),
@@ -76,7 +53,7 @@ impl BindingDisplay {
     }
 }
 
-impl Display for BindingDisplay {
+impl<I: IconPack> Display for BindingDisplay<I> {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
             BindingDisplay::Key {
@@ -94,31 +71,32 @@ impl Display for BindingDisplay {
 
                 // Write key code
                 match key_code {
-                    KeyCode::BackTab => write!(f, "{}", Self::BACKTAB_ICON),
-                    KeyCode::Backspace => write!(f, "{}", Self::BACKSPACE_ICON),
-                    KeyCode::Char(' ') => write!(f, "{}", Self::SPACE_ICON),
+                    KeyCode::BackTab => write!(f, "{}", I::BACKTAB_ICON),
+                    KeyCode::Backspace => write!(f, "{}", I::BACKSPACE_ICON),
+                    KeyCode::Char(' ') => write!(f, "{}", I::SPACE_ICON),
                     KeyCode::Char(c) => write!(f, "{}", c),
-                    KeyCode::Delete => write!(f, "{}", Self::DELETE_ICON),
-                    KeyCode::Down => write!(f, "{}", Self::DOWN_ICON),
-                    KeyCode::End => write!(f, "{}", Self::END_ICON),
-                    KeyCode::Enter => write!(f, "{}", Self::ENTER_ICON),
-                    KeyCode::Esc => write!(f, "{}", Self::ESC_ICON),
+                    KeyCode::Delete => write!(f, "{}", I::DELETE_ICON),
+                    KeyCode::Down => write!(f, "{}", I::DOWN_ICON),
+                    KeyCode::End => write!(f, "{}", I::END_ICON),
+                    KeyCode::Enter => write!(f, "{}", I::ENTER_ICON),
+                    KeyCode::Esc => write!(f, "{}", I::ESC_ICON),
                     KeyCode::F(n) => write!(f, "F{}", n),
-                    KeyCode::Home => write!(f, "{}", Self::HOME_ICON),
-                    KeyCode::Insert => write!(f, "{}", Self::INSERT_ICON),
-                    KeyCode::Left => write!(f, "{}", Self::LEFT_ICON),
-                    KeyCode::Null => write!(f, "{}", Self::NULL_ICON),
-                    KeyCode::PageDown => write!(f, "{}", Self::PAGEDOWN_ICON),
-                    KeyCode::PageUp => write!(f, "{}", Self::PAGEUP_ICON),
-                    KeyCode::Right => write!(f, "{}", Self::RIGHT_ICON),
-                    KeyCode::Tab => write!(f, "{}", Self::TAB_ICON),
-                    KeyCode::Up => write!(f, "{}", Self::UP_ICON),
+                    KeyCode::Home => write!(f, "{}", I::HOME_ICON),
+                    KeyCode::Insert => write!(f, "{}", I::INSERT_ICON),
+                    KeyCode::Left => write!(f, "{}", I::LEFT_ICON),
+                    KeyCode::Null => write!(f, "{}", I::NULL_ICON),
+                    KeyCode::PageDown => write!(f, "{}", I::PAGEDOWN_ICON),
+                    KeyCode::PageUp => write!(f, "{}", I::PAGEUP_ICON),
+                    KeyCode::Right => write!(f, "{}", I::RIGHT_ICON),
+                    KeyCode::Tab => write!(f, "{}", I::TAB_ICON),
+                    KeyCode::Up => write!(f, "{}", I::UP_ICON),
                 }
             }
             BindingDisplay::Mouse(MouseButton::Left) => write!(f, "M1"),
             BindingDisplay::Mouse(MouseButton::Right) => write!(f, "M2"),
             BindingDisplay::Mouse(MouseButton::Middle) => write!(f, "M3"),
             BindingDisplay::Custom(label) => write!(f, "{}", label),
+            _ => Ok(()),
         }
     }
 }
@@ -211,12 +189,15 @@ impl StatefulWidget for Controls {
 
 #[derive(Clone, Debug, Default)]
 pub struct ControlsState {
-    controls: IndexMap<BindingDisplay, &'static str>,
+    controls: IndexMap<BindingDisplay<DefaultIconPack>, &'static str>,
     page: usize,
 }
 
 impl ControlsState {
-    pub fn set_controls(&mut self, controls: IndexMap<BindingDisplay, &'static str>) -> &mut Self {
+    pub fn set_controls(
+        &mut self,
+        controls: IndexMap<BindingDisplay<DefaultIconPack>, &'static str>,
+    ) -> &mut Self {
         self.controls = controls;
         self
     }

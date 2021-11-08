@@ -1,7 +1,7 @@
 use crate::{
     events::AppEvent,
     log::Log,
-    widgets::{BindingDisplay, LazyParagraph, LazyParagraphState, State, WithLog},
+    widgets::{BindingDisplay, IconPack, LazyParagraph, LazyParagraphState, State, WithLog},
 };
 use indexmap::IndexMap;
 use std::marker::PhantomData;
@@ -67,7 +67,7 @@ impl<'i> State for RawLogState<'i> {
         self.paragraph_state.update(event)
     }
 
-    fn add_controls(&self, controls: &mut IndexMap<BindingDisplay, &'static str>) {
+    fn add_controls<I: IconPack>(&self, controls: &mut IndexMap<BindingDisplay<I>, &'static str>) {
         self.paragraph_state.add_controls(controls);
     }
 }

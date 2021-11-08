@@ -2,7 +2,7 @@ use crate::{
     ast::{Level, Message},
     events::AppEvent,
     log::Log,
-    widgets::{BindingDisplay, LazyParagraph, LazyParagraphState, State, WithLog},
+    widgets::{BindingDisplay, IconPack, LazyParagraph, LazyParagraphState, State, WithLog},
 };
 use crossterm::event::{Event, KeyCode};
 use indexmap::IndexMap;
@@ -287,7 +287,7 @@ impl<'i> State for FormattedLogState<'i> {
         }
     }
 
-    fn add_controls(&self, controls: &mut IndexMap<BindingDisplay, &'static str>) {
+    fn add_controls<I: IconPack>(&self, controls: &mut IndexMap<BindingDisplay<I>, &'static str>) {
         match self.filters_list_state.as_ref() {
             None => {
                 controls.insert(BindingDisplay::simple_key(KeyCode::Char('f')), "Filters");
@@ -591,8 +591,8 @@ impl State for FiltersListState {
         }
     }
 
-    fn add_controls(&self, controls: &mut IndexMap<BindingDisplay, &'static str>) {
-        controls.insert(BindingDisplay::Custom(BindingDisplay::LEFT_RIGHT), "Nav");
+    fn add_controls<I: IconPack>(&self, controls: &mut IndexMap<BindingDisplay<I>, &'static str>) {
+        controls.insert(BindingDisplay::Custom(I::LEFT_RIGHT), "Nav");
     }
 }
 

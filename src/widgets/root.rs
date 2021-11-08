@@ -2,7 +2,7 @@ use crate::{
     events::AppEvent,
     log::Log,
     widgets::{
-        BindingDisplay, Controls, ControlsState, FormattedLog, FormattedLogState, RawLog,
+        BindingDisplay, Controls, ControlsState, FormattedLog, FormattedLogState, IconPack, RawLog,
         RawLogState, State, WithLog,
     },
 };
@@ -124,7 +124,7 @@ impl<'i> State for RootState<'i> {
         }
     }
 
-    fn add_controls(&self, controls: &mut IndexMap<BindingDisplay, &'static str>) {
+    fn add_controls<I: IconPack>(&self, controls: &mut IndexMap<BindingDisplay<I>, &'static str>) {
         // Root controls
         controls.insert(
             BindingDisplay::key(KeyCode::Char('c'), KeyModifiers::CONTROL),

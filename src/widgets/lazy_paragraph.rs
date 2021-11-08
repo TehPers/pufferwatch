@@ -1,6 +1,6 @@
 use crate::{
     events::AppEvent,
-    widgets::{BindingDisplay, Scrollbar, State},
+    widgets::{BindingDisplay, IconPack, Scrollbar, State},
 };
 use crossterm::event::{Event, KeyCode};
 use indexmap::IndexMap;
@@ -238,8 +238,8 @@ impl State for LazyParagraphState {
         }
     }
 
-    fn add_controls(&self, controls: &mut IndexMap<BindingDisplay, &'static str>) {
-        controls.insert(BindingDisplay::Custom(BindingDisplay::ARROWS), "Nav");
+    fn add_controls<I: IconPack>(&self, controls: &mut IndexMap<BindingDisplay<I>, &'static str>) {
+        controls.insert(BindingDisplay::Custom(I::ARROWS), "Nav");
         controls.insert(BindingDisplay::simple_key(KeyCode::PageUp), "Up 10");
         controls.insert(BindingDisplay::simple_key(KeyCode::PageDown), "Down 10");
         controls.insert(BindingDisplay::simple_key(KeyCode::Home), "Top");
