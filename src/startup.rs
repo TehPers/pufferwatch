@@ -20,9 +20,9 @@ use tui::{
     Terminal,
 };
 
-const LOG_ARG: &'static str = "log";
-const FOLLOW_ARG: &'static str = "follow";
-const OUTPUT_LOG_ARG: &'static str = "output-log";
+const LOG_ARG: &str = "log";
+const FOLLOW_ARG: &str = "follow";
+const OUTPUT_LOG_ARG: &str = "output-log";
 
 pub fn start() -> anyhow::Result<()> {
     // Parse options
@@ -78,7 +78,9 @@ pub fn start() -> anyhow::Result<()> {
             .try_init()
             .context("error creating logger")?;
     } else {
-        let _ = Registry::default().try_init();
+        Registry::default()
+            .try_init()
+            .context("error creating logger")?;
     }
 
     // Setup log source

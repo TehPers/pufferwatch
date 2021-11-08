@@ -24,34 +24,34 @@ pub enum BindingDisplay {
 
 impl BindingDisplay {
     pub const CONTROL_ICON: &'static str = if cfg!(target_os = "macos") {
-        "⌘"
+        "\u{2318}"
     } else {
-        "⌃"
+        "\u{2303}"
     };
-    pub const ALT_ICON: &'static str = "⌥";
-    pub const SHIFT_ICON: &'static str = "⇧";
+    pub const ALT_ICON: &'static str = "\u{2325}";
+    pub const SHIFT_ICON: &'static str = "\u{21e7}";
 
-    pub const BACKSPACE_ICON: &'static str = "⌫";
-    pub const ENTER_ICON: &'static str = "⏎";
-    pub const LEFT_ICON: &'static str = "←";
-    pub const RIGHT_ICON: &'static str = "→";
-    pub const UP_ICON: &'static str = "↑";
-    pub const DOWN_ICON: &'static str = "↓";
-    pub const HOME_ICON: &'static str = "↖";
-    pub const END_ICON: &'static str = "↘";
-    pub const PAGEUP_ICON: &'static str = "⇞";
-    pub const PAGEDOWN_ICON: &'static str = "⇟";
-    pub const TAB_ICON: &'static str = "⇥";
-    pub const BACKTAB_ICON: &'static str = "⇤";
-    pub const DELETE_ICON: &'static str = "⌦";
+    pub const BACKSPACE_ICON: &'static str = "\u{232b}";
+    pub const ENTER_ICON: &'static str = "\u{23ce}";
+    pub const LEFT_ICON: &'static str = "\u{2190}";
+    pub const RIGHT_ICON: &'static str = "\u{2192}";
+    pub const UP_ICON: &'static str = "\u{2191}";
+    pub const DOWN_ICON: &'static str = "\u{2193}";
+    pub const HOME_ICON: &'static str = "\u{2196}";
+    pub const END_ICON: &'static str = "\u{2198}";
+    pub const PAGEUP_ICON: &'static str = "\u{21de}";
+    pub const PAGEDOWN_ICON: &'static str = "\u{21df}";
+    pub const TAB_ICON: &'static str = "\u{21e5}";
+    pub const BACKTAB_ICON: &'static str = "\u{21e4}";
+    pub const DELETE_ICON: &'static str = "\u{2326}";
     pub const INSERT_ICON: &'static str = "INS";
     pub const NULL_ICON: &'static str = "NUL";
-    pub const ESC_ICON: &'static str = "⎋";
-    pub const SPACE_ICON: &'static str = "␣";
+    pub const ESC_ICON: &'static str = "\u{238b}";
+    pub const SPACE_ICON: &'static str = "\u{2423}";
 
-    pub const UP_DOWN: &'static str = "↑↓";
-    pub const LEFT_RIGHT: &'static str = "→←";
-    pub const ARROWS: &'static str = "↑↓→←";
+    pub const UP_DOWN: &'static str = "\u{2191}\u{2193}";
+    pub const LEFT_RIGHT: &'static str = "\u{2192}\u{2190}";
+    pub const ARROWS: &'static str = "\u{2191}\u{2193}\u{2192}\u{2190}";
 
     const MODIFIER_DISPLAYS: [(KeyModifiers, &'static str); 3] = [
         (KeyModifiers::CONTROL, BindingDisplay::CONTROL_ICON),

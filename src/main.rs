@@ -1,9 +1,10 @@
 #![forbid(unsafe_code)]
 #![cfg_attr(
     not(debug_assertions),
-    deny(clippy::all, clippy::pedantic, clippy::perf)
+    deny(clippy::all, clippy::pedantic, clippy::perf),
 )]
 #![cfg_attr(debug_assertions, warn(clippy::all, clippy::pedantic, clippy::perf))]
+#![allow(clippy::module_name_repetitions)]
 
 mod ast;
 mod events;

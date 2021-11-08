@@ -65,9 +65,7 @@ pub trait WithLog<'i> {
 impl<'i> WithLog<'i> for () {
     type Result = ();
 
-    fn with_log(self, _log: &'i Log) -> Self::Result {
-        self
-    }
+    fn with_log(self, _log: &'i Log) -> Self::Result {}
 }
 
 impl<'i, T> WithLog<'i> for Option<T>

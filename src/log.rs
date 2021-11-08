@@ -21,7 +21,7 @@ impl Log {
         // Log is self-referential because the messages borrow from the raw string
         LogTryBuilder {
             raw,
-            messages_builder: |source| parse(&source).context("error parsing log file"),
+            messages_builder: |source| parse(source).context("error parsing log file"),
             by_source_builder: |messages| {
                 Ok(messages
                     .iter()

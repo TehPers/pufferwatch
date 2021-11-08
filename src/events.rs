@@ -27,7 +27,6 @@ impl EventController {
         let running = Arc::new(AtomicBool::new(true));
         let (event_tx, event_rx) = crossbeam::channel::unbounded();
         let ping_handle = std::thread::spawn({
-            let event_tx = event_tx.clone();
             let running = running.clone();
             move || Self::read_events(event_tx, running)
         });

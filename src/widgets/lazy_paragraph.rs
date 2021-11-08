@@ -103,7 +103,7 @@ where
                 .iter()
                 .flat_map(|span| span.styled_graphemes(self.style))
                 // Calculate x offset for each grapheme
-                .scan(0usize, |cur_x, grapheme| {
+                .scan(0_usize, |cur_x, grapheme| {
                     let width = grapheme.symbol.width();
                     let x = *cur_x;
                     *cur_x = cur_x.saturating_add(width);
