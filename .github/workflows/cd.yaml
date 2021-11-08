@@ -87,7 +87,9 @@ jobs:
           mkdir -p "$ARTIFACT_DIR"
 
           # Copy documentation files into artifact directory
-          cp {README.md,LICENSE-MIT,LICENSE-APACHE} "$ARTIFACT_DIR"
+          cp README.md "$ARTIFACT_DIR"
+          cp LICENSE-MIT "$ARTIFACT_DIR"
+          cp LICENSE-APACHE "$ARTIFACT_DIR"
 
           # Copy binary into artifact directory
           if [ "${{ matrix.os }}" = "windows-2019" ]; then
