@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+"
-    # Temporary
+    # Enable for testing (for the testing branch)
     branches:
       - cd
 
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Enable for testing
-      OVERRIDE_VERSION: 0.0.0-ignore-me.1
+      OVERRIDE_VERSION: 0.0.0-ignore-me.2
     outputs:
       app_version: ${{ steps.get_version.outputs.version }}
       upload_url: ${{ steps.release.outputs.upload_url }}
@@ -75,12 +75,13 @@ jobs:
           override: true
           target: ${{ matrix.target }}
       - name: Build release
-        run: cargo build --verbose --release --target "${{ matrix.target }}"
+        run: cargo build --verbose --release --target ${{ matrix.target }}
       - name: Strip binary
         if: matrix.build == 'linux' || matrix.build == 'macos'
         run: strip "$TARGET_DIR/release/pufferwatch"
       - name: Create archive
         id: create_archive
+        shell: bash
         run: |
           # Create artifact directory
           ARTIFACT_DIR="pufferwatch-${{ needs.create-release.outputs.app_version }}-${{ matrix.target }}"
