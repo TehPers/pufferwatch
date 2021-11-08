@@ -29,6 +29,7 @@ jobs:
 
   test:
     name: Test (${{ matrix.target }})
+    needs: [ fmt ]
     runs-on: ${{ matrix.target }}
     strategy:
       fail-fast: true
@@ -46,6 +47,7 @@ jobs:
 
   clippy:
     name: Clippy
+    needs: [ fmt ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
