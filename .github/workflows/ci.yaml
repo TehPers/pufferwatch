@@ -28,20 +28,17 @@ jobs:
           --check
 
   test:
-    name: Test ${{ matrix.rust_version }} (${{ matrix.target }})
+    name: Test (${{ matrix.target }})
     runs-on: ${{ matrix.target }}
     strategy:
       fail-fast: true
       matrix:
-        rust_version: [stable]
         target: [windows-latest, ubuntu-latest, macos-latest]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup toolchain
         uses: dtolnay/rust-toolchain@stable
-        with:
-          toolchain: ${{ matrix.rust_version }}
       - name: Run tests
         run: >-
           cargo test
