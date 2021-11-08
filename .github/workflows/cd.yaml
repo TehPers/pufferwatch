@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Enable for testing
-      OVERRIDE_VERSION: 0.0.0-ignore-me
+      OVERRIDE_VERSION: 0.0.0-ignore-me.1
     outputs:
       app_version: ${{ steps.get_version.outputs.version }}
       upload_url: ${{ steps.release.outputs.upload_url }}
@@ -46,6 +46,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       RUST_BACKTRACE: 1
+      TARGET_DIR: ./target/${{ matrix.target }}
     strategy:
       fail-fast: true
       matrix:
@@ -74,10 +75,10 @@ jobs:
           override: true
           target: ${{ matrix.target }}
       - name: Build release
-        run: cargo build --verbose --release
+        run: cargo build --verbose --release --target "${{ matrix.target }}"
       - name: Strip binary
         if: matrix.build == 'linux' || matrix.build == 'macos'
-        run: strip "target/${{ matrix.target }}/release/pufferwatch"
+        run: strip "$TARGET_DIR/release/pufferwatch"
       - name: Create archive
         id: create_archive
         run: |
@@ -90,11 +91,11 @@ jobs:
 
           # Copy binary into artifact directory
           if [ "${{ matrix.os }}" = "windows-2019" ]; then
-            cp "target/${{ matrix.target }}/release/pufferwatch.exe" "$ARTIFACT_DIR/"
+            cp "$TARGET_DIR/release/pufferwatch.exe" "$ARTIFACT_DIR/"
             7z a "$ARTIFACT_DIR.zip" "$ARTIFACT_DIR"
             echo ::set-output name=asset::$ARTIFACT_DIR.zip
           else
-            cp "target/${{ matrix.target }}/release/pufferwatch" "$ARTIFACT_DIR/"
+            cp "$TARGET_DIR/release/pufferwatch" "$ARTIFACT_DIR/"
             tar -czf "$ARTIFACT_DIR.tar.gz" "$ARTIFACT_DIR"
             echo ::set-output name=asset::$ARTIFACT_DIR.tar.gz
           fi
