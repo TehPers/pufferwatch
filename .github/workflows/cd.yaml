@@ -76,8 +76,8 @@ jobs:
       - name: Build release
         run: cargo build --verbose --release
       - name: Strip binary
-        if: matrix.build == "linux" || matrix.build == "macos"
-        run: strip target/${{ matrix.target }}/release/pufferwatch
+        if: matrix.build == 'linux' || matrix.build == 'macos'
+        run: strip "target/${{ matrix.target }}/release/pufferwatch"
       - name: Create archive
         id: create_archive
         run: |
