@@ -16,9 +16,9 @@ jobs:
   create-release:
     name: create-release
     runs-on: ubuntu-latest
-    env:
-      # Enable for testing
-      # OVERRIDE_VERSION: 0.0.0-ignore-me
+    # Enable for testing
+    # env:
+    #   OVERRIDE_VERSION: 0.0.0-ignore-me
     outputs:
       app_version: ${{ steps.get_version.outputs.version }}
       upload_url: ${{ steps.release.outputs.upload_url }}
