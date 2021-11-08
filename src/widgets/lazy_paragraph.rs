@@ -63,9 +63,18 @@ where
             area
         };
 
-        // Get rendered lines
+        // Update auto-scroll state
         let height = inner_area.height.into();
-        let line_after_last_line = state.offset.y.saturating_add(height).min(state.lines);
+        let mut line_after_last_line = state.offset.y.saturating_add(height);
+        if state.auto_scroll.is_scrolling() || line_after_last_line >= state.lines {
+            line_after_last_line = state.lines;
+            state.offset.y = state.lines.saturating_sub(height);
+            state.auto_scroll.scroll();
+        } else {
+            state.auto_scroll.reset();
+        };
+
+        // Get rendered lines
         let first_line = line_after_last_line.saturating_sub(height);
         state.offset.y = first_line;
 
@@ -152,13 +161,17 @@ where
 pub struct LazyParagraphState {
     pub lines: usize,
     pub offset: Offset,
+    pub auto_scroll: AutoScroll,
 }
 
 impl LazyParagraphState {
-    pub fn new(lines: usize) -> Self {
+    pub fn new(lines: usize, auto_scroll: bool) -> Self {
         LazyParagraphState {
             lines,
             offset: Offset::default(),
+            auto_scroll: auto_scroll
+                .then(AutoScroll::enabled)
+                .unwrap_or_else(AutoScroll::disabled),
         }
     }
 
@@ -168,11 +181,14 @@ impl LazyParagraphState {
         if self.offset.y > self.lines {
             self.offset.y = self.lines.saturating_sub(1);
         }
+
+        self.auto_scroll.reset();
     }
 
     /// Scrolls the paragraph up by the given amount.
     pub fn scroll_up(&mut self, lines: usize) {
         self.offset.y = self.offset.y.saturating_sub(lines);
+        self.auto_scroll.reset();
     }
 
     /// Scrolls the paragraph left by the given amount.
@@ -188,11 +204,13 @@ impl LazyParagraphState {
     /// Scrolls the paragraph to the top.
     pub fn scroll_to_top(&mut self) {
         self.offset.y = 0;
+        self.auto_scroll.reset();
     }
 
     /// Scrolls the paragraph to the bottom.
     pub fn scroll_to_bottom(&mut self) {
         self.offset.y = self.lines.saturating_sub(1);
+        self.auto_scroll.reset();
     }
 }
 
@@ -251,4 +269,46 @@ impl State for LazyParagraphState {
 pub struct Offset {
     pub x: usize,
     pub y: usize,
+}
+
+#[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
+pub enum AutoScroll {
+    Disabled,
+    Enabled { scrolling: bool },
+}
+
+impl AutoScroll {
+    pub fn disabled() -> Self {
+        AutoScroll::Disabled
+    }
+
+    pub fn enabled() -> Self {
+        AutoScroll::Enabled { scrolling: false }
+    }
+
+    pub fn reset(&mut self) {
+        if let AutoScroll::Enabled { scrolling } = self {
+            *scrolling = false;
+        }
+    }
+
+    pub fn scroll(&mut self) {
+        if let AutoScroll::Enabled { scrolling } = self {
+            *scrolling = true;
+        }
+    }
+
+    pub fn is_scrolling(&self) -> bool {
+        if let AutoScroll::Enabled { scrolling } = self {
+            *scrolling
+        } else {
+            false
+        }
+    }
+}
+
+impl Default for AutoScroll {
+    fn default() -> Self {
+        AutoScroll::Disabled
+    }
 }

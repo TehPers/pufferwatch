@@ -49,7 +49,7 @@ pub struct RawLogState<'i> {
 impl<'i> RawLogState<'i> {
     pub fn new(log: &'i Log) -> Self {
         let lines: Vec<_> = log.raw().lines().collect();
-        let paragraph_state = LazyParagraphState::new(lines.len());
+        let paragraph_state = LazyParagraphState::new(lines.len(), true);
         RawLogState {
             lines,
             paragraph_state,
@@ -80,7 +80,8 @@ impl<'i, 'j> WithLog<'j> for RawLogState<'i> {
             selected: self.selected,
             paragraph_state: LazyParagraphState {
                 offset: self.paragraph_state.offset,
-                ..LazyParagraphState::new(log.raw().lines().count())
+                auto_scroll: self.paragraph_state.auto_scroll,
+                ..LazyParagraphState::new(log.raw().lines().count(), true)
             },
             ..RawLogState::new(log)
         }
