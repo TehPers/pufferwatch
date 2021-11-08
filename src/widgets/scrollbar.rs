@@ -17,7 +17,9 @@ pub struct Scrollbar {
 
 impl Scrollbar {
     pub fn new(visible: Range<f32>, max: f32) -> Self {
-        assert!(visible.start >= 0.0);
+        assert!(max.is_sign_positive() && max.is_finite());
+        assert!(visible.start.is_sign_positive() && visible.start.is_finite());
+        assert!(visible.end.is_sign_positive() && visible.end.is_finite());
         assert!(visible.end <= max);
         assert!(visible.start <= visible.end);
         Scrollbar {
@@ -26,16 +28,6 @@ impl Scrollbar {
             track_style: Style::default().fg(Color::DarkGray),
             bar_style: Style::default().fg(Color::White),
         }
-    }
-
-    pub fn set_track_style(mut self, style: Style) -> Self {
-        self.track_style = style;
-        self
-    }
-
-    pub fn set_bar_style(mut self, style: Style) -> Self {
-        self.bar_style = style;
-        self
     }
 }
 
@@ -49,7 +41,7 @@ impl Widget for Scrollbar {
         }
 
         // Render bar
-        let height = area.height as f32;
+        let height = f32::from(area.height);
         let ratio = height / self.max;
         let bar_height = (((self.visible.end - self.visible.start) * ratio).ceil() as u16)
             .max(1)

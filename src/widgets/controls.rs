@@ -12,6 +12,7 @@ use tui::{
 };
 use unicode_width::UnicodeWidthStr;
 
+#[allow(dead_code)] // TODO: Add support for mouse events
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
 pub enum BindingDisplay {
     Key {
@@ -24,34 +25,35 @@ pub enum BindingDisplay {
 
 impl BindingDisplay {
     pub const CONTROL_ICON: &'static str = if cfg!(target_os = "macos") {
-        "⌘"
+        "\u{2318}"
     } else {
-        "⌃"
+        "\u{2303}"
     };
-    pub const ALT_ICON: &'static str = "⌥";
-    pub const SHIFT_ICON: &'static str = "⇧";
+    pub const ALT_ICON: &'static str = "\u{2325}";
+    pub const SHIFT_ICON: &'static str = "\u{21e7}";
 
-    pub const BACKSPACE_ICON: &'static str = "⌫";
-    pub const ENTER_ICON: &'static str = "⏎";
-    pub const LEFT_ICON: &'static str = "←";
-    pub const RIGHT_ICON: &'static str = "→";
-    pub const UP_ICON: &'static str = "↑";
-    pub const DOWN_ICON: &'static str = "↓";
-    pub const HOME_ICON: &'static str = "↖";
-    pub const END_ICON: &'static str = "↘";
-    pub const PAGEUP_ICON: &'static str = "⇞";
-    pub const PAGEDOWN_ICON: &'static str = "⇟";
-    pub const TAB_ICON: &'static str = "⇥";
-    pub const BACKTAB_ICON: &'static str = "⇤";
-    pub const DELETE_ICON: &'static str = "⌦";
+    pub const BACKSPACE_ICON: &'static str = "\u{232b}";
+    pub const ENTER_ICON: &'static str = "\u{23ce}";
+    pub const LEFT_ICON: &'static str = "\u{2190}";
+    pub const RIGHT_ICON: &'static str = "\u{2192}";
+    pub const UP_ICON: &'static str = "\u{2191}";
+    pub const DOWN_ICON: &'static str = "\u{2193}";
+    pub const HOME_ICON: &'static str = "\u{2196}";
+    pub const END_ICON: &'static str = "\u{2198}";
+    pub const PAGEUP_ICON: &'static str = "\u{21de}";
+    pub const PAGEDOWN_ICON: &'static str = "\u{21df}";
+    pub const TAB_ICON: &'static str = "\u{21e5}";
+    pub const BACKTAB_ICON: &'static str = "\u{21e4}";
+    pub const DELETE_ICON: &'static str = "\u{2326}";
     pub const INSERT_ICON: &'static str = "INS";
     pub const NULL_ICON: &'static str = "NUL";
-    pub const ESC_ICON: &'static str = "⎋";
-    pub const SPACE_ICON: &'static str = "␣";
+    pub const ESC_ICON: &'static str = "\u{238b}";
+    pub const SPACE_ICON: &'static str = "\u{2423}";
 
-    pub const UP_DOWN: &'static str = "↑↓";
-    pub const LEFT_RIGHT: &'static str = "→←";
-    pub const ARROWS: &'static str = "↑↓→←";
+    #[allow(dead_code)] // For future use
+    pub const UP_DOWN: &'static str = "\u{2191}\u{2193}";
+    pub const LEFT_RIGHT: &'static str = "\u{2192}\u{2190}";
+    pub const ARROWS: &'static str = "\u{2191}\u{2193}\u{2192}\u{2190}";
 
     const MODIFIER_DISPLAYS: [(KeyModifiers, &'static str); 3] = [
         (KeyModifiers::CONTROL, BindingDisplay::CONTROL_ICON),
@@ -137,15 +139,7 @@ impl StatefulWidget for Controls {
     type State = ControlsState;
 
     fn render(self, area: Rect, buf: &mut Buffer, state: &mut Self::State) {
-        // Get labels for each control
-        let labels: Vec<_> = state
-            .controls
-            .iter()
-            .map(|(control, label)| {
-                format!("{label} [{control}]", control = control, label = label)
-            })
-            .map(|label| Span::styled(label, self.style))
-            .collect();
+        // Create the "More" label
         let more_label = Span::styled("More [.]", self.style);
 
         // Get the available width for the controls, excluding the "More" label
@@ -154,10 +148,18 @@ impl StatefulWidget for Controls {
             return;
         }
 
+        // Get labels for each control
+        let labels = state
+            .controls
+            .iter()
+            .map(|(control, label)| {
+                format!("{label} [{control}]", control = control, label = label)
+            })
+            .map(|label| Span::styled(label, self.style));
+
         // Group controls into lines
         let mut lines = labels
-            .into_iter()
-            .scan((0usize, controls_width), |state, label| {
+            .scan((0_usize, controls_width), |state, label| {
                 let (line, remaining_width) = *state;
 
                 // Get label width + padding

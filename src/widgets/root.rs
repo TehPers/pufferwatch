@@ -50,7 +50,7 @@ impl<'i> StatefulWidget for Root<'i> {
         // Draw formatted log
         state
             .formatted_log_state
-            .set_selected(state.selected_widget == SelectedWidget::FormattedLog);
+            .selected(state.selected_widget == SelectedWidget::FormattedLog);
         FormattedLog::default().render(formatted_log_area, buf, &mut state.formatted_log_state);
 
         // Draw raw log

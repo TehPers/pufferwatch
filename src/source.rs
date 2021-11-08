@@ -21,7 +21,7 @@ pub struct StaticLogSource {
 
 impl StaticLogSource {
     pub fn new(path: &Path) -> anyhow::Result<Self> {
-        Log::parse_file(&path)
+        Log::parse_file(path)
             .map(|log| StaticLogSource { log: Some(log) })
             .context("Error parsing log")
     }

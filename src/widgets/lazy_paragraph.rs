@@ -28,8 +28,8 @@ where
     pub fn new(get_line: F) -> Self {
         LazyParagraph {
             get_line,
-            block: Default::default(),
-            style: Default::default(),
+            block: None,
+            style: Style::default(),
         }
     }
 
@@ -103,7 +103,7 @@ where
                 .iter()
                 .flat_map(|span| span.styled_graphemes(self.style))
                 // Calculate x offset for each grapheme
-                .scan(0usize, |cur_x, grapheme| {
+                .scan(0_usize, |cur_x, grapheme| {
                     let width = grapheme.symbol.width();
                     let x = *cur_x;
                     *cur_x = cur_x.saturating_add(width);
@@ -158,7 +158,7 @@ impl LazyParagraphState {
     pub fn new(lines: usize) -> Self {
         LazyParagraphState {
             lines,
-            offset: Default::default(),
+            offset: Offset::default(),
         }
     }
 
