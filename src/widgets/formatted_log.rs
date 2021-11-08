@@ -209,7 +209,9 @@ impl<'i> FormattedLogState<'i> {
         trace!(lines=%self.lines.len(), max_source_width=%self.source_width, "Applied filter to formatted log");
 
         // TODO: set the offset to the line closest to the current line's offset
+        let auto_scroll = self.paragraph_state.auto_scroll;
         self.paragraph_state = LazyParagraphState::new(self.lines.len(), true);
+        self.paragraph_state.auto_scroll = auto_scroll;
     }
 
     fn format_lines(log: &'i Log, filters: LogFilters<'i>) -> (Vec<FormattedLine<'i>>, usize) {
