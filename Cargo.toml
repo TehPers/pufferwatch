@@ -1,0 +1,30 @@
+[package]
+name = "smapi_log_parser"
+version = "0.1.0"
+edition = "2021"
+description = """
+A simple command-line SMAPI log parser.
+"""
+publish = false
+
+[dependencies]
+# Errors
+anyhow = "1"
+# Parsing
+nom = "7"
+clap = "2"
+# UI
+tui = { version = "0.16", default-features = false, features = ['crossterm'] }
+crossterm = { version = "0.22", features = ["serde"] }
+unicode-width = "0.1"
+# Utility
+itertools = "0.10"
+crossbeam = "0.8"
+indexmap = "1"
+dirs = "4"
+notify = "4"
+hotwatch = "0.4"
+ouroboros = "0.13"
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }

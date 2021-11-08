@@ -1,0 +1,1495 @@
+[03:00:00 INFO  SMAPI] SMAPI 3.13.0-beta.20211018 with Stardew Valley 1.5.5 on Microsoft Windows NT 10.0.19043.0
+[03:00:00 INFO  SMAPI] Mods go here: C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods
+[03:00:00 TRACE SMAPI] Log started at 2021-10-31T10:00:00 UTC
+[03:00:04 DEBUG SMAPI] Waiting for game to launch...
+[03:00:04 TRACE game] NoFpsCap: This feature is not available
+[03:00:05 DEBUG SMAPI] Loading mod metadata...
+[03:00:05 DEBUG SMAPI] Loading mods...
+[03:00:05 TRACE SMAPI]    CJB Cheats Menu (from Mods\CJBCheatsMenu\CJBCheatsMenu.dll)...
+[03:00:05 TRACE SMAPI]       Rewrote CJBCheatsMenu.dll for OS...
+[03:00:05 TRACE SMAPI]       Rewrote CJBCheatsMenu.dll to fix SpriteBatch methods...
+[03:00:05 TRACE SMAPI]    CJB Item Spawner (from Mods\CJBItemSpawner\CJBItemSpawner.dll)...
+[03:00:05 TRACE SMAPI]       Rewrote CJBItemSpawner.dll for OS...
+[03:00:05 TRACE SMAPI]    CJB Show Item Sell Price (from Mods\CJBShowItemSellPrice\CJBShowItemSellPrice.dll)...
+[03:00:05 TRACE SMAPI]       Rewrote CJBShowItemSellPrice.dll for OS...
+[03:00:05 TRACE SMAPI]    Console Commands (from Mods\ConsoleCommands\ConsoleCommands.dll)...
+[03:00:05 TRACE SMAPI]    Content Patcher (from Mods\ContentPatcher\ContentPatcher.dll)...
+[03:00:05 TRACE SMAPI]    SpaceCore (from Mods\SpaceCore\SpaceCore.dll)...
+[03:00:05 TRACE SMAPI]       Rewrote SpaceCore.dll for OS...
+[03:00:05 TRACE SMAPI]       Rewrote SpaceCore.dll to fix SpriteBatch methods...
+[03:00:05 TRACE SMAPI]       Detected game patcher in assembly SpaceCore.dll.
+[03:00:05 TRACE SMAPI]       Detected possible save serializer change (StardewValley.SaveGame.farmerSerializer field, StardewValley.SaveGame.serializer field, StardewValley.SaveGame.locationSerializer field) in assembly SpaceCore.dll.
+[03:00:05 TRACE SMAPI]    Dynamic Game Assets (from Mods\DynamicGameAssets\DynamicGameAssets.dll)...
+[03:00:05 TRACE SMAPI]       Rewrote DynamicGameAssets.dll for OS...
+[03:00:06 TRACE SMAPI]       Rewrote DynamicGameAssets.dll to fix SpriteBatch methods...
+[03:00:06 TRACE SMAPI]       Detected game patcher in assembly DynamicGameAssets.dll.
+[03:00:06 TRACE SMAPI]    Dynamic Game Assets Example Content Pack (from Mods\DynamicGameAssets.Example) [content pack]...
+[03:00:06 TRACE SMAPI]    Error Handler (from Mods\ErrorHandler\ErrorHandler.dll)...
+[03:00:06 TRACE SMAPI]       Detected game patcher in assembly ErrorHandler.dll.
+[03:00:06 TRACE SMAPI]    Esca's Modding Plugins (from Mods\EscasModdingPlugins\EMP.dll)...
+[03:00:06 TRACE SMAPI]       Rewrote EMP.dll for OS...
+[03:00:06 TRACE SMAPI]       Detected game patcher in assembly EMP.dll.
+[03:00:06 TRACE SMAPI]    Generic Mod Config Menu (from Mods\GenericModConfigMenu\GenericModConfigMenu.dll)...
+[03:00:06 TRACE SMAPI]       Rewrote GenericModConfigMenu.dll for OS...
+[03:00:06 TRACE SMAPI]       Rewrote GenericModConfigMenu.dll to fix SpriteBatch methods...
+[03:00:06 TRACE SMAPI]    Json Assets (from Mods\JsonAssets\JsonAssets.dll)...
+[03:00:06 TRACE SMAPI]       Rewrote JsonAssets.dll for OS...
+[03:00:06 TRACE SMAPI]       Rewrote JsonAssets.dll to fix SpriteBatch methods...
+[03:00:06 TRACE SMAPI]       Detected game patcher in assembly JsonAssets.dll.
+[03:00:06 TRACE SMAPI]    Mail Framework Mod (from Mods\MailFrameworkMod\MailFrameworkMod.dll)...
+[03:00:06 TRACE SMAPI]       Rewrote MailFrameworkMod.dll for OS...
+[03:00:06 TRACE SMAPI]       Detected game patcher in assembly MailFrameworkMod.dll.
+[03:00:06 TRACE SMAPI]    Producer Framework Mod (from Mods\ProducerFrameworkMod\ProducerFrameworkMod.dll)...
+[03:00:06 TRACE SMAPI]       Rewrote ProducerFrameworkMod.dll for OS...
+[03:00:06 TRACE SMAPI]       Rewrote ProducerFrameworkMod.dll to fix Harmony 1.x...
+[03:00:06 TRACE SMAPI]       Detected game patcher in assembly ProducerFrameworkMod.dll.
+[03:00:06 TRACE SMAPI]    Save Backup (from Mods\SaveBackup\SaveBackup.dll)...
+[03:00:06 TRACE SMAPI]    TehCore (from Mods\TehPers.Core\TehPers.Core.dll)...
+[03:00:06 TRACE SMAPI]       Loading Ninject.dll...
+[03:00:06 TRACE SMAPI]       Loading TehPers.Core.Api.dll...
+[03:00:06 TRACE SMAPI]       Loading Castle.Core.dll...
+[03:00:06 TRACE SMAPI]       Loading Ninject.Extensions.Factory.dll...
+[03:00:06 TRACE SMAPI]       Loading TehPers.Core.dll...
+[03:00:06 TRACE SMAPI]    Teh's Fishing Overhaul (from Mods\TehPers.FishingOverhaul\TehPers.FishingOverhaul.dll)...
+[03:00:06 TRACE SMAPI]       Loading TehPers.FishingOverhaul.Api.dll...
+[03:00:06 TRACE SMAPI]       Detected game patcher in assembly TehPers.FishingOverhaul.dll.
+[03:00:06 TRACE SMAPI]       Loading TehPers.FishingOverhaul.dll...
+[03:00:06 TRACE SMAPI]    Power Grid (from Mods\TehPers.PowerGrid\TehPers.PowerGrid.dll)...
+[03:00:06 TRACE SMAPI]    Visible Fish (from Mods\VisibleFish\showFishInWater.dll)...
+[03:00:06 TRACE SMAPI]       Detected game patcher in assembly showFishInWater.dll.
+[03:00:06 TRACE SMAPI]    [PFM] Fish Hatchery (from Mods\[MNF] More New Fish\[PFM] Fish Nursery) [content pack]...
+[03:00:06 TRACE SMAPI]    [JA] Fish Hatchery (from Mods\[MNF] More New Fish\[JA] Fish Nursery) [content pack]...
+[03:00:06 TRACE SMAPI]    More Fish (from Mods\[MNF] More New Fish\[CP] New Fish) [content pack]...
+[03:00:06 TRACE SMAPI]    [MFM] More New Fish (from Mods\[MNF] More New Fish\[MFM] New Fish) [content pack]...
+[03:00:06 TRACE SMAPI]    Teh's Example Fish Pack (from Mods\[TFO] TehPers.ExampleFishPack) [content pack]...
+[03:00:06 TRACE SMAPI]    Recatchable Legendary Fish (from Mods\[TFO] TehPers.RecatchableLegendaries) [content pack]...
+[03:00:06 INFO  SMAPI] Loaded 18 mods:
+[03:00:06 INFO  SMAPI]    CJB Cheats Menu 1.29.1 by CJBok and Pathoschild | Simple in-game cheats menu!
+[03:00:06 INFO  SMAPI]    CJB Item Spawner 2.1.4 by CJBok and Pathoschild | Simple in-game item spawner!
+[03:00:06 INFO  SMAPI]    CJB Show Item Sell Price 1.9.12 by CJBok and Pathoschild | Show item sell price in your inventory!
+[03:00:06 INFO  SMAPI]    Console Commands 3.13.0-beta.20211018 by SMAPI | Adds SMAPI console commands that let you manipulate the game.
+[03:00:06 INFO  SMAPI]    Content Patcher 1.24.0-beta.20211029 by Pathoschild | Loads content packs which edit game data, images, and maps without changing the game files.
+[03:00:06 INFO  SMAPI]    Dynamic Game Assets 1.3.0 by spacechase0 | Lets content packs add custom content to the game.
+[03:00:06 INFO  SMAPI]    Error Handler 3.13.0-beta.20211018 by SMAPI | Handles some common vanilla errors to log more useful info or avoid breaking the game.
+[03:00:06 INFO  SMAPI]    Esca's Modding Plugins 1.1.1 by Esca | Adds new data assets, map/tile properties, and features for other mods to use.
+[03:00:06 INFO  SMAPI]    Generic Mod Config Menu 1.6.0 by spacechase0 | Adds an in-game UI to edit other mods' config options (for mods which support it).
+[03:00:06 INFO  SMAPI]    Json Assets 1.10.0 by spacechase0 | Lets content packs add custom content to the game.
+[03:00:06 INFO  SMAPI]    Mail Framework Mod 1.12.1 by Digus | Utility classes to send mail in the game.
+[03:00:06 INFO  SMAPI]    Power Grid 0.1.0-beta.20211018 by TehPers | Energy framework for Stardew Valley.
+[03:00:06 INFO  SMAPI]    Producer Framework Mod 1.7.3 by Digus | Framework to add rules to produce objects or change the vanilla rules.
+[03:00:06 INFO  SMAPI]    Save Backup 3.13.0-beta.20211018 by SMAPI | Automatically backs up all your saves once per day into its folder.
+[03:00:06 INFO  SMAPI]    SpaceCore 1.7.0 by spacechase0 | A framework mod used by some of my other mods.
+[03:00:06 INFO  SMAPI]    Teh's Fishing Overhaul 3.0.0-beta.20211020 by TehPers | Highly customizable overhaul for fishing
+[03:00:06 INFO  SMAPI]    TehCore 1.0.0-beta.20211020 by TehPers | Utility mod for creating highly compatible mods
+[03:00:06 INFO  SMAPI]    Visible Fish 0.3.2 by shekurika | Shows fish in the water
+
+[03:00:06 INFO  SMAPI] Loaded 7 content packs:
+[03:00:06 INFO  SMAPI]    [JA] Fish Hatchery 1.0.0 by HisameArtwork&TrentXV | for Json Assets | Adds a tank so roe and pups can be safe from their parents and grow.
+[03:00:06 INFO  SMAPI]    [MFM] More New Fish 1.0.0 by Project Populate Json Assets | for Mail Framework Mod | Sends anglers guides and MNF letters content to the player.
+[03:00:06 INFO  SMAPI]    [PFM] Fish Hatchery 1.0.0 by HisameArtwork&TrentXV | for Producer Framework Mod | Adds the rules to the fish hatchery.
+[03:00:06 INFO  SMAPI]    Dynamic Game Assets Example Content Pack 1.0.0 by spacechase0 | for Dynamic Game Assets | Example pack for DGA
+[03:00:06 INFO  SMAPI]    More Fish 5.1.3 by HisameArtWork&TrentXV | for Content Patcher | Adds new fish to the game
+[03:00:06 INFO  SMAPI]    Recatchable Legendary Fish 0.1.0 by TehPers | for Teh's Fishing Overhaul | Allows legendary fish to be caught multiple times
+[03:00:06 INFO  SMAPI]    Teh's Example Fish Pack 0.1.0 by TehPers | for Teh's Fishing Overhaul | Example fish pack for Teh's Fishing Overhaul
+
+[03:00:06 INFO  SMAPI] Found 15 mods with warnings:
+[03:00:06 WARN  SMAPI]    Changed save serializer
+[03:00:06 WARN  SMAPI]    --------------------------------------------------
+[03:00:06 WARN  SMAPI]       These mods change the save serializer. They may corrupt your save files, or make them unusable if
+[03:00:06 WARN  SMAPI]       you uninstall these mods.
+
+[03:00:06 WARN  SMAPI]       - SpaceCore
+
+[03:00:06 INFO  SMAPI]    Patched game code
+[03:00:06 INFO  SMAPI]    --------------------------------------------------
+[03:00:06 INFO  SMAPI]       These mods directly change the game code. They're more likely to cause errors or bugs in-game; if
+[03:00:06 INFO  SMAPI]       your game has issues, try removing these first. Otherwise you can ignore this warning.
+
+[03:00:06 INFO  SMAPI]       - Dynamic Game Assets
+[03:00:06 INFO  SMAPI]       - Esca's Modding Plugins
+[03:00:06 INFO  SMAPI]       - Json Assets
+[03:00:06 INFO  SMAPI]       - Mail Framework Mod
+[03:00:06 INFO  SMAPI]       - Producer Framework Mod
+[03:00:06 INFO  SMAPI]       - SpaceCore
+[03:00:06 INFO  SMAPI]       - Teh's Fishing Overhaul
+[03:00:06 INFO  SMAPI]       - Visible Fish
+
+[03:00:06 DEBUG SMAPI]    No update keys
+[03:00:06 DEBUG SMAPI]    --------------------------------------------------
+[03:00:06 DEBUG SMAPI]       These mods have no update keys in their manifest. SMAPI may not notify you about updates for these
+[03:00:06 DEBUG SMAPI]       mods. Consider notifying the mod authors about this problem.
+
+[03:00:06 DEBUG SMAPI]       - [JA] Fish Hatchery
+[03:00:06 DEBUG SMAPI]       - [MFM] More New Fish
+[03:00:06 DEBUG SMAPI]       - [PFM] Fish Hatchery
+[03:00:06 DEBUG SMAPI]       - Dynamic Game Assets Example Content Pack
+[03:00:06 DEBUG SMAPI]       - Power Grid
+[03:00:06 DEBUG SMAPI]       - Recatchable Legendary Fish
+[03:00:06 DEBUG SMAPI]       - Teh's Example Fish Pack
+
+[03:00:06 DEBUG SMAPI] Launching mods...
+[03:00:06 TRACE CJB Cheats Menu] Started with menu key P.
+[03:00:06 TRACE CJB Item Spawner] Started with menu key I.
+[03:00:06 TRACE SMAPI]    Found mod-provided API (ContentPatcher.Framework.ContentPatcherAPI).
+[03:00:06 TRACE SpaceCore] Found crafting recipe constructor in Void layoutRecipes(System.Collections.Generic.List`1[System.String])!
+[03:00:06 TRACE SpaceCore] Found first ldloc.s for ClickableTextureComponent in Void layoutRecipes(System.Collections.Generic.List`1[System.String]); storing potential override w/ recipeLocal=StardewValley.CraftingRecipe (9)
+[03:00:06 TRACE SpaceCore] Found crafting recipe constructor in System.String createDescription(Int32)!
+[03:00:07 TRACE SMAPI]    Found mod-provided API (SpaceCore.Api).
+[03:00:07 TRACE Dynamic Game Assets] Found object information reference in Void .ctor(Int32, Int32, Int32, Int32), editing IL now
+[03:00:07 TRACE Dynamic Game Assets] Found object sorting, replacing with ours
+[03:00:07 TRACE SpaceCore] Found crafting recipe constructor in System.String createDescription(Int32)!
+[03:00:07 TRACE Dynamic Game Assets] Found the object information get call, redirecting...
+[03:00:07 TRACE Dynamic Game Assets] Found the object information get call, redirecting...
+[03:00:07 TRACE Dynamic Game Assets] Found object information reference in Void eatObject(StardewValley.Object, Boolean), editing IL now
+[03:00:07 TRACE Dynamic Game Assets] Found object information reference in Void doneEating(), editing IL now
+[03:00:07 TRACE Dynamic Game Assets] Found the object information get call, redirecting...
+[03:00:07 TRACE Dynamic Game Assets] Found the object information get call, redirecting...
+[03:00:07 TRACE Dynamic Game Assets] Found parentSheetIndex reference in Void parseItems(System.Collections.Generic.IList`1[StardewValley.Item]), editing IL now
+[03:00:07 TRACE SMAPI]    Found mod-provided API (DynamicGameAssets.Api).
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_FishLocations": postfixing SDV method "GameLocation.getFishingLocation(Vector2)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_FishLocations": postfixing SDV method "Farm.getFishingLocation(Vector2)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_FishLocations": postfixing SDV method "IslandWest.getFishingLocation(Vector2)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_FishLocations": postfixing SDV method "Forest.getFishingLocation(Vector2)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_FishLocations": postfixing SDV method "GameLocation.catchOceanCrabPotFishFromThisSpot(int, int)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_FishLocations": postfixing SDV method "Farm.catchOceanCrabPotFishFromThisSpot(int, int)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_FishLocations": postfixing SDV method "BoatTunnel.catchOceanCrabPotFishFromThisSpot(int, int)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_FishLocations": postfixing SDV method "IslandLocation.catchOceanCrabPotFishFromThisSpot(int, int)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_FishLocations": postfixing SDV method "IslandNorth.catchOceanCrabPotFishFromThisSpot(int, int)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_FishLocations": postfixing SDV method "IslandWest.catchOceanCrabPotFishFromThisSpot(int, int)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_FishLocations": postfixing SDV method "BeachNightMarket.catchOceanCrabPotFishFromThisSpot(int, int)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_FishLocations": transpiling SDV method "CrabPot.DayUpdate(GameLocation)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_FishLocations": prefixing SDV method "GameLocation.getFish(float, int, int, Farmer, double, Vector2, string)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_CustomOrderBoards": postfixing SDV method "GameLocation.PerformAction(string, Farmer, Location)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_CustomOrderBoards": postfixing SDV method "SpecialOrder.UpdateAvailableSpecialOrders(bool)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_DestroyableBushes": postfixing SDV method "Bush.isDestroyable(GameLocation, Vector2)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_BedPlacement": postfixing SDV method "GameLocation.CanPlaceThisFurnitureHere(Furniture)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_PassOutSafely": transpiling SDV method "Farmer.performPassoutWarp(Farmer, string, Point, bool)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_ActionKitchen": postfixing SDV method "GameLocation.performAction(string, Farmer, Location)".
+[03:00:08 TRACE Esca's Modding Plugins] Applying Harmony patch "HarmonyPatch_AllowMiniFridges": prefixing SDV method "Object.placementAction(GameLocation, int, int, Farmer)".
+[03:00:08 TRACE SMAPI]    Found mod-provided API (EscasModdingPlugins.EmpApi).
+[03:00:08 TRACE SMAPI]    Found mod-provided API (GenericModConfigMenu.Framework.Api).
+[03:00:08 TRACE SMAPI] Json Assets edited Maps/springobjects.
+[03:00:08 TRACE SMAPI] Json Assets edited TileSheets/Craftables.
+[03:00:08 TRACE SMAPI] Json Assets edited TileSheets/crops.
+[03:00:08 TRACE SMAPI] Json Assets edited TileSheets/fruitTrees.
+[03:00:08 TRACE SMAPI] Json Assets edited Characters/Farmer/shirts.
+[03:00:08 TRACE SMAPI] Json Assets edited Characters/Farmer/pants.
+[03:00:08 TRACE SMAPI] Json Assets edited Characters/Farmer/hats.
+[03:00:08 TRACE SMAPI]    Found mod-provided API (JsonAssets.Api).
+[03:00:08 TRACE SMAPI]    Found mod-provided API (ProducerFrameworkMod.Api.ProducerFrameworkModApi).
+[03:00:08 TRACE Save Backup] Already backed up today.
+[03:00:08 TRACE SMAPI]    Found mod-provided API (TehPers.FishingOverhaul.Services.FishingApi).
+[03:00:08 DEBUG SMAPI] Mods loaded and ready!
+[03:00:08 TRACE SMAPI] Checking for known software conflicts...
+[03:00:08 TRACE SMAPI]    None found!
+[03:00:08 TRACE Dynamic Game Assets] Added 0/0 entries to crafting recipes
+[03:00:08 TRACE SMAPI] Dynamic Game Assets edited Data/CraftingRecipes.
+[03:00:08 TRACE SMAPI] Json Assets edited Data/CraftingRecipes.
+[03:00:08 TRACE SMAPI] Checking for updates...
+[03:00:08 TRACE Dynamic Game Assets] Added 0/0 entries to cooking recipes
+[03:00:08 TRACE SMAPI] Dynamic Game Assets edited Data/CookingRecipes.
+[03:00:08 TRACE SMAPI] Json Assets edited Data/CookingRecipes.
+[03:00:08 TRACE SMAPI] Dynamic Game Assets edited Data/ObjectInformation.
+[03:00:08 TRACE SMAPI] Json Assets edited Data/ObjectInformation.
+[03:00:08 TRACE SMAPI] Json Assets edited Data/ClothingInformation.
+[03:00:08 TRACE SMAPI] Json Assets edited Data/ObjectContextTags.
+[03:00:08 TRACE SMAPI] Json Assets edited Data/BigCraftablesInformation.
+[03:00:08 TRACE SMAPI] Json Assets edited TileSheets/weapons.
+[03:00:09 TRACE SMAPI] Json Assets edited Data/weapons.
+[03:00:09 TRACE game] setGameMode( 'titleScreenGameMode (0)' )
+[03:00:09 TRACE SMAPI] Running on GPU: NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2
+[03:00:09 TRACE SMAPI]    SMAPI okay.
+[03:00:09 TRACE SMAPI]    Checking for updates to 22 mods...
+[03:00:09 TRACE game] Steam logged on: True
+[03:00:09 TRACE game] Initializing GalaxySDK
+
+[03:00:09 ALERT SMAPI] You can update 3 mods:
+[03:00:09 ALERT SMAPI]    Dynamic Game Assets 1.3.1: https://www.nexusmods.com/stardewvalley/mods/9365
+[03:00:09 ALERT SMAPI]    SpaceCore 1.7.1: https://www.nexusmods.com/stardewvalley/mods/1348
+[03:00:09 ALERT SMAPI]    Visible Fish 0.3.4: https://www.nexusmods.com/stardewvalley/mods/8897
+[03:00:10 TRACE game] Requesting Steam app ticket
+[03:00:10 TRACE SMAPI] Detecting common issues...
+[03:00:10 TRACE SMAPI] Invalidating cached assets for new editors & loaders...
+[03:00:10 INFO  SMAPI] Type 'help' for help, or 'help <cmd>' for a command's usage
+[03:00:10 TRACE SMAPI]    changed: Json Assets (added 1), SpaceCore (added 1).
+[03:00:10 TRACE SMAPI] Json Assets edited Maps/springobjects.
+[03:00:10 TRACE SMAPI] Json Assets edited TileSheets/Craftables.
+[03:00:10 TRACE SMAPI] Json Assets edited TileSheets/crops.
+[03:00:10 TRACE SMAPI] Json Assets edited TileSheets/fruitTrees.
+[03:00:10 TRACE SMAPI] Json Assets edited Characters/Farmer/shirts.
+[03:00:10 TRACE SMAPI] Json Assets edited Characters/Farmer/pants.
+[03:00:10 TRACE SMAPI] Json Assets edited Characters/Farmer/hats.
+[03:00:10 TRACE Dynamic Game Assets] Added 0/0 entries to crafting recipes
+[03:00:10 TRACE SMAPI] Dynamic Game Assets edited Data/CraftingRecipes.
+[03:00:10 TRACE SMAPI] Json Assets edited Data/CraftingRecipes.
+[03:00:10 TRACE Dynamic Game Assets] Added 0/0 entries to cooking recipes
+[03:00:10 TRACE SMAPI] Dynamic Game Assets edited Data/CookingRecipes.
+[03:00:10 TRACE SMAPI] Json Assets edited Data/CookingRecipes.
+[03:00:10 TRACE SMAPI] Dynamic Game Assets edited Data/ObjectInformation.
+[03:00:10 TRACE SMAPI] Json Assets edited Data/ObjectInformation.
+[03:00:10 TRACE SMAPI] Json Assets edited Data/ClothingInformation.
+[03:00:10 TRACE SMAPI] Json Assets edited Data/ObjectContextTags.
+[03:00:10 TRACE SMAPI] Json Assets edited Data/BigCraftablesInformation.
+[03:00:10 TRACE SMAPI] Json Assets edited TileSheets/weapons.
+[03:00:10 TRACE SMAPI] Invalidated 15 asset names (Characters/Farmer/hats, Characters/Farmer/pants, Characters/Farmer/shirts, Data/BigCraftablesInformation, Data/ClothingInformation, Data/CookingRecipes, Data/CraftingRecipes, Data/ObjectContextTags, Data/ObjectInformation, Data/weapons, Maps/springobjects, TileSheets/Craftables, TileSheets/crops, TileSheets/fruitTrees, TileSheets/weapons).
+Propagated 14 core assets (Characters/Farmer/hats, Characters/Farmer/pants, Characters/Farmer/shirts, Data/BigCraftablesInformation, Data/ClothingInformation, Data/CookingRecipes, Data/CraftingRecipes, Data/ObjectContextTags, Data/ObjectInformation, Maps/springobjects, TileSheets/Craftables, TileSheets/crops, TileSheets/fruitTrees, TileSheets/weapons).
+[03:00:10 TRACE SpaceCore] Accessed mod-provided API for Generic Mod Config Menu.
+[03:00:10 TRACE Dynamic Game Assets] Accessed mod-provided API for Content Patcher.
+[03:00:10 TRACE Dynamic Game Assets] Accessed mod-provided API for SpaceCore.
+[03:00:10 DEBUG Dynamic Game Assets] Loading content pack "Dynamic Game Assets Example Content Pack"...
+[03:00:10 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ContentIndexPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ObjectPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.GiftTastePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.GiftTastePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ObjectPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ObjectPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ObjectPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ObjectPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ObjectPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ObjectPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ObjectPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ObjectPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ContentIndexPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.CraftingRecipePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.CraftingRecipePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.CraftingRecipePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.CraftingRecipePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.CraftingRecipePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.CraftingRecipePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.CraftingRecipePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.CraftingRecipePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.CraftingRecipePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ContentIndexPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.FurniturePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.FurniturePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.FurniturePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.FurniturePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.FurniturePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.FurniturePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.FurniturePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.FurniturePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ContentIndexPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ShopEntryPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ShopEntryPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ShopEntryPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ShopEntryPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.BigCraftablePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.BootsPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.CropPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.FencePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ForgeRecipePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.FruitTreePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.HatPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.MachineRecipePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.MeleeWeaponPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.PantsPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.ShirtPackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.TailoringRecipePackData >...
+[03:00:11 DEBUG Dynamic Game Assets] Loading data< DynamicGameAssets.PackData.TextureOverridePackData >...
+[03:00:11 TRACE Dynamic Game Assets] Accessed mod-provided API for Generic Mod Config Menu.
+[03:00:11 TRACE Dynamic Game Assets] Loading config entry Inert settings...
+[03:00:11 TRACE Dynamic Game Assets] Loading config entry This is a paragraph. You can put a bunch of text here. Personally, I'd put some text about my cat here. He's super soft and fluffy....
+[03:00:11 TRACE Dynamic Game Assets] Loading config entry ...
+[03:00:11 TRACE Dynamic Game Assets] Loading config entry Cat Rating...
+[03:00:11 TRACE Dynamic Game Assets] Loading config entry Pi count...
+[03:00:11 TRACE Dynamic Game Assets] Loading config entry Comments...
+[03:00:11 TRACE Dynamic Game Assets] Loading config entry Go to actual settings...
+[03:00:11 TRACE Dynamic Game Assets] Loading config entry Mysterious Circle Universal Gift Taste...
+[03:00:11 TRACE Dynamic Game Assets] Loading config entry Animated Mysterious Circle...
+[03:00:11 TRACE Dynamic Game Assets] Loading config entry Static Mysterious Circle Color...
+[03:00:11 TRACE Json Assets] Accessed mod-provided API for Content Patcher.
+[03:00:11 TRACE Json Assets] Accessed mod-provided API for Json Assets.
+[03:00:11 TRACE Mail Framework Mod] Accessed mod-provided API for Dynamic Game Assets.
+[03:00:11 TRACE Producer Framework Mod] Reading content pack: [PFM] Fish Hatchery 1.0.0 from C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods\[MNF] More New Fish\[PFM] Fish Nursery
+[03:00:11 TRACE SMAPI] Dynamic Game Assets edited Data/ObjectInformation.
+[03:00:11 TRACE SMAPI] Json Assets edited Data/ObjectInformation.
+[03:00:11 INFO  TehCore] Loaded 3 namespaces:
+[03:00:11 INFO  TehCore]  - StardewValley
+[03:00:11 INFO  TehCore]  - DGA
+[03:00:11 INFO  TehCore]  - JA
+[03:00:11 TRACE Teh's Fishing Overhaul] Accessed mod-provided API for Generic Mod Config Menu.
+[03:00:11 TRACE Teh's Fishing Overhaul] Accessed mod-provided API for Content Patcher.
+[03:00:11 TRACE TehCore] Setting up services.
+[03:00:11 TRACE Teh's Fishing Overhaul] Setting up services.
+[03:00:11 TRACE Power Grid] Setting up services.
+[03:00:11 TRACE Visible Fish] Accessed mod-provided API for Generic Mod Config Menu.
+[03:00:11 TRACE game] Signing into GalaxySDK
+[03:00:11 TRACE Content Patcher] Json Assets added 25 custom tokens with prefix 'spacechase0.JsonAssets/': BigCraftableId, BigCraftableSpriteTilesheet, BigCraftableSpriteX, BigCraftableSpriteY, ClothingId, CropId, CropSpriteTilesheet, CropSpriteX, CropSpriteY, FruitTreeId, FruitTreeSpriteTilesheet, FruitTreeSpriteX, FruitTreeSpriteY, HatId, HatSpriteTilesheet, HatSpriteX, HatSpriteY, ObjectId, ObjectSpriteTilesheet, ObjectSpriteX, ObjectSpriteY, WeaponId, WeaponSpriteTilesheet, WeaponSpriteX, WeaponSpriteY.
+[03:00:11 TRACE Content Patcher] Teh's Fishing Overhaul added 7 custom tokens with prefix 'TehPers.FishingOverhaul/': BooksFound, HasItem, MissingJournalScraps, MissingSecretNotes, RandomGoldenWalnuts, SpecialOrderRuleActive, TidePoolGoldenWalnut.
+[03:00:11 TRACE Content Patcher] Accessed mod-provided API for Generic Mod Config Menu.
+[03:00:14 TRACE Content Patcher] Requested cache invalidation for all assets matching a predicate.
+[03:00:16 TRACE Content Patcher] Requested cache invalidation for all assets matching a predicate.
+[03:00:16 TRACE SMAPI] Invalidated 0 cache entries.
+[03:00:16 TRACE SMAPI] Json Assets edited Data/ObjectContextTags.
+[03:00:16 TRACE TehCore] Reloading Data/ObjectContextTags
+[03:00:16 TRACE SMAPI] TehCore edited Data/ObjectContextTags.
+[03:00:16 TRACE Content Patcher] More Fish edited Data/ObjectContextTags.
+[03:00:16 TRACE SMAPI] Content Patcher edited Data/ObjectContextTags.
+[03:00:16 TRACE SMAPI] Dynamic Game Assets edited Data/ObjectInformation.
+[03:00:16 TRACE SMAPI] Json Assets edited Data/ObjectInformation.
+[03:00:16 TRACE TehCore] Reloading Data/ObjectInformation
+[03:00:16 TRACE SMAPI] TehCore edited Data/ObjectInformation.
+[03:00:16 TRACE Content Patcher] More Fish edited Data/ObjectInformation.
+[03:00:16 TRACE SMAPI] Content Patcher edited Data/ObjectInformation.
+[03:00:16 TRACE Dynamic Game Assets] Added 0/0 entries to crafting recipes
+[03:00:16 TRACE SMAPI] Dynamic Game Assets edited Data/CraftingRecipes.
+[03:00:16 TRACE SMAPI] Json Assets edited Data/CraftingRecipes.
+[03:00:16 TRACE TehCore] Reloading Data/CraftingRecipes
+[03:00:16 TRACE SMAPI] TehCore edited Data/CraftingRecipes.
+[03:00:16 TRACE Content Patcher] More Fish edited Data/CraftingRecipes.
+[03:00:16 TRACE SMAPI] Content Patcher edited Data/CraftingRecipes.
+[03:00:16 TRACE TehCore] Reloading Data/NPCGiftTastes
+[03:00:16 TRACE SMAPI] TehCore edited Data/NPCGiftTastes.
+[03:00:16 TRACE Content Patcher] More Fish edited Data/NPCGiftTastes.
+[03:00:16 TRACE SMAPI] Content Patcher edited Data/NPCGiftTastes.
+[03:00:16 TRACE SMAPI] Json Assets edited Maps/springobjects.
+[03:00:16 TRACE TehCore] Reloading Maps/springobjects
+[03:00:16 TRACE SMAPI] TehCore edited Maps/springobjects.
+[03:00:16 TRACE Content Patcher] More Fish edited Maps/springobjects.
+[03:00:16 TRACE SMAPI] Content Patcher edited Maps/springobjects.
+[03:00:16 TRACE SMAPI] Invalidated 5 asset names (Data/CraftingRecipes, Data/NPCGiftTastes, Data/ObjectContextTags, Data/ObjectInformation, Maps/springobjects).
+Propagated 5 core assets (Data/CraftingRecipes, Data/NPCGiftTastes, Data/ObjectContextTags, Data/ObjectInformation, Maps/springobjects).
+[03:00:16 INFO  Json Assets] Loading content packs...
+[03:00:16 INFO  Json Assets] 	[JA] Fish Hatchery 1.0.0 by HisameArtwork&TrentXV - Adds a tank so roe and pups can be safe from their parents and grow.
+[03:00:16 TRACE Json Assets] Event: ItemsRegistered
+[03:00:16 TRACE Json Assets] Requested cache invalidation for all assets matching a predicate.
+[03:00:16 TRACE SMAPI] Json Assets edited TileSheets/weapons.
+[03:00:16 TRACE TehCore] Reloading TileSheets/weapons
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/weapons.
+[03:00:16 TRACE SMAPI] Json Assets edited Data/BigCraftablesInformation.
+[03:00:16 TRACE TehCore] Reloading Data/BigCraftablesInformation
+[03:00:16 TRACE SMAPI] TehCore edited Data/BigCraftablesInformation.
+[03:00:16 TRACE SMAPI] Json Assets edited Maps/springobjects.
+[03:00:16 TRACE TehCore] Reloading Maps/springobjects
+[03:00:16 TRACE SMAPI] TehCore edited Maps/springobjects.
+[03:00:16 TRACE Content Patcher] More Fish edited Maps/springobjects.
+[03:00:16 TRACE SMAPI] Content Patcher edited Maps/springobjects.
+[03:00:16 TRACE SMAPI] Json Assets edited Data/ClothingInformation.
+[03:00:16 TRACE TehCore] Reloading Data/ClothingInformation
+[03:00:16 TRACE SMAPI] TehCore edited Data/ClothingInformation.
+[03:00:16 TRACE Dynamic Game Assets] Added 0/0 entries to cooking recipes
+[03:00:16 TRACE SMAPI] Dynamic Game Assets edited Data/CookingRecipes.
+[03:00:16 TRACE SMAPI] Json Assets edited Data/CookingRecipes.
+[03:00:16 TRACE TehCore] Reloading Data/CookingRecipes
+[03:00:16 TRACE SMAPI] TehCore edited Data/CookingRecipes.
+[03:00:16 TRACE Dynamic Game Assets] Added 0/0 entries to crafting recipes
+[03:00:16 TRACE SMAPI] Dynamic Game Assets edited Data/CraftingRecipes.
+[03:00:16 TRACE SMAPI] Json Assets edited Data/CraftingRecipes.
+[03:00:16 TRACE TehCore] Reloading Data/CraftingRecipes
+[03:00:16 TRACE SMAPI] TehCore edited Data/CraftingRecipes.
+[03:00:16 TRACE Content Patcher] More Fish edited Data/CraftingRecipes.
+[03:00:16 TRACE SMAPI] Content Patcher edited Data/CraftingRecipes.
+[03:00:16 TRACE SMAPI] Json Assets edited Characters/Farmer/hats.
+[03:00:16 TRACE TehCore] Reloading Characters/Farmer/hats
+[03:00:16 TRACE SMAPI] TehCore edited Characters/Farmer/hats.
+[03:00:16 TRACE SMAPI] Dynamic Game Assets edited Data/ObjectInformation.
+[03:00:16 TRACE SMAPI] Json Assets edited Data/ObjectInformation.
+[03:00:16 TRACE TehCore] Reloading Data/ObjectInformation
+[03:00:16 TRACE SMAPI] TehCore edited Data/ObjectInformation.
+[03:00:16 TRACE Content Patcher] More Fish edited Data/ObjectInformation.
+[03:00:16 TRACE SMAPI] Content Patcher edited Data/ObjectInformation.
+[03:00:16 TRACE SMAPI] Json Assets edited Characters/Farmer/pants.
+[03:00:16 TRACE TehCore] Reloading Characters/Farmer/pants
+[03:00:16 TRACE SMAPI] TehCore edited Characters/Farmer/pants.
+[03:00:16 TRACE SMAPI] Json Assets edited Characters/Farmer/shirts.
+[03:00:16 TRACE TehCore] Reloading Characters/Farmer/shirts
+[03:00:16 TRACE SMAPI] TehCore edited Characters/Farmer/shirts.
+[03:00:16 TRACE SMAPI] Json Assets edited TileSheets/fruitTrees.
+[03:00:16 TRACE TehCore] Reloading TileSheets/fruitTrees
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/fruitTrees.
+[03:00:16 TRACE SMAPI] Json Assets edited TileSheets/crops.
+[03:00:16 TRACE TehCore] Reloading TileSheets/crops
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/crops.
+[03:00:16 TRACE SMAPI] Json Assets edited TileSheets/Craftables.
+[03:00:16 TRACE TehCore] Reloading TileSheets/Craftables
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/Craftables.
+[03:00:16 TRACE SMAPI] Json Assets edited Data/ObjectContextTags.
+[03:00:16 TRACE TehCore] Reloading Data/ObjectContextTags
+[03:00:16 TRACE SMAPI] TehCore edited Data/ObjectContextTags.
+[03:00:16 TRACE Content Patcher] More Fish edited Data/ObjectContextTags.
+[03:00:16 TRACE SMAPI] Content Patcher edited Data/ObjectContextTags.
+[03:00:16 TRACE SMAPI] Invalidated 14 asset names (Characters/Farmer/hats, Characters/Farmer/pants, Characters/Farmer/shirts, Data/BigCraftablesInformation, Data/ClothingInformation, Data/CookingRecipes, Data/CraftingRecipes, Data/ObjectContextTags, Data/ObjectInformation, Maps/springobjects, TileSheets/Craftables, TileSheets/crops, TileSheets/fruitTrees, TileSheets/weapons).
+Propagated 14 core assets (Characters/Farmer/hats, Characters/Farmer/pants, Characters/Farmer/shirts, Data/BigCraftablesInformation, Data/ClothingInformation, Data/CookingRecipes, Data/CraftingRecipes, Data/ObjectContextTags, Data/ObjectInformation, Maps/springobjects, TileSheets/Craftables, TileSheets/crops, TileSheets/fruitTrees, TileSheets/weapons).
+[03:00:16 TRACE SMAPI] Invalidating cached assets for new editors & loaders...
+[03:00:16 TRACE SMAPI]    changed: Content Patcher (added 1), Mail Framework Mod (added 1), TehCore (added 1).
+[03:00:16 TRACE SMAPI] Json Assets edited Data/ObjectContextTags.
+[03:00:16 TRACE TehCore] Reloading Data/ObjectContextTags
+[03:00:16 TRACE SMAPI] TehCore edited Data/ObjectContextTags.
+[03:00:16 TRACE Content Patcher] More Fish edited Data/ObjectContextTags.
+[03:00:16 TRACE SMAPI] Content Patcher edited Data/ObjectContextTags.
+[03:00:16 TRACE SMAPI] Json Assets edited TileSheets/Craftables.
+[03:00:16 TRACE TehCore] Reloading TileSheets/Craftables
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/Craftables.
+[03:00:16 TRACE SMAPI] Json Assets edited TileSheets/crops.
+[03:00:16 TRACE TehCore] Reloading TileSheets/crops
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/crops.
+[03:00:16 TRACE SMAPI] Json Assets edited TileSheets/fruitTrees.
+[03:00:16 TRACE TehCore] Reloading TileSheets/fruitTrees
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/fruitTrees.
+[03:00:16 TRACE TehCore] Reloading Data/NPCGiftTastes
+[03:00:16 TRACE SMAPI] TehCore edited Data/NPCGiftTastes.
+[03:00:16 TRACE Content Patcher] More Fish edited Data/NPCGiftTastes.
+[03:00:16 TRACE SMAPI] Content Patcher edited Data/NPCGiftTastes.
+[03:00:16 TRACE SMAPI] Json Assets edited Characters/Farmer/shirts.
+[03:00:16 TRACE TehCore] Reloading Characters/Farmer/shirts
+[03:00:16 TRACE SMAPI] TehCore edited Characters/Farmer/shirts.
+[03:00:16 TRACE SMAPI] Json Assets edited Characters/Farmer/pants.
+[03:00:16 TRACE TehCore] Reloading Characters/Farmer/pants
+[03:00:16 TRACE SMAPI] TehCore edited Characters/Farmer/pants.
+[03:00:16 TRACE SMAPI] Dynamic Game Assets edited Data/ObjectInformation.
+[03:00:16 TRACE SMAPI] Json Assets edited Data/ObjectInformation.
+[03:00:16 TRACE TehCore] Reloading Data/ObjectInformation
+[03:00:16 TRACE SMAPI] TehCore edited Data/ObjectInformation.
+[03:00:16 TRACE Content Patcher] More Fish edited Data/ObjectInformation.
+[03:00:16 TRACE SMAPI] Content Patcher edited Data/ObjectInformation.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/Concessions
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/Concessions.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/birds
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/birds.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/daybg
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/daybg.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/nightbg
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/nightbg.
+[03:00:16 TRACE TehCore] Reloading Maps/MenuTiles
+[03:00:16 TRACE SMAPI] TehCore edited Maps/MenuTiles.
+[03:00:16 TRACE TehCore] Reloading Maps/MenuTilesUncolored
+[03:00:16 TRACE SMAPI] TehCore edited Maps/MenuTilesUncolored.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/Lighting/lantern
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/Lighting/lantern.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/Lighting/windowLight
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/Lighting/windowLight.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/Lighting/sconceLight
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/Lighting/sconceLight.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/Lighting/greenLight
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/Lighting/greenLight.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/Lighting/indoorWindowLight
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/Lighting/indoorWindowLight.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/shadow
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/shadow.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/Cursors
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/Cursors.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/Cursors2
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/Cursors2.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/Giftbox
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/Giftbox.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/ControllerMaps
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/ControllerMaps.
+[03:00:16 TRACE TehCore] Reloading TileSheets/animations
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/animations.
+[03:00:16 TRACE TehCore] Reloading Data/Achievements
+[03:00:16 TRACE SMAPI] TehCore edited Data/Achievements.
+[03:00:16 TRACE SMAPI] Json Assets edited Characters/Farmer/hats.
+[03:00:16 TRACE TehCore] Reloading Characters/Farmer/hats
+[03:00:16 TRACE SMAPI] TehCore edited Characters/Farmer/hats.
+[03:00:16 TRACE TehCore] Reloading Fonts/SpriteFont1
+[03:00:16 TRACE SMAPI] TehCore edited Fonts/SpriteFont1.
+[03:00:16 TRACE TehCore] Reloading Fonts/SmallFont
+[03:00:16 TRACE SMAPI] TehCore edited Fonts/SmallFont.
+[03:00:16 TRACE TehCore] Reloading Fonts/tinyFont
+[03:00:16 TRACE SMAPI] TehCore edited Fonts/tinyFont.
+[03:00:16 TRACE TehCore] Reloading Fonts/tinyFontBorder
+[03:00:16 TRACE SMAPI] TehCore edited Fonts/tinyFontBorder.
+[03:00:16 TRACE TehCore] Reloading TileSheets/emotes
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/emotes.
+[03:00:16 TRACE TehCore] Reloading TileSheets/debris
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/debris.
+[03:00:16 TRACE TehCore] Reloading TileSheets/rain
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/rain.
+[03:00:16 TRACE TehCore] Reloading TileSheets/BuffsIcons
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/BuffsIcons.
+[03:00:16 TRACE Dynamic Game Assets] Added 0/0 entries to crafting recipes
+[03:00:16 TRACE SMAPI] Dynamic Game Assets edited Data/CraftingRecipes.
+[03:00:16 TRACE SMAPI] Json Assets edited Data/CraftingRecipes.
+[03:00:16 TRACE TehCore] Reloading Data/CraftingRecipes
+[03:00:16 TRACE SMAPI] TehCore edited Data/CraftingRecipes.
+[03:00:16 TRACE Content Patcher] More Fish edited Data/CraftingRecipes.
+[03:00:16 TRACE SMAPI] Content Patcher edited Data/CraftingRecipes.
+[03:00:16 TRACE Dynamic Game Assets] Added 0/0 entries to cooking recipes
+[03:00:16 TRACE SMAPI] Dynamic Game Assets edited Data/CookingRecipes.
+[03:00:16 TRACE SMAPI] Json Assets edited Data/CookingRecipes.
+[03:00:16 TRACE TehCore] Reloading Data/CookingRecipes
+[03:00:16 TRACE SMAPI] TehCore edited Data/CookingRecipes.
+[03:00:16 TRACE SMAPI] Json Assets edited Data/ClothingInformation.
+[03:00:16 TRACE TehCore] Reloading Data/ClothingInformation
+[03:00:16 TRACE SMAPI] TehCore edited Data/ClothingInformation.
+[03:00:16 TRACE SMAPI] Json Assets edited Maps/springobjects.
+[03:00:16 TRACE TehCore] Reloading Maps/springobjects
+[03:00:16 TRACE SMAPI] TehCore edited Maps/springobjects.
+[03:00:16 TRACE Content Patcher] More Fish edited Maps/springobjects.
+[03:00:16 TRACE SMAPI] Content Patcher edited Maps/springobjects.
+[03:00:16 TRACE TehCore] Reloading Characters/Farmer/hairstyles
+[03:00:16 TRACE SMAPI] TehCore edited Characters/Farmer/hairstyles.
+[03:00:16 TRACE TehCore] Reloading Characters/Farmer/accessories
+[03:00:16 TRACE SMAPI] TehCore edited Characters/Farmer/accessories.
+[03:00:16 TRACE TehCore] Reloading TileSheets/furniture
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/furniture.
+[03:00:16 TRACE TehCore] Reloading TileSheets/furnitureFront
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/furnitureFront.
+[03:00:16 TRACE TehCore] Reloading TileSheets/ChairTiles
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/ChairTiles.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/font_bold
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/font_bold.
+[03:00:16 TRACE TehCore] Reloading LooseSprites/font_colored
+[03:00:16 TRACE SMAPI] TehCore edited LooseSprites/font_colored.
+[03:00:16 TRACE SMAPI] Json Assets edited Data/BigCraftablesInformation.
+[03:00:16 TRACE TehCore] Reloading Data/BigCraftablesInformation
+[03:00:16 TRACE SMAPI] TehCore edited Data/BigCraftablesInformation.
+[03:00:16 TRACE TehCore] Reloading TileSheets/Projectiles
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/Projectiles.
+[03:00:16 TRACE TehCore] Reloading Strings/StringsFromCSFiles
+[03:00:16 TRACE SMAPI] TehCore edited Strings/StringsFromCSFiles.
+[03:00:16 TRACE SMAPI] Json Assets edited TileSheets/weapons.
+[03:00:16 TRACE TehCore] Reloading TileSheets/weapons
+[03:00:16 TRACE SMAPI] TehCore edited TileSheets/weapons.
+[03:00:16 TRACE TehCore] Reloading Minigames/TitleButtons
+[03:00:16 TRACE SMAPI] TehCore edited Minigames/TitleButtons.
+[03:00:16 TRACE TehCore] Reloading Minigames/Clouds
+[03:00:16 TRACE SMAPI] TehCore edited Minigames/Clouds.
+[03:00:16 TRACE SMAPI] Invalidated 54 asset names (Characters/Farmer/accessories, Characters/Farmer/hairstyles, Characters/Farmer/hats, Characters/Farmer/pants, Characters/Farmer/shirts, Data/Achievements, Data/BigCraftablesInformation, Data/Bundles, Data/ClothingInformation, Data/CookingRecipes, Data/CraftingRecipes, Data/NPCGiftTastes, Data/ObjectContextTags, Data/ObjectInformation, Fonts/SmallFont, Fonts/SpriteFont1, Fonts/tinyFont, Fonts/tinyFontBorder, LooseSprites/birds, LooseSprites/Concessions, LooseSprites/ControllerMaps, LooseSprites/Cursors, LooseSprites/Cursors2, LooseSprites/daybg, LooseSprites/font_bold, LooseSprites/font_colored, LooseSprites/Giftbox, LooseSprites/Lighting/greenLight, LooseSprites/Lighting/indoorWindowLight, LooseSprites/Lighting/lantern, LooseSprites/Lighting/sconceLight, LooseSprites/Lighting/windowLight, LooseSprites/nightbg, LooseSprites/PlayerStatusList, LooseSprites/shadow, Maps/MenuTiles, Maps/MenuTilesUncolored, Maps/springobjects, Minigames/Clouds, Minigames/TitleButtons, Strings/StringsFromCSFiles, TileSheets/animations, TileSheets/BuffsIcons, TileSheets/ChairTiles, TileSheets/Craftables, TileSheets/crops, TileSheets/debris, TileSheets/emotes, TileSheets/fruitTrees, TileSheets/furniture, TileSheets/furnitureFront, TileSheets/Projectiles, TileSheets/rain, TileSheets/weapons).
+Propagated 52 core assets (Characters/Farmer/accessories, Characters/Farmer/hairstyles, Characters/Farmer/hats, Characters/Farmer/pants, Characters/Farmer/shirts, Data/Achievements, Data/BigCraftablesInformation, Data/ClothingInformation, Data/CookingRecipes, Data/CraftingRecipes, Data/NPCGiftTastes, Data/ObjectContextTags, Data/ObjectInformation, Fonts/SmallFont, Fonts/SpriteFont1, Fonts/tinyFont, Fonts/tinyFontBorder, LooseSprites/birds, LooseSprites/Concessions, LooseSprites/ControllerMaps, LooseSprites/Cursors, LooseSprites/Cursors2, LooseSprites/daybg, LooseSprites/font_bold, LooseSprites/font_colored, LooseSprites/Giftbox, LooseSprites/Lighting/greenLight, LooseSprites/Lighting/indoorWindowLight, LooseSprites/Lighting/lantern, LooseSprites/Lighting/sconceLight, LooseSprites/Lighting/windowLight, LooseSprites/nightbg, LooseSprites/shadow, Maps/MenuTiles, Maps/MenuTilesUncolored, Maps/springobjects, Minigames/Clouds, Minigames/TitleButtons, Strings/StringsFromCSFiles, TileSheets/animations, TileSheets/BuffsIcons, TileSheets/ChairTiles, TileSheets/Craftables, TileSheets/crops, TileSheets/debris, TileSheets/emotes, TileSheets/fruitTrees, TileSheets/furniture, TileSheets/furnitureFront, TileSheets/Projectiles, TileSheets/rain, TileSheets/weapons).
+[03:00:16 TRACE game] Galaxy auth success
+[03:00:16 TRACE game] Galaxy signed in
+[03:00:16 TRACE game] Galaxy logged on
+[03:00:16 TRACE TehCore] Reloading Data/AdditionalLanguages
+[03:00:16 TRACE SMAPI] TehCore edited Data/AdditionalLanguages.
+[03:00:17 TRACE game] Window_ClientSizeChanged(); Window.ClientBounds={X:128 Y:72 Width:1280 Height:720}
+[03:00:17 TRACE TehCore] Reloading Strings/StringsFromCSFiles
+[03:00:17 TRACE SMAPI] TehCore edited Strings/StringsFromCSFiles.
+[03:00:40 TRACE SMAPI] Json Assets edited Data/Crops.
+[03:00:40 TRACE TehCore] Reloading Data/Crops
+[03:00:40 TRACE SMAPI] TehCore edited Data/Crops.
+[03:00:41 TRACE game] Window_ClientSizeChanged(); Window.ClientBounds={X:0 Y:23 Width:1536 Height:801}
+[03:00:41 TRACE SMAPI] Synchronizing 'Find Save Games' task...
+[03:00:41 TRACE SpaceCore] Reinitializing serializers for 17 mod types...
+[03:00:44 TRACE TehCore] Reloading LooseSprites/PlayerStatusList
+[03:00:44 TRACE SMAPI] TehCore edited LooseSprites/PlayerStatusList.
+[03:00:45 TRACE TehCore] Reloading Data/HairData
+[03:00:45 TRACE SMAPI] TehCore edited Data/HairData.
+[03:00:45 TRACE TehCore] Reloading Strings/UI
+[03:00:45 TRACE SMAPI] TehCore edited Strings/UI.
+[03:00:45 TRACE SMAPI] Json Assets edited Data/hats.
+[03:00:45 TRACE TehCore] Reloading Data/hats
+[03:00:45 TRACE SMAPI] TehCore edited Data/hats.
+[03:00:45 TRACE SMAPI]    task complete.
+[03:00:45 TRACE TehCore] Reloading Characters/Farmer/farmer_base
+[03:00:45 TRACE SMAPI] TehCore edited Characters/Farmer/farmer_base.
+[03:00:45 TRACE TehCore] Reloading Characters/Farmer/skinColors
+[03:00:45 TRACE SMAPI] TehCore edited Characters/Farmer/skinColors.
+[03:00:45 TRACE SMAPI] Json Assets edited Characters/Farmer/shoeColors.
+[03:00:45 TRACE TehCore] Reloading Characters/Farmer/shoeColors
+[03:00:45 TRACE SMAPI] TehCore edited Characters/Farmer/shoeColors.
+[03:00:45 TRACE TehCore] Reloading Characters/Farmer/farmer_base
+[03:00:45 TRACE SMAPI] TehCore edited Characters/Farmer/farmer_base.
+[03:00:45 TRACE TehCore] Reloading Characters/Farmer/skinColors
+[03:00:45 TRACE SMAPI] TehCore edited Characters/Farmer/skinColors.
+[03:00:45 TRACE SMAPI] Json Assets edited Characters/Farmer/shoeColors.
+[03:00:45 TRACE TehCore] Reloading Characters/Farmer/shoeColors
+[03:00:45 TRACE SMAPI] TehCore edited Characters/Farmer/shoeColors.
+[03:00:45 TRACE TehCore] Reloading Characters/Farmer/farmer_base
+[03:00:45 TRACE SMAPI] TehCore edited Characters/Farmer/farmer_base.
+[03:00:45 TRACE TehCore] Reloading Characters/Farmer/skinColors
+[03:00:45 TRACE SMAPI] TehCore edited Characters/Farmer/skinColors.
+[03:00:45 TRACE SMAPI] Json Assets edited Characters/Farmer/shoeColors.
+[03:00:45 TRACE TehCore] Reloading Characters/Farmer/shoeColors
+[03:00:45 TRACE SMAPI] TehCore edited Characters/Farmer/shoeColors.
+[03:00:45 TRACE TehCore] Reloading Characters/Farmer/farmer_girl_base
+[03:00:45 TRACE SMAPI] TehCore edited Characters/Farmer/farmer_girl_base.
+[03:00:45 TRACE TehCore] Reloading Characters/Farmer/skinColors
+[03:00:45 TRACE SMAPI] TehCore edited Characters/Farmer/skinColors.
+[03:00:45 TRACE SMAPI] Json Assets edited Characters/Farmer/shoeColors.
+[03:00:45 TRACE TehCore] Reloading Characters/Farmer/shoeColors
+[03:00:45 TRACE SMAPI] TehCore edited Characters/Farmer/shoeColors.
+[03:00:50 TRACE game] gameMode was 'titleScreenGameMode (0)', set to 'loadingMode (6)'.
+[03:00:50 TRACE SMAPI] Game loader synchronizing...
+[03:00:50 TRACE game] getLoadEnumerator('eee_285310793')
+[03:00:50 TRACE game] regular stream detected...
+[03:00:50 TRACE SMAPI] Synchronizing 'Load_Deserialize' task...
+[03:00:51 TRACE TehCore] Reloading Animals/dog
+[03:00:51 TRACE SMAPI] TehCore edited Animals/dog.
+[03:00:52 TRACE TehCore] Reloading Maps/FarmHouse
+[03:00:52 TRACE SMAPI] TehCore edited Maps/FarmHouse.
+[03:00:52 TRACE TehCore] Reloading Maps/townInterior
+[03:00:52 TRACE SMAPI] TehCore edited Maps/townInterior.
+[03:00:52 TRACE TehCore] Reloading Maps/farmhouse_tiles
+[03:00:52 TRACE SMAPI] TehCore edited Maps/farmhouse_tiles.
+[03:00:52 TRACE TehCore] Reloading Maps/walls_and_floors
+[03:00:52 TRACE SMAPI] TehCore edited Maps/walls_and_floors.
+[03:00:52 TRACE TehCore] Reloading TerrainFeatures/hoeDirt
+[03:00:52 TRACE SMAPI] TehCore edited TerrainFeatures/hoeDirt.
+[03:00:52 TRACE TehCore] Reloading TerrainFeatures/hoeDirtDark
+[03:00:52 TRACE SMAPI] TehCore edited TerrainFeatures/hoeDirtDark.
+[03:00:52 TRACE TehCore] Reloading TerrainFeatures/hoeDirtSnow
+[03:00:52 TRACE SMAPI] TehCore edited TerrainFeatures/hoeDirtSnow.
+[03:00:52 TRACE TehCore] Reloading Portraits/Gil
+[03:00:52 TRACE SMAPI] TehCore edited Portraits/Gil.
+[03:00:52 TRACE TehCore] Reloading Data/NPCDispositions
+[03:00:52 TRACE SMAPI] TehCore edited Data/NPCDispositions.
+[03:00:53 TRACE SMAPI]    task complete.
+[03:00:53 TRACE Json Assets] Resetting max shirt/pants value
+[03:00:53 TRACE Json Assets] Event: IdsAssigned
+[03:00:53 TRACE Json Assets] Requested cache invalidation for all assets matching a predicate.
+[03:00:53 TRACE Json Assets] Weapons are now (128, 4096)
+[03:00:53 TRACE SMAPI] Json Assets edited TileSheets/weapons.
+[03:00:53 TRACE TehCore] Reloading TileSheets/weapons
+[03:00:53 TRACE SMAPI] TehCore edited TileSheets/weapons.
+[03:00:53 TRACE SMAPI] Json Assets edited Data/BigCraftablesInformation.
+[03:00:53 TRACE TehCore] Reloading Data/BigCraftablesInformation
+[03:00:53 TRACE SMAPI] TehCore edited Data/BigCraftablesInformation.
+[03:00:53 TRACE SMAPI] Json Assets edited Maps/springobjects.
+[03:00:53 TRACE TehCore] Reloading Maps/springobjects
+[03:00:53 TRACE SMAPI] TehCore edited Maps/springobjects.
+[03:00:53 TRACE Content Patcher] More Fish edited Maps/springobjects.
+[03:00:53 TRACE SMAPI] Content Patcher edited Maps/springobjects.
+[03:00:53 TRACE SMAPI] Json Assets edited Data/ClothingInformation.
+[03:00:53 TRACE TehCore] Reloading Data/ClothingInformation
+[03:00:53 TRACE SMAPI] TehCore edited Data/ClothingInformation.
+[03:00:53 TRACE Dynamic Game Assets] Added 0/0 entries to cooking recipes
+[03:00:53 TRACE SMAPI] Dynamic Game Assets edited Data/CookingRecipes.
+[03:00:53 TRACE SMAPI] Json Assets edited Data/CookingRecipes.
+[03:00:53 TRACE TehCore] Reloading Data/CookingRecipes
+[03:00:53 TRACE SMAPI] TehCore edited Data/CookingRecipes.
+[03:00:53 TRACE Dynamic Game Assets] Added 0/0 entries to crafting recipes
+[03:00:53 TRACE SMAPI] Dynamic Game Assets edited Data/CraftingRecipes.
+[03:00:53 TRACE SMAPI] Json Assets edited Data/CraftingRecipes.
+[03:00:53 TRACE TehCore] Reloading Data/CraftingRecipes
+[03:00:53 TRACE SMAPI] TehCore edited Data/CraftingRecipes.
+[03:00:53 TRACE Content Patcher] More Fish edited Data/CraftingRecipes.
+[03:00:53 TRACE SMAPI] Content Patcher edited Data/CraftingRecipes.
+[03:00:53 TRACE Json Assets] Hats are now (240, 4096)
+[03:00:53 TRACE SMAPI] Json Assets edited Characters/Farmer/hats.
+[03:00:53 TRACE TehCore] Reloading Characters/Farmer/hats
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Farmer/hats.
+[03:00:53 TRACE SMAPI] Dynamic Game Assets edited Data/ObjectInformation.
+[03:00:53 TRACE SMAPI] Json Assets edited Data/ObjectInformation.
+[03:00:53 TRACE TehCore] Reloading Data/ObjectInformation
+[03:00:53 TRACE SMAPI] TehCore edited Data/ObjectInformation.
+[03:00:53 TRACE Content Patcher] More Fish edited Data/ObjectInformation.
+[03:00:53 TRACE SMAPI] Content Patcher edited Data/ObjectInformation.
+[03:00:53 TRACE Json Assets] Pants are now (1920, 4096)
+[03:00:53 TRACE SMAPI] Json Assets edited Characters/Farmer/pants.
+[03:00:53 TRACE TehCore] Reloading Characters/Farmer/pants
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Farmer/pants.
+[03:00:53 TRACE Json Assets] Shirts are now (256, 4096)
+[03:00:53 TRACE SMAPI] Json Assets edited Characters/Farmer/shirts.
+[03:00:53 TRACE TehCore] Reloading Characters/Farmer/shirts
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Farmer/shirts.
+[03:00:53 TRACE SMAPI] Json Assets edited TileSheets/fruitTrees.
+[03:00:53 TRACE TehCore] Reloading TileSheets/fruitTrees
+[03:00:53 TRACE SMAPI] TehCore edited TileSheets/fruitTrees.
+[03:00:53 TRACE SMAPI] Json Assets edited TileSheets/crops.
+[03:00:53 TRACE TehCore] Reloading TileSheets/crops
+[03:00:53 TRACE SMAPI] TehCore edited TileSheets/crops.
+[03:00:53 TRACE Json Assets] Big craftables are now (128, 4096)
+[03:00:53 TRACE SMAPI] Json Assets edited TileSheets/Craftables.
+[03:00:53 TRACE TehCore] Reloading TileSheets/Craftables
+[03:00:53 TRACE SMAPI] TehCore edited TileSheets/Craftables.
+[03:00:53 TRACE SMAPI] Json Assets edited Data/ObjectContextTags.
+[03:00:53 TRACE TehCore] Reloading Data/ObjectContextTags
+[03:00:53 TRACE SMAPI] TehCore edited Data/ObjectContextTags.
+[03:00:53 TRACE Content Patcher] More Fish edited Data/ObjectContextTags.
+[03:00:53 TRACE SMAPI] Content Patcher edited Data/ObjectContextTags.
+[03:00:53 TRACE SMAPI] Invalidated 17 asset names (Characters/Farmer/hats, Characters/Farmer/pants, Characters/Farmer/shirts, Characters/Farmer/shoeColors, Data/BigCraftablesInformation, Data/ClothingInformation, Data/CookingRecipes, Data/CraftingRecipes, Data/Crops, Data/hats, Data/ObjectContextTags, Data/ObjectInformation, Maps/springobjects, TileSheets/Craftables, TileSheets/crops, TileSheets/fruitTrees, TileSheets/weapons).
+Propagated 14 core assets (Characters/Farmer/hats, Characters/Farmer/pants, Characters/Farmer/shirts, Data/BigCraftablesInformation, Data/ClothingInformation, Data/CookingRecipes, Data/CraftingRecipes, Data/ObjectContextTags, Data/ObjectInformation, Maps/springobjects, TileSheets/Craftables, TileSheets/crops, TileSheets/fruitTrees, TileSheets/weapons).
+[03:00:53 TRACE SMAPI] Json Assets edited Data/Crops.
+[03:00:53 TRACE TehCore] Reloading Data/Crops
+[03:00:53 TRACE SMAPI] TehCore edited Data/Crops.
+[03:00:53 TRACE SMAPI] Json Assets edited Data/fruitTrees.
+[03:00:53 TRACE TehCore] Reloading Data/fruitTrees
+[03:00:53 TRACE SMAPI] TehCore edited Data/fruitTrees.
+[03:00:53 TRACE SMAPI] Json Assets edited Data/hats.
+[03:00:53 TRACE TehCore] Reloading Data/hats
+[03:00:53 TRACE SMAPI] TehCore edited Data/hats.
+[03:00:53 TRACE SMAPI] Json Assets edited Data/weapons.
+[03:00:53 TRACE TehCore] Reloading Data/weapons
+[03:00:53 TRACE SMAPI] TehCore edited Data/weapons.
+[03:00:53 TRACE TehCore] Reloading Data/Festivals/FestivalDates
+[03:00:53 TRACE SMAPI] TehCore edited Data/Festivals/FestivalDates.
+[03:00:53 TRACE TehCore] Reloading Data/Festivals/FestivalDates
+[03:00:53 TRACE SMAPI] TehCore edited Data/Festivals/FestivalDates.
+[03:00:53 TRACE Content Patcher] Requested cache invalidation for all assets matching a predicate.
+[03:00:53 TRACE SMAPI] Invalidated 0 cache entries.
+[03:00:53 TRACE TehCore] Reloading Data/AdditionalFarms
+[03:00:53 TRACE SMAPI] TehCore edited Data/AdditionalFarms.
+[03:00:53 TRACE SMAPI] Synchronizing 'Load_LoadForNewGame' task...
+[03:00:53 DEBUG Json Assets] Loading stuff early (really super early)
+[03:00:53 TRACE TehCore] Reloading LooseSprites/chatBox
+[03:00:53 TRACE SMAPI] TehCore edited LooseSprites/chatBox.
+[03:00:53 TRACE TehCore] Reloading LooseSprites/emojis
+[03:00:53 TRACE SMAPI] TehCore edited LooseSprites/emojis.
+[03:00:53 TRACE TehCore] Reloading Maps/Farm
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Farm.
+[03:00:53 TRACE TehCore] Reloading Maps/paths
+[03:00:53 TRACE SMAPI] TehCore edited Maps/paths.
+[03:00:53 TRACE TehCore] Reloading Maps/spring_outdoorsTileSheet
+[03:00:53 TRACE SMAPI] TehCore edited Maps/spring_outdoorsTileSheet.
+[03:00:53 TRACE TehCore] Reloading TileSheets/bushes
+[03:00:53 TRACE SMAPI] TehCore edited TileSheets/bushes.
+[03:00:53 TRACE TehCore] Reloading Data/Blueprints
+[03:00:53 TRACE SMAPI] TehCore edited Data/Blueprints.
+[03:00:53 TRACE TehCore] Reloading Buildings/Shipping Bin
+[03:00:53 TRACE SMAPI] TehCore edited Buildings/Shipping Bin.
+[03:00:53 TRACE TehCore] Reloading Buildings/Greenhouse
+[03:00:53 TRACE SMAPI] TehCore edited Buildings/Greenhouse.
+[03:00:53 TRACE TehCore] Reloading Maps/FarmHouse
+[03:00:53 TRACE SMAPI] TehCore edited Maps/FarmHouse.
+[03:00:53 TRACE TehCore] Reloading Data/Furniture
+[03:00:53 TRACE SMAPI] TehCore edited Data/Furniture.
+[03:00:53 TRACE TehCore] Reloading Maps/FarmCave
+[03:00:53 TRACE SMAPI] TehCore edited Maps/FarmCave.
+[03:00:53 TRACE TehCore] Reloading Maps/Mines/mine
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Mines/mine.
+[03:00:53 TRACE TehCore] Reloading Maps/Town
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Town.
+[03:00:53 TRACE TehCore] Reloading Maps/spring_town
+[03:00:53 TRACE SMAPI] TehCore edited Maps/spring_town.
+[03:00:53 TRACE TehCore] Reloading Data/Locations
+[03:00:53 TRACE SMAPI] TehCore edited Data/Locations.
+[03:00:53 TRACE Content Patcher] More Fish edited Data/Locations.
+[03:00:53 TRACE SMAPI] Content Patcher edited Data/Locations.
+[03:00:53 TRACE TehCore] Reloading Maps/JoshHouse
+[03:00:53 TRACE SMAPI] TehCore edited Maps/JoshHouse.
+[03:00:53 TRACE TehCore] Reloading Characters/George
+[03:00:53 TRACE SMAPI] TehCore edited Characters/George.
+[03:00:53 TRACE TehCore] Reloading Portraits/George
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/George.
+[03:00:53 TRACE TehCore] Reloading Characters/Evelyn
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Evelyn.
+[03:00:53 TRACE TehCore] Reloading Portraits/Evelyn
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Evelyn.
+[03:00:53 TRACE TehCore] Reloading Characters/Alex
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Alex.
+[03:00:53 TRACE TehCore] Reloading Portraits/Alex
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Alex.
+[03:00:53 TRACE TehCore] Reloading Maps/HaleyHouse
+[03:00:53 TRACE SMAPI] TehCore edited Maps/HaleyHouse.
+[03:00:53 TRACE TehCore] Reloading Maps/townInterior_2
+[03:00:53 TRACE SMAPI] TehCore edited Maps/townInterior_2.
+[03:00:53 TRACE TehCore] Reloading Characters/Emily
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Emily.
+[03:00:53 TRACE TehCore] Reloading Portraits/Emily
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Emily.
+[03:00:53 TRACE TehCore] Reloading Characters/Haley
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Haley.
+[03:00:53 TRACE TehCore] Reloading Portraits/Haley
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Haley.
+[03:00:53 TRACE TehCore] Reloading Maps/SamHouse
+[03:00:53 TRACE SMAPI] TehCore edited Maps/SamHouse.
+[03:00:53 TRACE TehCore] Reloading Characters/Jodi
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Jodi.
+[03:00:53 TRACE TehCore] Reloading Portraits/Jodi
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Jodi.
+[03:00:53 TRACE TehCore] Reloading Characters/Sam
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Sam.
+[03:00:53 TRACE TehCore] Reloading Portraits/Sam
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Sam.
+[03:00:53 TRACE TehCore] Reloading Characters/Vincent
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Vincent.
+[03:00:53 TRACE TehCore] Reloading Portraits/Vincent
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Vincent.
+[03:00:53 TRACE TehCore] Reloading Maps/Blacksmith
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Blacksmith.
+[03:00:53 TRACE TehCore] Reloading Characters/Clint
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Clint.
+[03:00:53 TRACE TehCore] Reloading Portraits/Clint
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Clint.
+[03:00:53 TRACE TehCore] Reloading Maps/ManorHouse
+[03:00:53 TRACE SMAPI] TehCore edited Maps/ManorHouse.
+[03:00:53 TRACE TehCore] Reloading Characters/Lewis
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Lewis.
+[03:00:53 TRACE TehCore] Reloading Portraits/Lewis
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Lewis.
+[03:00:53 TRACE TehCore] Reloading Maps/SeedShop
+[03:00:53 TRACE SMAPI] TehCore edited Maps/SeedShop.
+[03:00:53 TRACE TehCore] Reloading Characters/Caroline
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Caroline.
+[03:00:53 TRACE TehCore] Reloading Portraits/Caroline
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Caroline.
+[03:00:53 TRACE TehCore] Reloading Characters/Abigail
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Abigail.
+[03:00:53 TRACE TehCore] Reloading Portraits/Abigail
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Abigail.
+[03:00:53 TRACE TehCore] Reloading Characters/Pierre
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Pierre.
+[03:00:53 TRACE TehCore] Reloading Portraits/Pierre
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Pierre.
+[03:00:53 TRACE TehCore] Reloading Maps/Saloon
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Saloon.
+[03:00:53 TRACE TehCore] Reloading Characters/Gus
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Gus.
+[03:00:53 TRACE TehCore] Reloading Portraits/Gus
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Gus.
+[03:00:53 TRACE TehCore] Reloading Maps/Trailer
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Trailer.
+[03:00:53 TRACE TehCore] Reloading Characters/Pam
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Pam.
+[03:00:53 TRACE TehCore] Reloading Portraits/Pam
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Pam.
+[03:00:53 TRACE TehCore] Reloading Characters/Penny
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Penny.
+[03:00:53 TRACE TehCore] Reloading Portraits/Penny
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Penny.
+[03:00:53 TRACE TehCore] Reloading Maps/Hospital
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Hospital.
+[03:00:53 TRACE TehCore] Reloading Maps/HarveyRoom
+[03:00:53 TRACE SMAPI] TehCore edited Maps/HarveyRoom.
+[03:00:53 TRACE TehCore] Reloading Characters/Harvey
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Harvey.
+[03:00:53 TRACE TehCore] Reloading Portraits/Harvey
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Harvey.
+[03:00:53 TRACE TehCore] Reloading Maps/Beach
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Beach.
+[03:00:53 TRACE TehCore] Reloading Maps/spring_beach
+[03:00:53 TRACE SMAPI] TehCore edited Maps/spring_beach.
+[03:00:53 TRACE TehCore] Reloading Maps/ElliottHouse
+[03:00:53 TRACE SMAPI] TehCore edited Maps/ElliottHouse.
+[03:00:53 TRACE TehCore] Reloading Maps/ElliottHouseTiles
+[03:00:53 TRACE SMAPI] TehCore edited Maps/ElliottHouseTiles.
+[03:00:53 TRACE TehCore] Reloading Characters/Elliott
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Elliott.
+[03:00:53 TRACE TehCore] Reloading Portraits/Elliott
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Elliott.
+[03:00:53 TRACE TehCore] Reloading Maps/Mountain
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Mountain.
+[03:00:53 TRACE TehCore] Reloading Maps/spring_outdoorsTileSheet2
+[03:00:53 TRACE SMAPI] TehCore edited Maps/spring_outdoorsTileSheet2.
+[03:00:53 TRACE TehCore] Reloading Maps/ScienceHouse
+[03:00:53 TRACE SMAPI] TehCore edited Maps/ScienceHouse.
+[03:00:53 TRACE TehCore] Reloading Characters/Maru
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Maru.
+[03:00:53 TRACE TehCore] Reloading Portraits/Maru
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Maru.
+[03:00:53 TRACE TehCore] Reloading Characters/Robin
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Robin.
+[03:00:53 TRACE TehCore] Reloading Portraits/Robin
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Robin.
+[03:00:53 TRACE TehCore] Reloading Characters/Demetrius
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Demetrius.
+[03:00:53 TRACE TehCore] Reloading Portraits/Demetrius
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Demetrius.
+[03:00:53 TRACE TehCore] Reloading Maps/SebastianRoom
+[03:00:53 TRACE SMAPI] TehCore edited Maps/SebastianRoom.
+[03:00:53 TRACE TehCore] Reloading Characters/Sebastian
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Sebastian.
+[03:00:53 TRACE TehCore] Reloading Portraits/Sebastian
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Sebastian.
+[03:00:53 TRACE TehCore] Reloading Maps/Tent
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Tent.
+[03:00:53 TRACE TehCore] Reloading Characters/Linus
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Linus.
+[03:00:53 TRACE TehCore] Reloading Portraits/Linus
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Linus.
+[03:00:53 TRACE TehCore] Reloading Maps/Forest
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Forest.
+[03:00:53 TRACE TehCore] Reloading Data/FarmAnimals
+[03:00:53 TRACE SMAPI] TehCore edited Data/FarmAnimals.
+[03:00:53 TRACE TehCore] Reloading Animals/BabyWhite Cow
+[03:00:53 TRACE SMAPI] TehCore edited Animals/BabyWhite Cow.
+[03:00:53 TRACE TehCore] Reloading Maps/WizardHouse
+[03:00:53 TRACE SMAPI] TehCore edited Maps/WizardHouse.
+[03:00:53 TRACE TehCore] Reloading Characters/Wizard
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Wizard.
+[03:00:53 TRACE TehCore] Reloading Portraits/Wizard
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Wizard.
+[03:00:53 TRACE TehCore] Reloading Maps/AnimalShop
+[03:00:53 TRACE SMAPI] TehCore edited Maps/AnimalShop.
+[03:00:53 TRACE TehCore] Reloading Characters/Marnie
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Marnie.
+[03:00:53 TRACE TehCore] Reloading Portraits/Marnie
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Marnie.
+[03:00:53 TRACE TehCore] Reloading Characters/Shane
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Shane.
+[03:00:53 TRACE TehCore] Reloading Portraits/Shane
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Shane.
+[03:00:53 TRACE TehCore] Reloading Characters/Jas
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Jas.
+[03:00:53 TRACE TehCore] Reloading Portraits/Jas
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Jas.
+[03:00:53 TRACE TehCore] Reloading Maps/LeahHouse
+[03:00:53 TRACE SMAPI] TehCore edited Maps/LeahHouse.
+[03:00:53 TRACE TehCore] Reloading Characters/Leah
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Leah.
+[03:00:53 TRACE TehCore] Reloading Portraits/Leah
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Leah.
+[03:00:53 TRACE TehCore] Reloading Maps/BusStop
+[03:00:53 TRACE SMAPI] TehCore edited Maps/BusStop.
+[03:00:53 TRACE TehCore] Reloading Maps/Mine
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Mine.
+[03:00:53 TRACE TehCore] Reloading Characters/Dwarf
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Dwarf.
+[03:00:53 TRACE TehCore] Reloading Portraits/Dwarf
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Dwarf.
+[03:00:53 TRACE TehCore] Reloading Maps/Sewer
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Sewer.
+[03:00:53 TRACE TehCore] Reloading Maps/SewerTiles
+[03:00:53 TRACE SMAPI] TehCore edited Maps/SewerTiles.
+[03:00:53 TRACE TehCore] Reloading Characters/Krobus
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Krobus.
+[03:00:53 TRACE TehCore] Reloading Portraits/Krobus
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Krobus.
+[03:00:53 TRACE TehCore] Reloading Maps/BugLand
+[03:00:53 TRACE SMAPI] TehCore edited Maps/BugLand.
+[03:00:53 TRACE TehCore] Reloading Maps/bugLandTiles
+[03:00:53 TRACE SMAPI] TehCore edited Maps/bugLandTiles.
+[03:00:53 TRACE TehCore] Reloading Maps/Desert
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Desert.
+[03:00:53 TRACE TehCore] Reloading Maps/DesertTiles_Extended
+[03:00:53 TRACE SMAPI] TehCore edited Maps/DesertTiles_Extended.
+[03:00:53 TRACE TehCore] Reloading Maps/DesertTiles
+[03:00:53 TRACE SMAPI] TehCore edited Maps/DesertTiles.
+[03:00:53 TRACE TehCore] Reloading Maps/Club
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Club.
+[03:00:53 TRACE TehCore] Reloading Characters/MrQi
+[03:00:53 TRACE SMAPI] TehCore edited Characters/MrQi.
+[03:00:53 TRACE TehCore] Reloading Portraits/MrQi
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/MrQi.
+[03:00:53 TRACE TehCore] Reloading Maps/SandyHouse
+[03:00:53 TRACE SMAPI] TehCore edited Maps/SandyHouse.
+[03:00:53 TRACE TehCore] Reloading Characters/Sandy
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Sandy.
+[03:00:53 TRACE TehCore] Reloading Portraits/Sandy
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Sandy.
+[03:00:53 TRACE TehCore] Reloading Characters/Bouncer
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Bouncer.
+[03:00:53 TRACE TehCore] Reloading Portraits/Bouncer
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Bouncer.
+[03:00:53 TRACE TehCore] Reloading Maps/ArchaeologyHouse
+[03:00:53 TRACE SMAPI] TehCore edited Maps/ArchaeologyHouse.
+[03:00:53 TRACE TehCore] Reloading Characters/Gunther
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Gunther.
+[03:00:53 TRACE TehCore] Reloading Portraits/Gunther
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Gunther.
+[03:00:53 TRACE TehCore] Reloading Maps/WizardHouseBasement
+[03:00:53 TRACE SMAPI] TehCore edited Maps/WizardHouseBasement.
+[03:00:53 TRACE TehCore] Reloading Maps/AdventureGuild
+[03:00:53 TRACE SMAPI] TehCore edited Maps/AdventureGuild.
+[03:00:53 TRACE TehCore] Reloading Characters/Marlon
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Marlon.
+[03:00:53 TRACE TehCore] Reloading Portraits/Marlon
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Marlon.
+[03:00:53 TRACE TehCore] Reloading Maps/Woods
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Woods.
+[03:00:53 TRACE TehCore] Reloading Maps/Railroad
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Railroad.
+[03:00:53 TRACE TehCore] Reloading Maps/WitchSwamp
+[03:00:53 TRACE SMAPI] TehCore edited Maps/WitchSwamp.
+[03:00:53 TRACE TehCore] Reloading Maps/witchSwampTiles
+[03:00:53 TRACE SMAPI] TehCore edited Maps/witchSwampTiles.
+[03:00:53 TRACE TehCore] Reloading Characters/Henchman
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Henchman.
+[03:00:53 TRACE TehCore] Reloading Portraits/Henchman
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Henchman.
+[03:00:53 TRACE TehCore] Reloading Maps/WitchHut
+[03:00:53 TRACE SMAPI] TehCore edited Maps/WitchHut.
+[03:00:53 TRACE TehCore] Reloading Maps/WitchHutTiles
+[03:00:53 TRACE SMAPI] TehCore edited Maps/WitchHutTiles.
+[03:00:53 TRACE TehCore] Reloading Maps/WitchWarpCave
+[03:00:53 TRACE SMAPI] TehCore edited Maps/WitchWarpCave.
+[03:00:53 TRACE TehCore] Reloading Maps/Mines/mine_dark
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Mines/mine_dark.
+[03:00:53 TRACE TehCore] Reloading Maps/Summit
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Summit.
+[03:00:53 TRACE TehCore] Reloading Maps/FishShop
+[03:00:53 TRACE SMAPI] TehCore edited Maps/FishShop.
+[03:00:53 TRACE TehCore] Reloading Characters/Willy
+[03:00:53 TRACE SMAPI] TehCore edited Characters/Willy.
+[03:00:53 TRACE TehCore] Reloading Portraits/Willy
+[03:00:53 TRACE SMAPI] TehCore edited Portraits/Willy.
+[03:00:53 TRACE TehCore] Reloading Maps/BathHouse_Entry
+[03:00:53 TRACE SMAPI] TehCore edited Maps/BathHouse_Entry.
+[03:00:53 TRACE TehCore] Reloading Maps/bathhouse_tiles
+[03:00:53 TRACE SMAPI] TehCore edited Maps/bathhouse_tiles.
+[03:00:53 TRACE TehCore] Reloading Maps/BathHouse_MensLocker
+[03:00:53 TRACE SMAPI] TehCore edited Maps/BathHouse_MensLocker.
+[03:00:53 TRACE TehCore] Reloading Maps/BathHouse_WomensLocker
+[03:00:53 TRACE SMAPI] TehCore edited Maps/BathHouse_WomensLocker.
+[03:00:53 TRACE TehCore] Reloading Maps/BathHouse_Pool
+[03:00:53 TRACE SMAPI] TehCore edited Maps/BathHouse_Pool.
+[03:00:53 TRACE TehCore] Reloading Maps/CommunityCenter_Ruins
+[03:00:53 TRACE SMAPI] TehCore edited Maps/CommunityCenter_Ruins.
+[03:00:53 TRACE TehCore] Reloading Maps/JojaMart
+[03:00:53 TRACE SMAPI] TehCore edited Maps/JojaMart.
+[03:00:53 TRACE TehCore] Reloading Maps/Greenhouse
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Greenhouse.
+[03:00:53 TRACE TehCore] Reloading Maps/SkullCave
+[03:00:53 TRACE SMAPI] TehCore edited Maps/SkullCave.
+[03:00:53 TRACE TehCore] Reloading Maps/Mines/mine_desert
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Mines/mine_desert.
+[03:00:53 TRACE TehCore] Reloading Maps/Backwoods
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Backwoods.
+[03:00:53 TRACE TehCore] Reloading Maps/spring_monsterGraveTiles
+[03:00:53 TRACE SMAPI] TehCore edited Maps/spring_monsterGraveTiles.
+[03:00:53 TRACE TehCore] Reloading Maps/Tunnel
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Tunnel.
+[03:00:53 TRACE TehCore] Reloading Maps/Trailer_big
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Trailer_big.
+[03:00:53 TRACE TehCore] Reloading Maps/Cellar
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Cellar.
+[03:00:53 TRACE TehCore] Reloading Maps/Beach-NightMarket
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Beach-NightMarket.
+[03:00:53 TRACE TehCore] Reloading Maps/night_market_tilesheet_objects
+[03:00:53 TRACE SMAPI] TehCore edited Maps/night_market_tilesheet_objects.
+[03:00:53 TRACE TehCore] Reloading Maps/winter_beach
+[03:00:53 TRACE SMAPI] TehCore edited Maps/winter_beach.
+[03:00:53 TRACE TehCore] Reloading Maps/MermaidHouse
+[03:00:53 TRACE SMAPI] TehCore edited Maps/MermaidHouse.
+[03:00:53 TRACE TehCore] Reloading Maps/mermaid_house_tiles
+[03:00:53 TRACE SMAPI] TehCore edited Maps/mermaid_house_tiles.
+[03:00:53 TRACE TehCore] Reloading Maps/Submarine
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Submarine.
+[03:00:53 TRACE TehCore] Reloading Maps/submarine_tilesheet
+[03:00:53 TRACE SMAPI] TehCore edited Maps/submarine_tilesheet.
+[03:00:53 TRACE TehCore] Reloading Maps/AbandonedJojaMart
+[03:00:53 TRACE SMAPI] TehCore edited Maps/AbandonedJojaMart.
+[03:00:53 TRACE TehCore] Reloading Maps/JojaRuins_TileSheet
+[03:00:53 TRACE SMAPI] TehCore edited Maps/JojaRuins_TileSheet.
+[03:00:53 TRACE TehCore] Reloading Maps/MovieTheater
+[03:00:53 TRACE SMAPI] TehCore edited Maps/MovieTheater.
+[03:00:53 TRACE TehCore] Reloading Maps/MovieTheater_TileSheet
+[03:00:53 TRACE SMAPI] TehCore edited Maps/MovieTheater_TileSheet.
+[03:00:53 TRACE TehCore] Reloading Data/Movies
+[03:00:53 TRACE SMAPI] TehCore edited Data/Movies.
+[03:00:53 TRACE TehCore] Reloading Data/MoviesReactions
+[03:00:53 TRACE SMAPI] TehCore edited Data/MoviesReactions.
+[03:00:53 TRACE TehCore] Reloading Maps/Sunroom
+[03:00:53 TRACE SMAPI] TehCore edited Maps/Sunroom.
+[03:00:53 TRACE TehCore] Reloading Maps/CarolineGreenhouseTiles
+[03:00:53 TRACE SMAPI] TehCore edited Maps/CarolineGreenhouseTiles.
+[03:00:54 TRACE TehCore] Reloading Maps/BoatTunnel
+[03:00:54 TRACE SMAPI] TehCore edited Maps/BoatTunnel.
+[03:00:54 TRACE TehCore] Reloading Maps/boatTunnelTiles
+[03:00:54 TRACE SMAPI] TehCore edited Maps/boatTunnelTiles.
+[03:00:54 TRACE TehCore] Reloading Maps/Island_S
+[03:00:54 TRACE SMAPI] TehCore edited Maps/Island_S.
+[03:00:54 TRACE TehCore] Reloading Maps/island_tilesheet_1
+[03:00:54 TRACE SMAPI] TehCore edited Maps/island_tilesheet_1.
+[03:00:54 TRACE TehCore] Reloading Maps/summer_outdoorsTileSheet
+[03:00:54 TRACE SMAPI] TehCore edited Maps/summer_outdoorsTileSheet.
+[03:00:54 TRACE TehCore] Reloading LooseSprites/parrots
+[03:00:54 TRACE SMAPI] TehCore edited LooseSprites/parrots.
+[03:00:54 TRACE TehCore] Reloading Maps/Island_SE
+[03:00:54 TRACE SMAPI] TehCore edited Maps/Island_SE.
+[03:00:54 TRACE TehCore] Reloading Maps/island_tilesheet_2
+[03:00:54 TRACE SMAPI] TehCore edited Maps/island_tilesheet_2.
+[03:00:54 TRACE TehCore] Reloading Maps/IslandSouthEastCave
+[03:00:54 TRACE SMAPI] TehCore edited Maps/IslandSouthEastCave.
+[03:00:54 TRACE TehCore] Reloading Maps/Island_E
+[03:00:54 TRACE SMAPI] TehCore edited Maps/Island_E.
+[03:00:54 TRACE TehCore] Reloading Maps/Island_W
+[03:00:54 TRACE SMAPI] TehCore edited Maps/Island_W.
+[03:00:54 TRACE TehCore] Reloading Characters/Birdie
+[03:00:54 TRACE SMAPI] TehCore edited Characters/Birdie.
+[03:00:54 TRACE TehCore] Reloading Portraits/Birdie
+[03:00:54 TRACE SMAPI] TehCore edited Portraits/Birdie.
+[03:00:54 TRACE TehCore] Reloading Maps/Island_N
+[03:00:54 TRACE SMAPI] TehCore edited Maps/Island_N.
+[03:00:54 TRACE TehCore] Reloading Maps/Island_Hut
+[03:00:54 TRACE SMAPI] TehCore edited Maps/Island_Hut.
+[03:00:54 TRACE TehCore] Reloading Maps/Island_Hut_tilesheet
+[03:00:54 TRACE SMAPI] TehCore edited Maps/Island_Hut_tilesheet.
+[03:00:54 TRACE TehCore] Reloading Maps/IslandWestCave1
+[03:00:54 TRACE SMAPI] TehCore edited Maps/IslandWestCave1.
+[03:00:54 TRACE TehCore] Reloading Maps/cave
+[03:00:54 TRACE SMAPI] TehCore edited Maps/cave.
+[03:00:54 TRACE TehCore] Reloading Maps/IslandNorthCave1
+[03:00:54 TRACE SMAPI] TehCore edited Maps/IslandNorthCave1.
+[03:00:54 TRACE TehCore] Reloading Maps/Island_FieldOffice
+[03:00:54 TRACE SMAPI] TehCore edited Maps/Island_FieldOffice.
+[03:00:54 TRACE TehCore] Reloading Maps/Island_FieldOffice_Tilesheet
+[03:00:54 TRACE SMAPI] TehCore edited Maps/Island_FieldOffice_Tilesheet.
+[03:00:54 TRACE TehCore] Reloading Maps/IslandFarmHouse
+[03:00:54 TRACE SMAPI] TehCore edited Maps/IslandFarmHouse.
+[03:00:54 TRACE TehCore] Reloading Maps/Island_CaptainRoom
+[03:00:54 TRACE SMAPI] TehCore edited Maps/Island_CaptainRoom.
+[03:00:54 TRACE TehCore] Reloading Maps/Island_Shrine
+[03:00:54 TRACE SMAPI] TehCore edited Maps/Island_Shrine.
+[03:00:54 TRACE TehCore] Reloading Maps/Island_FarmCave
+[03:00:54 TRACE SMAPI] TehCore edited Maps/Island_FarmCave.
+[03:00:54 TRACE TehCore] Reloading Maps/Caldera
+[03:00:54 TRACE SMAPI] TehCore edited Maps/Caldera.
+[03:00:54 TRACE TehCore] Reloading Maps/Mines/volcano_dungeon
+[03:00:54 TRACE SMAPI] TehCore edited Maps/Mines/volcano_dungeon.
+[03:00:54 TRACE TehCore] Reloading Maps/Mines/volcano_caldera
+[03:00:54 TRACE SMAPI] TehCore edited Maps/Mines/volcano_caldera.
+[03:00:54 TRACE TehCore] Reloading Maps/LeoTreeHouse
+[03:00:54 TRACE SMAPI] TehCore edited Maps/LeoTreeHouse.
+[03:00:54 TRACE TehCore] Reloading Maps/LeoTreeHouse_Tilesheet
+[03:00:54 TRACE SMAPI] TehCore edited Maps/LeoTreeHouse_Tilesheet.
+[03:00:54 TRACE TehCore] Reloading Maps/QiNutRoom
+[03:00:54 TRACE SMAPI] TehCore edited Maps/QiNutRoom.
+[03:00:54 TRACE TehCore] Reloading Maps/qiNutRoom_tilesheet
+[03:00:54 TRACE SMAPI] TehCore edited Maps/qiNutRoom_tilesheet.
+[03:00:54 TRACE TehCore] Reloading Data/Quests
+[03:00:54 TRACE SMAPI] TehCore edited Data/Quests.
+[03:00:54 TRACE Content Patcher] More Fish edited Data/Quests.
+[03:00:54 TRACE SMAPI] Content Patcher edited Data/Quests.
+[03:00:54 TRACE SpaceCore] Event: OnBlankSave
+[03:00:54 TRACE SMAPI]    task complete.
+[03:00:54 TRACE SMAPI] Synchronizing 'Load_Farmer' task...
+[03:00:54 TRACE SMAPI]    task complete.
+[03:00:54 TRACE SMAPI] Synchronizing 'Load_Locations' task...
+[03:00:54 TRACE TehCore] Reloading Buildings/Fish Pond
+[03:00:54 TRACE SMAPI] TehCore edited Buildings/Fish Pond.
+[03:00:54 TRACE TehCore] Reloading Data/SpousePatios
+[03:00:54 TRACE SMAPI] TehCore edited Data/SpousePatios.
+[03:00:54 TRACE TehCore] Reloading Data/ChairTiles
+[03:00:54 TRACE SMAPI] TehCore edited Data/ChairTiles.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Evelyn
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Evelyn.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/George
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/George.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Alex
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Alex.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Haley
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Haley.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Emily
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Emily.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Sam
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Sam.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Jodi
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Jodi.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Vincent
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Vincent.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Clint
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Clint.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Lewis
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Lewis.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Abigail
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Abigail.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Pierre
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Pierre.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Caroline
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Caroline.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Gus
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Gus.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Pam
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Pam.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Penny
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Penny.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Harvey
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Harvey.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Elliott
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Elliott.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Demetrius
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Demetrius.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Robin
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Robin.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Maru
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Maru.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Sebastian
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Sebastian.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Linus
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Linus.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Marnie
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Marnie.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Jas
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Jas.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Shane
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Shane.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Leah
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Leah.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Sandy
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Sandy.
+[03:00:54 TRACE TehCore] Reloading Characters/schedules/Willy
+[03:00:54 TRACE SMAPI] TehCore edited Characters/schedules/Willy.
+[03:00:54 TRACE SMAPI]    task complete.
+[03:00:54 DEBUG Json Assets] Fixing IDs
+[03:00:54 TRACE Json Assets] Event: IdsFixed
+[03:00:54 TRACE game] gameMode was 'loadingMode (6)', set to 'playingGameMode (3)'.
+[03:00:54 TRACE game] getLoadEnumerator() exited, elapsed = '00:00:04.4252946'
+[03:00:54 TRACE game] setupEventCommands() registered '130' methods
+[03:00:54 TRACE TehCore] Reloading Data/Events/FarmHouse
+[03:00:54 TRACE SMAPI] TehCore edited Data/Events/FarmHouse.
+[03:00:54 TRACE SMAPI] Game loader done.
+[03:00:55 DEBUG Json Assets] Adding default/leveled recipes
+[03:00:55 TRACE TehCore] Reloading Buildings/houses
+[03:00:55 TRACE SMAPI] TehCore edited Buildings/houses.
+[03:00:55 TRACE TehCore] Reloading Buildings/houses_PaintMask
+[03:00:55 TRACE SMAPI] TehCore edited Buildings/houses_PaintMask.
+[03:00:55 TRACE TehCore] Reloading Data/animationDescriptions
+[03:00:55 TRACE SMAPI] TehCore edited Data/animationDescriptions.
+[03:00:55 TRACE game] Window_ClientSizeChanged(); Window.ClientBounds={X:8 Y:31 Width:1536 Height:801}
+[03:00:55 TRACE TehCore] Reloading Characters/Farmer/farmer_base
+[03:00:55 TRACE SMAPI] TehCore edited Characters/Farmer/farmer_base.
+[03:00:55 TRACE TehCore] Reloading Characters/Farmer/skinColors
+[03:00:55 TRACE SMAPI] TehCore edited Characters/Farmer/skinColors.
+[03:00:55 TRACE Json Assets] Boots are now (4, 4096)
+[03:00:55 TRACE SMAPI] Json Assets edited Characters/Farmer/shoeColors.
+[03:00:55 TRACE TehCore] Reloading Characters/Farmer/shoeColors
+[03:00:55 TRACE SMAPI] TehCore edited Characters/Farmer/shoeColors.
+[03:00:55 TRACE TehCore] Reloading TileSheets/tools
+[03:00:55 TRACE SMAPI] TehCore edited TileSheets/tools.
+[03:00:55 TRACE SMAPI] Invalidating cached assets for new editors & loaders...
+[03:00:55 TRACE SMAPI]    changed: Json Assets (added 1).
+[03:00:55 TRACE TehCore] Reloading Data/NPCGiftTastes
+[03:00:55 TRACE SMAPI] TehCore edited Data/NPCGiftTastes.
+[03:00:55 TRACE Content Patcher] More Fish edited Data/NPCGiftTastes.
+[03:00:55 TRACE SMAPI] Content Patcher edited Data/NPCGiftTastes.
+[03:00:55 TRACE SMAPI] Json Assets edited Data/NPCGiftTastes.
+[03:00:55 TRACE SMAPI] Invalidated 1 asset names (Data/NPCGiftTastes).
+Propagated 1 core assets (Data/NPCGiftTastes).
+[03:00:55 TRACE SMAPI] Context: loaded save 'eee_285310793', starting spring 21 Y1, locale set to . Single-player.
+[03:00:55 TRACE Mail Framework Mod] Reading content pack: [MFM] More New Fish 1.0.0 from C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods\[MNF] More New Fish\[MFM] New Fish
+[03:00:55 TRACE Producer Framework Mod] Reading content pack: [PFM] Fish Hatchery 1.0.0 from C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods\[MNF] More New Fish\[PFM] Fish Nursery
+[03:00:55 TRACE SMAPI] Dynamic Game Assets edited Data/ObjectInformation.
+[03:00:55 TRACE SMAPI] Json Assets edited Data/ObjectInformation.
+[03:00:55 TRACE TehCore] Reloading Data/ObjectInformation
+[03:00:55 TRACE SMAPI] TehCore edited Data/ObjectInformation.
+[03:00:55 TRACE Content Patcher] More Fish edited Data/ObjectInformation.
+[03:00:55 TRACE SMAPI] Content Patcher edited Data/ObjectInformation.
+[03:00:55 TRACE SMAPI] Dynamic Game Assets edited Data/ObjectInformation.
+[03:00:55 TRACE SMAPI] Json Assets edited Data/ObjectInformation.
+[03:00:55 TRACE TehCore] Reloading Data/ObjectInformation
+[03:00:55 TRACE SMAPI] TehCore edited Data/ObjectInformation.
+[03:00:55 TRACE Content Patcher] More Fish edited Data/ObjectInformation.
+[03:00:55 TRACE SMAPI] Content Patcher edited Data/ObjectInformation.
+[03:00:55 TRACE Visible Fish] assigned new FishManager so its hopefully not null :c
+[03:00:55 TRACE SMAPI] Json Assets edited Data/Boots.
+[03:00:55 TRACE TehCore] Reloading Data/Boots
+[03:00:55 TRACE SMAPI] TehCore edited Data/Boots.
+[03:00:55 TRACE Dynamic Game Assets] Requested cache invalidation for 'Data/CraftingRecipes'.
+[03:00:55 TRACE Dynamic Game Assets] Added 8/9 entries to crafting recipes
+[03:00:55 TRACE SMAPI] Dynamic Game Assets edited Data/CraftingRecipes.
+[03:00:55 TRACE SMAPI] Json Assets edited Data/CraftingRecipes.
+[03:00:55 TRACE TehCore] Reloading Data/CraftingRecipes
+[03:00:55 TRACE SMAPI] TehCore edited Data/CraftingRecipes.
+[03:00:55 TRACE Content Patcher] More Fish edited Data/CraftingRecipes.
+[03:00:55 TRACE SMAPI] Content Patcher edited Data/CraftingRecipes.
+[03:00:55 TRACE SMAPI] Invalidated 1 asset names (Data/CraftingRecipes).
+Propagated 1 core assets (Data/CraftingRecipes).
+[03:00:55 TRACE Dynamic Game Assets] Requested cache invalidation for 'Data/CookingRecipes'.
+[03:00:55 TRACE Dynamic Game Assets] Added 1/9 entries to cooking recipes
+[03:00:55 TRACE SMAPI] Dynamic Game Assets edited Data/CookingRecipes.
+[03:00:55 TRACE SMAPI] Json Assets edited Data/CookingRecipes.
+[03:00:55 TRACE TehCore] Reloading Data/CookingRecipes
+[03:00:55 TRACE SMAPI] TehCore edited Data/CookingRecipes.
+[03:00:55 TRACE SMAPI] Invalidated 1 asset names (Data/CookingRecipes).
+Propagated 1 core assets (Data/CookingRecipes).
+[03:00:55 TRACE Mail Framework Mod] Requested cache invalidation for 'Data/mail'.
+[03:00:55 TRACE SMAPI] Invalidated 0 cache entries.
+[03:00:57 TRACE SMAPI] Esca's Modding Plugins loaded asset 'Mods/Esca.EMP/FishLocations'.
+[03:00:57 TRACE TehCore] Reloading Mods/Esca.EMP/FishLocations
+[03:00:57 TRACE SMAPI] TehCore edited Mods/Esca.EMP/FishLocations.
+[03:00:57 TRACE Teh's Fishing Overhaul] Accessed mod-provided API for Esca's Modding Plugins.
+[03:00:57 TRACE TehCore] Reloading Data/Fish
+[03:00:57 TRACE SMAPI] TehCore edited Data/Fish.
+[03:00:57 TRACE Content Patcher] More Fish edited Data/Fish.
+[03:00:57 TRACE SMAPI] Content Patcher edited Data/Fish.
+[03:00:57 TRACE TehCore] Reloading Data/Locations
+[03:00:57 TRACE SMAPI] TehCore edited Data/Locations.
+[03:00:57 TRACE Content Patcher] More Fish edited Data/Locations.
+[03:00:57 TRACE SMAPI] Content Patcher edited Data/Locations.
+[03:00:57 ERROR Teh's Fishing Overhaul] Failed to parse conditions for one of TehPers.FishingOverhaul's entries: invalid input arguments (hostPlayer) for HasFlag token, expected any of '5569724271445454160'
+[03:00:57 INFO  Teh's Fishing Overhaul] Loaded 142 fish traits.
+[03:00:57 INFO  Teh's Fishing Overhaul] Loaded 635 fish.
+[03:00:57 INFO  Teh's Fishing Overhaul] Loaded 36 trash.
+[03:00:57 INFO  Teh's Fishing Overhaul] Loaded 42 treasure.
+[03:01:04 TRACE SpaceCore] Event: BeforeWarp
+[03:01:04 TRACE game] Warping to Beach
+[03:01:04 TRACE TehCore] Reloading Data/Festivals/FestivalDates
+[03:01:04 TRACE SMAPI] TehCore edited Data/Festivals/FestivalDates.
+[03:01:04 TRACE TehCore] Reloading Data/Events/Beach
+[03:01:04 TRACE SMAPI] TehCore edited Data/Events/Beach.
+[03:01:04 TRACE Content Patcher] More Fish edited Data/Events/Beach.
+[03:01:04 TRACE SMAPI] Content Patcher edited Data/Events/Beach.
+[03:01:04 TRACE SMAPI] Json Assets edited Data/ClothingInformation.
+[03:01:04 TRACE TehCore] Reloading Data/ClothingInformation
+[03:01:04 TRACE SMAPI] TehCore edited Data/ClothingInformation.
+[03:01:04 TRACE SMAPI] Json Assets edited Data/Boots.
+[03:01:04 TRACE TehCore] Reloading Data/Boots
+[03:01:04 TRACE SMAPI] TehCore edited Data/Boots.
+[03:01:04 TRACE SMAPI] Json Assets edited Data/hats.
+[03:01:04 TRACE TehCore] Reloading Data/hats
+[03:01:04 TRACE SMAPI] TehCore edited Data/hats.
+[03:01:04 TRACE SMAPI] Json Assets edited Data/weapons.
+[03:01:04 TRACE TehCore] Reloading Data/weapons
+[03:01:04 TRACE SMAPI] TehCore edited Data/weapons.
+[03:01:04 TRACE TehCore] Reloading Data/Furniture
+[03:01:04 TRACE SMAPI] TehCore edited Data/Furniture.
+[03:01:04 TRACE SMAPI] Json Assets edited Data/BigCraftablesInformation.
+[03:01:04 TRACE TehCore] Reloading Data/BigCraftablesInformation
+[03:01:04 TRACE SMAPI] TehCore edited Data/BigCraftablesInformation.
+[03:01:04 TRACE SMAPI] Dynamic Game Assets edited Data/ObjectInformation.
+[03:01:04 TRACE SMAPI] Json Assets edited Data/ObjectInformation.
+[03:01:04 TRACE TehCore] Reloading Data/ObjectInformation
+[03:01:04 TRACE SMAPI] TehCore edited Data/ObjectInformation.
+[03:01:04 TRACE Content Patcher] More Fish edited Data/ObjectInformation.
+[03:01:04 TRACE SMAPI] Content Patcher edited Data/ObjectInformation.
+[03:01:04 TRACE TehCore] Reloading Data/SecretNotes
+[03:01:04 TRACE SMAPI] TehCore edited Data/SecretNotes.
+[03:01:04 TRACE TehCore] Accessed mod-provided API for Json Assets.
+[03:01:04 INFO  TehCore] Namespaces reloaded.
+[03:01:04 INFO  TehCore] There are 1952 known item keys.
+[03:01:04 TRACE SMAPI] Esca's Modding Plugins loaded asset 'Mods/Esca.EMP/FishLocations'.
+[03:01:04 TRACE TehCore] Reloading Mods/Esca.EMP/FishLocations
+[03:01:04 TRACE SMAPI] TehCore edited Mods/Esca.EMP/FishLocations.
+[03:01:04 TRACE TehCore] Reloading Data/Fish
+[03:01:04 TRACE SMAPI] TehCore edited Data/Fish.
+[03:01:04 TRACE Content Patcher] More Fish edited Data/Fish.
+[03:01:04 TRACE SMAPI] Content Patcher edited Data/Fish.
+[03:01:04 TRACE TehCore] Reloading Data/Locations
+[03:01:04 TRACE SMAPI] TehCore edited Data/Locations.
+[03:01:04 TRACE Content Patcher] More Fish edited Data/Locations.
+[03:01:04 TRACE SMAPI] Content Patcher edited Data/Locations.
+[03:01:04 ERROR Teh's Fishing Overhaul] Failed to parse conditions for one of TehPers.FishingOverhaul's entries: invalid input arguments (hostPlayer) for HasFlag token, expected any of '5569724271445454160'
+[03:01:04 INFO  Teh's Fishing Overhaul] Loaded 142 fish traits.
+[03:01:04 INFO  Teh's Fishing Overhaul] Loaded 635 fish.
+[03:01:04 INFO  Teh's Fishing Overhaul] Loaded 36 trash.
+[03:01:04 INFO  Teh's Fishing Overhaul] Loaded 42 treasure.
+[03:01:04 TRACE Visible Fish] Spawning fish in Beach.
+[03:01:04 TRACE TehCore] Reloading Data/Fish
+[03:01:04 TRACE SMAPI] TehCore edited Data/Fish.
+[03:01:04 TRACE Content Patcher] More Fish edited Data/Fish.
+[03:01:04 TRACE SMAPI] Content Patcher edited Data/Fish.
+[03:01:04 TRACE TehCore] Reloading Data/AquariumFish
+[03:01:04 TRACE SMAPI] TehCore edited Data/AquariumFish.
+[03:01:04 TRACE Content Patcher] More Fish edited Data/AquariumFish.
+[03:01:04 TRACE SMAPI] Content Patcher edited Data/AquariumFish.
+[03:01:04 TRACE TehCore] Reloading LooseSprites/AquariumFish
+[03:01:04 TRACE SMAPI] TehCore edited LooseSprites/AquariumFish.
+[03:01:04 TRACE Content Patcher] More Fish edited LooseSprites/AquariumFish.
+[03:01:04 TRACE SMAPI] Content Patcher edited LooseSprites/AquariumFish.
+[03:01:04 TRACE Visible Fish] Attempted Spawns 377 Failed Spawns: 47
+[03:01:10 TRACE Teh's Fishing Overhaul] teh caught FishCatch { FishingInfo = FishingInfo { User = StardewValley.Farmer, Times = System.Collections.Immutable.ImmutableArray`1[System.Int32], Seasons = Spring, Weathers = Sunny, WaterTypes = All, FishingLevel = 10, BobberDepth = 3, Locations = System.Collections.Immutable.ImmutableArray`1[System.String], BobberPosition = {X:18.44825 Y:35.42458} }, FishItem = StardewValley.Object, FromFishPond = False, FishEntry = FishEntry { AvailabilityInfo = FishAvailabilityInfo { BaseChance = 0.15000000596046448, StartTime = 600, EndTime = 2000, SeasonsSplit = System.Linq.Enumerable+WhereArrayIterator`1[TehPers.Core.Api.Gameplay.Seasons], Seasons = Spring, WeathersSplit = TehPers.Core.Api.Gameplay.Weathers[], Weathers = All, WaterTypesSplit = TehPers.FishingOverhaul.Api.WaterTypes[], WaterTypes = All, MinFishingLevel = 0, MaxFishingLevel = , IncludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], ExcludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], Position = PositionConstraint { X = , Y =  }, FarmerPosition = PositionConstraint { X = , Y =  }, MinDepth = 0, MaxDepth = , When = System.Collections.Immutable.ImmutableDictionary`2[System.String,System.String], DepthMultiplier = 0.05000000074505806, MaxDepth = 2 }, OnCatch = , FishKey = StardewValley:Object/267 }, Item = StardewValley.Object, FishSize = 14, IsLegendary = False, FishQuality = 4, FishDifficulty = 50, State = MinigameState { IsPerfect = True, Treasure = Caught }, CaughtDouble = True }.
+[03:01:11 TRACE TehCore] Reloading Characters/Dialogue/Vincent
+[03:01:11 TRACE SMAPI] TehCore edited Characters/Dialogue/Vincent.
+[03:01:11 TRACE TehCore] Reloading Characters/Dialogue/Pierre
+[03:01:11 TRACE SMAPI] TehCore edited Characters/Dialogue/Pierre.
+[03:01:11 TRACE TehCore] Reloading Characters/Dialogue/Linus
+[03:01:11 TRACE SMAPI] TehCore edited Characters/Dialogue/Linus.
+[03:01:11 TRACE TehCore] Reloading Characters/Dialogue/Willy
+[03:01:11 TRACE SMAPI] TehCore edited Characters/Dialogue/Willy.
+[03:01:11 TRACE Content Patcher] More Fish edited Characters/Dialogue/Willy.
+[03:01:11 TRACE SMAPI] Content Patcher edited Characters/Dialogue/Willy.
+[03:01:11 TRACE SMAPI] Esca's Modding Plugins loaded asset 'Mods/Esca.EMP/FishLocations'.
+[03:01:11 TRACE TehCore] Reloading Mods/Esca.EMP/FishLocations
+[03:01:11 TRACE SMAPI] TehCore edited Mods/Esca.EMP/FishLocations.
+[03:01:13 TRACE TehCore] Accessed mod-provided API for Dynamic Game Assets.
+[03:01:34 TRACE Teh's Fishing Overhaul] teh caught FishCatch { FishingInfo = FishingInfo { User = StardewValley.Farmer, Times = System.Collections.Immutable.ImmutableArray`1[System.Int32], Seasons = Spring, Weathers = Sunny, WaterTypes = All, FishingLevel = 10, BobberDepth = 2, Locations = System.Collections.Immutable.ImmutableArray`1[System.String], BobberPosition = {X:17.57325 Y:35.43704} }, FishItem = StardewValley.Object, FromFishPond = False, FishEntry = FishEntry { AvailabilityInfo = FishAvailabilityInfo { BaseChance = 0.30000001192092896, StartTime = 600, EndTime = 1900, SeasonsSplit = System.Linq.Enumerable+WhereArrayIterator`1[TehPers.Core.Api.Gameplay.Seasons], Seasons = Spring, WeathersSplit = System.Linq.Enumerable+WhereArrayIterator`1[TehPers.Core.Api.Gameplay.Weathers], Weathers = Sunny, WaterTypesSplit = TehPers.FishingOverhaul.Api.WaterTypes[], WaterTypes = All, MinFishingLevel = 0, MaxFishingLevel = , IncludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], ExcludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], Position = PositionConstraint { X = , Y =  }, FarmerPosition = PositionConstraint { X = , Y =  }, MinDepth = 0, MaxDepth = , When = System.Collections.Immutable.ImmutableDictionary`2[System.String,System.String], DepthMultiplier = 0.20000000298023224, MaxDepth = 2 }, OnCatch = , FishKey = StardewValley:Object/1120 }, Item = StardewValley.Object, FishSize = 23, IsLegendary = False, FishQuality = 2, FishDifficulty = 50, State = MinigameState { IsPerfect = True, Treasure = Caught }, CaughtDouble = False }.
+[03:01:36 TRACE TehCore] Reloading Characters/Dialogue/Clint
+[03:01:36 TRACE SMAPI] TehCore edited Characters/Dialogue/Clint.
+[03:01:36 TRACE TehCore] Reloading Characters/Dialogue/Abigail
+[03:01:36 TRACE SMAPI] TehCore edited Characters/Dialogue/Abigail.
+[03:01:36 TRACE TehCore] Reloading Characters/Dialogue/Gus
+[03:01:36 TRACE SMAPI] TehCore edited Characters/Dialogue/Gus.
+[03:01:36 TRACE TehCore] Reloading Characters/Dialogue/Elliott
+[03:01:36 TRACE SMAPI] TehCore edited Characters/Dialogue/Elliott.
+[03:01:36 TRACE TehCore] Reloading Characters/Dialogue/Sebastian
+[03:01:36 TRACE SMAPI] TehCore edited Characters/Dialogue/Sebastian.
+[03:01:36 TRACE TehCore] Reloading Characters/Dialogue/Marnie
+[03:01:36 TRACE SMAPI] TehCore edited Characters/Dialogue/Marnie.
+[03:01:36 TRACE TehCore] Reloading Characters/Dialogue/Leah
+[03:01:36 TRACE SMAPI] TehCore edited Characters/Dialogue/Leah.
+[03:01:36 TRACE TehCore] Reloading Characters/Dialogue/Krobus
+[03:01:36 TRACE SMAPI] TehCore edited Characters/Dialogue/Krobus.
+[03:01:36 TRACE SMAPI] Esca's Modding Plugins loaded asset 'Mods/Esca.EMP/FishLocations'.
+[03:01:36 TRACE TehCore] Reloading Mods/Esca.EMP/FishLocations
+[03:01:36 TRACE SMAPI] TehCore edited Mods/Esca.EMP/FishLocations.
+[03:01:54 TRACE Teh's Fishing Overhaul] teh caught FishCatch { FishingInfo = FishingInfo { User = StardewValley.Farmer, Times = System.Collections.Immutable.ImmutableArray`1[System.Int32], Seasons = Spring, Weathers = Sunny, WaterTypes = All, FishingLevel = 10, BobberDepth = 2, Locations = System.Collections.Immutable.ImmutableArray`1[System.String], BobberPosition = {X:17.57325 Y:35.40234} }, FishItem = StardewValley.Object, FromFishPond = False, FishEntry = FishEntry { AvailabilityInfo = FishAvailabilityInfo { BaseChance = 0.6499999761581421, StartTime = 600, EndTime = 1900, SeasonsSplit = System.Linq.Enumerable+WhereArrayIterator`1[TehPers.Core.Api.Gameplay.Seasons], Seasons = Spring, WeathersSplit = TehPers.Core.Api.Gameplay.Weathers[], Weathers = All, WaterTypesSplit = TehPers.FishingOverhaul.Api.WaterTypes[], WaterTypes = All, MinFishingLevel = 0, MaxFishingLevel = , IncludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], ExcludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], Position = PositionConstraint { X = , Y =  }, FarmerPosition = PositionConstraint { X = , Y =  }, MinDepth = 0, MaxDepth = , When = System.Collections.Immutable.ImmutableDictionary`2[System.String,System.String], DepthMultiplier = 0.10000000149011612, MaxDepth = 1 }, OnCatch = , FishKey = StardewValley:Object/131 }, Item = StardewValley.Object, FishSize = 7, IsLegendary = False, FishQuality = 2, FishDifficulty = 30, State = MinigameState { IsPerfect = True, Treasure = Caught }, CaughtDouble = True }.
+[03:02:06 TRACE TehCore] Reloading Characters/Dialogue/George
+[03:02:06 TRACE SMAPI] TehCore edited Characters/Dialogue/George.
+[03:02:06 TRACE TehCore] Reloading Characters/Dialogue/Haley
+[03:02:06 TRACE SMAPI] TehCore edited Characters/Dialogue/Haley.
+[03:02:06 TRACE TehCore] Reloading Characters/Dialogue/Pam
+[03:02:06 TRACE SMAPI] TehCore edited Characters/Dialogue/Pam.
+[03:02:06 TRACE SMAPI] Esca's Modding Plugins loaded asset 'Mods/Esca.EMP/FishLocations'.
+[03:02:06 TRACE TehCore] Reloading Mods/Esca.EMP/FishLocations
+[03:02:06 TRACE SMAPI] TehCore edited Mods/Esca.EMP/FishLocations.
+[03:02:12 TRACE Teh's Fishing Overhaul] teh caught FishCatch { FishingInfo = FishingInfo { User = StardewValley.Farmer, Times = System.Collections.Immutable.ImmutableArray`1[System.Int32], Seasons = Spring, Weathers = Sunny, WaterTypes = All, FishingLevel = 10, BobberDepth = 2, Locations = System.Collections.Immutable.ImmutableArray`1[System.String], BobberPosition = {X:17.57325 Y:35.445145} }, FishItem = StardewValley.Object, FromFishPond = False, FishEntry = FishEntry { AvailabilityInfo = FishAvailabilityInfo { BaseChance = 0.25, StartTime = 600, EndTime = 2600, SeasonsSplit = System.Linq.Enumerable+WhereArrayIterator`1[TehPers.Core.Api.Gameplay.Seasons], Seasons = Spring, WeathersSplit = TehPers.Core.Api.Gameplay.Weathers[], Weathers = All, WaterTypesSplit = TehPers.FishingOverhaul.Api.WaterTypes[], WaterTypes = All, MinFishingLevel = 0, MaxFishingLevel = , IncludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], ExcludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], Position = PositionConstraint { X = , Y =  }, FarmerPosition = PositionConstraint { X = , Y =  }, MinDepth = 0, MaxDepth = , When = System.Collections.Immutable.ImmutableDictionary`2[System.String,System.String], DepthMultiplier = 0.30000001192092896, MaxDepth = 1 }, OnCatch = , FishKey = StardewValley:Object/129 }, Item = StardewValley.Object, FishSize = 9, IsLegendary = False, FishQuality = 2, FishDifficulty = 30, State = MinigameState { IsPerfect = True, Treasure = Caught }, CaughtDouble = False }.
+[03:02:24 TRACE TehCore] Reloading Characters/Dialogue/Harvey
+[03:02:24 TRACE SMAPI] TehCore edited Characters/Dialogue/Harvey.
+[03:02:24 TRACE TehCore] Reloading Characters/Dialogue/Robin
+[03:02:24 TRACE SMAPI] TehCore edited Characters/Dialogue/Robin.
+[03:02:24 TRACE SMAPI] Esca's Modding Plugins loaded asset 'Mods/Esca.EMP/FishLocations'.
+[03:02:24 TRACE TehCore] Reloading Mods/Esca.EMP/FishLocations
+[03:02:24 TRACE SMAPI] TehCore edited Mods/Esca.EMP/FishLocations.
+[03:02:25 TRACE TehCore] Reloading LooseSprites/map
+[03:02:25 TRACE SMAPI] TehCore edited LooseSprites/map.
+[03:02:25 TRACE SMAPI] Mail Framework Mod edited Data/mail.
+[03:02:25 TRACE TehCore] Reloading Data/mail
+[03:02:25 TRACE SMAPI] TehCore edited Data/mail.
+[03:02:25 TRACE game] Window_ClientSizeChanged(); Window.ClientBounds={X:8 Y:31 Width:1536 Height:801}
+[03:02:35 TRACE Generic Mod Config Menu] Changing to mod config page for mod TehPers.FishingOverhaul
+[03:02:46 TRACE Generic Mod Config Menu] saving Show fishing HUD Whether or not to show current streak, chance for treasure, chance for each fish, etc. while fishing.
+[03:02:46 TRACE Generic Mod Config Menu] saving Top left X The X coordinate of the top left corner of the fishing HUD.
+[03:02:46 TRACE Generic Mod Config Menu] saving Top left Y The Y coordinate of the top left corner of the fishing HUD.
+[03:02:46 TRACE Generic Mod Config Menu] saving Max fish types The number of fish to show on the fishing HUD.
+[03:02:46 TRACE Generic Mod Config Menu] saving Show fish in minigame Whether to show the fish being caught in the fishing minigame.
+[03:02:46 TRACE Generic Mod Config Menu] saving Catch speed Affects how fast you catch fish.
+[03:02:46 TRACE Generic Mod Config Menu] saving Drain speed Affects how fast the catch bar drains when the bobber isn't on the fish.
+[03:02:46 TRACE Generic Mod Config Menu] saving Streak for quality increase Required streak for an increase in quality. For example, 3 means that every 3 consecutive perfect catches increases your catch quality by 1.
+[03:02:46 TRACE Generic Mod Config Menu] saving Max normal fish quality (enabled) Determines the max quality fish a non-perfect catch can get, or null for no restrictions.
+[03:02:46 TRACE Generic Mod Config Menu] saving Max normal fish quality The chance that you'll find a fish instead of trash.
+[03:02:46 TRACE Generic Mod Config Menu] saving Max fish quality The max quality fish that can be caught. 0 = normal, 1 = silver, 2 = gold, 3 = iridium, 4+ = beyond iridium.
+[03:02:46 TRACE Generic Mod Config Menu] saving Base chance The base chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Streak factor The effect that streak has on this chance. This is multiplied by the streak and added to the chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Fishing level factor The effect that fishing level has on this chance. This is multiplied by the fishing level and added to the chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Daily luck factor The effect that daily luck has on this chance. This is multiplied by the daily luck and added to the chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Luck level factor The effect that luck level has on this chance. This is multiplied by the luck level and added to the chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Minimum chance The minimum possible chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Maximum chance The maximum possible chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Max treasure Maximum amount of treasure you can find in a single chest while fishing.
+[03:02:46 TRACE Generic Mod Config Menu] saving Allow duplicate loot Whether the treasure randomizer should be allowed to select the same loot option multiple times. Some loot can't be repeated even if duplicate loot is enabled.
+[03:02:46 TRACE Generic Mod Config Menu] saving Catch speed Affects how fast you catch treasure.
+[03:02:46 TRACE Generic Mod Config Menu] saving Drain speed Affects how fast the treasure bar drains when the bobber isn't on the chest.
+[03:02:46 TRACE Generic Mod Config Menu] saving Base chance The base chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Streak factor The effect that streak has on this chance. This is multiplied by the streak and added to the chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Fishing level factor The effect that fishing level has on this chance. This is multiplied by the fishing level and added to the chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Daily luck factor The effect that daily luck has on this chance. This is multiplied by the daily luck and added to the chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Luck level factor The effect that luck level has on this chance. This is multiplied by the luck level and added to the chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Minimum chance The minimum possible chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Maximum chance The maximum possible chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Magnet factor The effect that the magnet bait has. This is added to the chance if fishing with a magnet.
+[03:02:46 TRACE Generic Mod Config Menu] saving Treasure hunter factor The effect that the treasure hunter tackle has. This is added to the chance if fishing with the treasure hunter tackle.
+[03:02:46 TRACE Generic Mod Config Menu] saving Base chance The base chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Streak factor The effect that streak has on this chance. This is multiplied by the streak and added to the chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Fishing level factor The effect that fishing level has on this chance. This is multiplied by the fishing level and added to the chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Daily luck factor The effect that daily luck has on this chance. This is multiplied by the daily luck and added to the chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Luck level factor The effect that luck level has on this chance. This is multiplied by the luck level and added to the chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Minimum chance The minimum possible chance.
+[03:02:46 TRACE Generic Mod Config Menu] saving Maximum chance The maximum possible chance.
+[03:02:52 TRACE Teh's Fishing Overhaul] teh caught FishCatch { FishingInfo = FishingInfo { User = StardewValley.Farmer, Times = System.Collections.Immutable.ImmutableArray`1[System.Int32], Seasons = Spring, Weathers = Sunny, WaterTypes = All, FishingLevel = 10, BobberDepth = 2, Locations = System.Collections.Immutable.ImmutableArray`1[System.String], BobberPosition = {X:17.57325 Y:35.403477} }, FishItem = StardewValley.Object, FromFishPond = False, FishEntry = FishEntry { AvailabilityInfo = FishAvailabilityInfo { BaseChance = 0.6499999761581421, StartTime = 600, EndTime = 1900, SeasonsSplit = System.Linq.Enumerable+WhereArrayIterator`1[TehPers.Core.Api.Gameplay.Seasons], Seasons = Spring, WeathersSplit = TehPers.Core.Api.Gameplay.Weathers[], Weathers = All, WaterTypesSplit = TehPers.FishingOverhaul.Api.WaterTypes[], WaterTypes = All, MinFishingLevel = 0, MaxFishingLevel = , IncludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], ExcludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], Position = PositionConstraint { X = , Y =  }, FarmerPosition = PositionConstraint { X = , Y =  }, MinDepth = 0, MaxDepth = , When = System.Collections.Immutable.ImmutableDictionary`2[System.String,System.String], DepthMultiplier = 0.10000000149011612, MaxDepth = 1 }, OnCatch = , FishKey = StardewValley:Object/131 }, Item = StardewValley.Object, FishSize = 6, IsLegendary = False, FishQuality = 2, FishDifficulty = 30, State = MinigameState { IsPerfect = True, Treasure = Caught }, CaughtDouble = True }.
+[03:03:00 TRACE TehCore] Reloading Characters/Dialogue/Demetrius
+[03:03:00 TRACE SMAPI] TehCore edited Characters/Dialogue/Demetrius.
+[03:03:00 TRACE SMAPI] Esca's Modding Plugins loaded asset 'Mods/Esca.EMP/FishLocations'.
+[03:03:00 TRACE TehCore] Reloading Mods/Esca.EMP/FishLocations
+[03:03:00 TRACE SMAPI] TehCore edited Mods/Esca.EMP/FishLocations.
+[03:03:04 TRACE Teh's Fishing Overhaul] teh caught FishCatch { FishingInfo = FishingInfo { User = StardewValley.Farmer, Times = System.Collections.Immutable.ImmutableArray`1[System.Int32], Seasons = Spring, Weathers = Sunny, WaterTypes = All, FishingLevel = 10, BobberDepth = 2, Locations = System.Collections.Immutable.ImmutableArray`1[System.String], BobberPosition = {X:17.57325 Y:35.44327} }, FishItem = StardewValley.Object, FromFishPond = False, FishEntry = FishEntry { AvailabilityInfo = FishAvailabilityInfo { BaseChance = 0.6499999761581421, StartTime = 600, EndTime = 1900, SeasonsSplit = System.Linq.Enumerable+WhereArrayIterator`1[TehPers.Core.Api.Gameplay.Seasons], Seasons = Spring, WeathersSplit = TehPers.Core.Api.Gameplay.Weathers[], Weathers = All, WaterTypesSplit = TehPers.FishingOverhaul.Api.WaterTypes[], WaterTypes = All, MinFishingLevel = 0, MaxFishingLevel = , IncludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], ExcludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], Position = PositionConstraint { X = , Y =  }, FarmerPosition = PositionConstraint { X = , Y =  }, MinDepth = 0, MaxDepth = , When = System.Collections.Immutable.ImmutableDictionary`2[System.String,System.String], DepthMultiplier = 0.10000000149011612, MaxDepth = 1 }, OnCatch = , FishKey = StardewValley:Object/131 }, Item = StardewValley.Object, FishSize = 7, IsLegendary = False, FishQuality = 2, FishDifficulty = 30, State = MinigameState { IsPerfect = True, Treasure = Caught }, CaughtDouble = True }.
+[03:03:13 TRACE TehCore] Reloading Characters/Dialogue/Jodi
+[03:03:13 TRACE SMAPI] TehCore edited Characters/Dialogue/Jodi.
+[03:03:13 TRACE TehCore] Reloading Characters/Dialogue/Wizard
+[03:03:13 TRACE SMAPI] TehCore edited Characters/Dialogue/Wizard.
+[03:03:13 TRACE TehCore] Reloading Characters/Dialogue/Shane
+[03:03:13 TRACE SMAPI] TehCore edited Characters/Dialogue/Shane.
+[03:03:13 TRACE TehCore] Reloading Characters/Dialogue/Sandy
+[03:03:13 TRACE SMAPI] TehCore edited Characters/Dialogue/Sandy.
+[03:03:13 TRACE SMAPI] Esca's Modding Plugins loaded asset 'Mods/Esca.EMP/FishLocations'.
+[03:03:13 TRACE TehCore] Reloading Mods/Esca.EMP/FishLocations
+[03:03:13 TRACE SMAPI] TehCore edited Mods/Esca.EMP/FishLocations.
+[03:03:18 TRACE Teh's Fishing Overhaul] teh caught FishCatch { FishingInfo = FishingInfo { User = StardewValley.Farmer, Times = System.Collections.Immutable.ImmutableArray`1[System.Int32], Seasons = Spring, Weathers = Sunny, WaterTypes = All, FishingLevel = 10, BobberDepth = 2, Locations = System.Collections.Immutable.ImmutableArray`1[System.String], BobberPosition = {X:17.57325 Y:35.457294} }, FishItem = StardewValley.Object, FromFishPond = False, FishEntry = FishEntry { AvailabilityInfo = FishAvailabilityInfo { BaseChance = 0.25, StartTime = 600, EndTime = 2600, SeasonsSplit = System.Linq.Enumerable+WhereArrayIterator`1[TehPers.Core.Api.Gameplay.Seasons], Seasons = Spring, WeathersSplit = TehPers.Core.Api.Gameplay.Weathers[], Weathers = All, WaterTypesSplit = TehPers.FishingOverhaul.Api.WaterTypes[], WaterTypes = All, MinFishingLevel = 0, MaxFishingLevel = , IncludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], ExcludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], Position = PositionConstraint { X = , Y =  }, FarmerPosition = PositionConstraint { X = , Y =  }, MinDepth = 0, MaxDepth = , When = System.Collections.Immutable.ImmutableDictionary`2[System.String,System.String], DepthMultiplier = 0.30000001192092896, MaxDepth = 1 }, OnCatch = , FishKey = StardewValley:Object/129 }, Item = StardewValley.Object, FishSize = 9, IsLegendary = False, FishQuality = 2, FishDifficulty = 30, State = MinigameState { IsPerfect = True, Treasure = Caught }, CaughtDouble = False }.
+[03:03:31 TRACE TehCore] Reloading Characters/Dialogue/Emily
+[03:03:31 TRACE SMAPI] TehCore edited Characters/Dialogue/Emily.
+[03:03:31 TRACE SMAPI] Esca's Modding Plugins loaded asset 'Mods/Esca.EMP/FishLocations'.
+[03:03:31 TRACE TehCore] Reloading Mods/Esca.EMP/FishLocations
+[03:03:31 TRACE SMAPI] TehCore edited Mods/Esca.EMP/FishLocations.
+[03:03:35 TRACE Teh's Fishing Overhaul] teh caught FishCatch { FishingInfo = FishingInfo { User = StardewValley.Farmer, Times = System.Collections.Immutable.ImmutableArray`1[System.Int32], Seasons = Spring, Weathers = Sunny, WaterTypes = All, FishingLevel = 10, BobberDepth = 2, Locations = System.Collections.Immutable.ImmutableArray`1[System.String], BobberPosition = {X:17.57325 Y:35.43065} }, FishItem = StardewValley.Object, FromFishPond = False, FishEntry = FishEntry { AvailabilityInfo = FishAvailabilityInfo { BaseChance = 0.44999998807907104, StartTime = 600, EndTime = 2600, SeasonsSplit = System.Linq.Enumerable+WhereArrayIterator`1[TehPers.Core.Api.Gameplay.Seasons], Seasons = Spring, WeathersSplit = TehPers.Core.Api.Gameplay.Weathers[], Weathers = All, WaterTypesSplit = TehPers.FishingOverhaul.Api.WaterTypes[], WaterTypes = All, MinFishingLevel = 0, MaxFishingLevel = , IncludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], ExcludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], Position = PositionConstraint { X = , Y =  }, FarmerPosition = PositionConstraint { X = , Y =  }, MinDepth = 0, MaxDepth = , When = System.Collections.Immutable.ImmutableDictionary`2[System.String,System.String], DepthMultiplier = 0.10000000149011612, MaxDepth = 1 }, OnCatch = , FishKey = StardewValley:Object/147 }, Item = StardewValley.Object, FishSize = 14, IsLegendary = False, FishQuality = 2, FishDifficulty = 25, State = MinigameState { IsPerfect = True, Treasure = Caught }, CaughtDouble = False }.
+[03:03:46 TRACE Teh's Fishing Overhaul] teh caught TrashCatch { FishingInfo = FishingInfo { User = StardewValley.Farmer, Times = System.Collections.Immutable.ImmutableArray`1[System.Int32], Seasons = Spring, Weathers = Sunny, WaterTypes = All, FishingLevel = 10, BobberDepth = 2, Locations = System.Collections.Immutable.ImmutableArray`1[System.String], BobberPosition = {X:17.57325 Y:35.446224} }, FishItem = StardewValley.Object, FromFishPond = False, TrashEntry = TrashEntry { AvailabilityInfo = AvailabilityInfo { BaseChance = 1, StartTime = 600, EndTime = 2600, SeasonsSplit = TehPers.Core.Api.Gameplay.Seasons[], Seasons = All, WeathersSplit = TehPers.Core.Api.Gameplay.Weathers[], Weathers = All, WaterTypesSplit = TehPers.FishingOverhaul.Api.WaterTypes[], WaterTypes = All, MinFishingLevel = 0, MaxFishingLevel = , IncludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], ExcludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], Position = PositionConstraint { X = , Y =  }, FarmerPosition = PositionConstraint { X = , Y =  }, MinDepth = 0, MaxDepth = , When = System.Collections.Immutable.ImmutableDictionary`2[System.String,System.String] }, OnCatch = , ItemKey = StardewValley:Object/167 }, TrashItem = StardewValley.Object }.
+[03:03:47 TRACE TehCore] Reloading Characters/Dialogue/Mister Qi
+[03:03:47 TRACE SMAPI] TehCore edited Characters/Dialogue/Mister Qi.
+[03:03:47 TRACE SMAPI] Esca's Modding Plugins loaded asset 'Mods/Esca.EMP/FishLocations'.
+[03:03:47 TRACE TehCore] Reloading Mods/Esca.EMP/FishLocations
+[03:03:47 TRACE SMAPI] TehCore edited Mods/Esca.EMP/FishLocations.
+[03:03:54 TRACE Teh's Fishing Overhaul] teh caught FishCatch { FishingInfo = FishingInfo { User = StardewValley.Farmer, Times = System.Collections.Immutable.ImmutableArray`1[System.Int32], Seasons = Spring, Weathers = Sunny, WaterTypes = All, FishingLevel = 10, BobberDepth = 2, Locations = System.Collections.Immutable.ImmutableArray`1[System.String], BobberPosition = {X:17.57325 Y:35.45019} }, FishItem = StardewValley.Object, FromFishPond = False, FishEntry = FishEntry { AvailabilityInfo = FishAvailabilityInfo { BaseChance = 0.44999998807907104, StartTime = 600, EndTime = 2600, SeasonsSplit = System.Linq.Enumerable+WhereArrayIterator`1[TehPers.Core.Api.Gameplay.Seasons], Seasons = Spring, WeathersSplit = TehPers.Core.Api.Gameplay.Weathers[], Weathers = All, WaterTypesSplit = TehPers.FishingOverhaul.Api.WaterTypes[], WaterTypes = All, MinFishingLevel = 0, MaxFishingLevel = , IncludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], ExcludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], Position = PositionConstraint { X = , Y =  }, FarmerPosition = PositionConstraint { X = , Y =  }, MinDepth = 0, MaxDepth = , When = System.Collections.Immutable.ImmutableDictionary`2[System.String,System.String], DepthMultiplier = 0.10000000149011612, MaxDepth = 1 }, OnCatch = , FishKey = StardewValley:Object/147 }, Item = StardewValley.Object, FishSize = 15, IsLegendary = False, FishQuality = 2, FishDifficulty = 25, State = MinigameState { IsPerfect = True, Treasure = Caught }, CaughtDouble = False }.
+[03:03:58 TRACE SMAPI] Esca's Modding Plugins loaded asset 'Mods/Esca.EMP/FishLocations'.
+[03:03:58 TRACE TehCore] Reloading Mods/Esca.EMP/FishLocations
+[03:03:58 TRACE SMAPI] TehCore edited Mods/Esca.EMP/FishLocations.
+[03:04:11 TRACE Teh's Fishing Overhaul] teh caught TrashCatch { FishingInfo = FishingInfo { User = StardewValley.Farmer, Times = System.Collections.Immutable.ImmutableArray`1[System.Int32], Seasons = Spring, Weathers = Sunny, WaterTypes = All, FishingLevel = 10, BobberDepth = 2, Locations = System.Collections.Immutable.ImmutableArray`1[System.String], BobberPosition = {X:17.57325 Y:35.417133} }, FishItem = StardewValley.Object, FromFishPond = False, TrashEntry = TrashEntry { AvailabilityInfo = AvailabilityInfo { BaseChance = 1, StartTime = 600, EndTime = 2600, SeasonsSplit = TehPers.Core.Api.Gameplay.Seasons[], Seasons = All, WeathersSplit = TehPers.Core.Api.Gameplay.Weathers[], Weathers = All, WaterTypesSplit = TehPers.FishingOverhaul.Api.WaterTypes[], WaterTypes = All, MinFishingLevel = 0, MaxFishingLevel = , IncludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], ExcludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], Position = PositionConstraint { X = , Y =  }, FarmerPosition = PositionConstraint { X = , Y =  }, MinDepth = 0, MaxDepth = , When = System.Collections.Immutable.ImmutableDictionary`2[System.String,System.String] }, OnCatch = , ItemKey = StardewValley:Object/168 }, TrashItem = StardewValley.Object }.
+[03:04:18 TRACE Teh's Fishing Overhaul] teh caught FishCatch { FishingInfo = FishingInfo { User = StardewValley.Farmer, Times = System.Collections.Immutable.ImmutableArray`1[System.Int32], Seasons = Spring, Weathers = Sunny, WaterTypes = All, FishingLevel = 10, BobberDepth = 2, Locations = System.Collections.Immutable.ImmutableArray`1[System.String], BobberPosition = {X:17.57325 Y:35.407787} }, FishItem = StardewValley.Object, FromFishPond = False, FishEntry = FishEntry { AvailabilityInfo = FishAvailabilityInfo { BaseChance = 0.6499999761581421, StartTime = 600, EndTime = 1900, SeasonsSplit = System.Linq.Enumerable+WhereArrayIterator`1[TehPers.Core.Api.Gameplay.Seasons], Seasons = Spring, WeathersSplit = TehPers.Core.Api.Gameplay.Weathers[], Weathers = All, WaterTypesSplit = TehPers.FishingOverhaul.Api.WaterTypes[], WaterTypes = All, MinFishingLevel = 0, MaxFishingLevel = , IncludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], ExcludeLocations = System.Collections.Immutable.ImmutableArray`1[System.String], Position = PositionConstraint { X = , Y =  }, FarmerPosition = PositionConstraint { X = , Y =  }, MinDepth = 0, MaxDepth = , When = System.Collections.Immutable.ImmutableDictionary`2[System.String,System.String], DepthMultiplier = 0.10000000149011612, MaxDepth = 1 }, OnCatch = , FishKey = StardewValley:Object/131 }, Item = StardewValley.Object, FishSize = 6, IsLegendary = False, FishQuality = 2, FishDifficulty = 30, State = MinigameState { IsPerfect = True, Treasure = Caught }, CaughtDouble = False }.
+[03:04:20 TRACE TehCore] Reloading Characters/Dialogue/Dwarf
+[03:04:20 TRACE SMAPI] TehCore edited Characters/Dialogue/Dwarf.
+[03:04:20 TRACE SMAPI] Esca's Modding Plugins loaded asset 'Mods/Esca.EMP/FishLocations'.
+[03:04:20 TRACE TehCore] Reloading Mods/Esca.EMP/FishLocations
+[03:04:20 TRACE SMAPI] TehCore edited Mods/Esca.EMP/FishLocations.
+[03:04:29 TRACE game] Window_ClientSizeChanged(); Window.ClientBounds={X:8 Y:31 Width:1536 Height:801}
+[03:04:33 TRACE game] Disconnected: ClosedGame
+[03:04:33 TRACE SMAPI] Disposing...
+[03:04:33 TRACE SMAPI] Disposing the content coordinator. Content managers will no longer be usable after this point.
