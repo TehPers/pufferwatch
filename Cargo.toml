@@ -1,6 +1,6 @@
 [package]
 name = "pufferwatch"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = """
 A CLI application for filtering and monitoring SMAPI logs.

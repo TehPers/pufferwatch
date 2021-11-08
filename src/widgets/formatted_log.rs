@@ -186,7 +186,7 @@ impl<'i> FormattedLogState<'i> {
                 .collect(),
         };
         let (lines, source_width) = Self::format_lines(log, filters.clone());
-        let paragraph_state = LazyParagraphState::new(lines.len());
+        let paragraph_state = LazyParagraphState::new(lines.len(), true);
         Self {
             log,
             lines,
@@ -209,7 +209,9 @@ impl<'i> FormattedLogState<'i> {
         trace!(lines=%self.lines.len(), max_source_width=%self.source_width, "Applied filter to formatted log");
 
         // TODO: set the offset to the line closest to the current line's offset
-        self.paragraph_state = LazyParagraphState::new(self.lines.len());
+        let auto_scroll = self.paragraph_state.auto_scroll;
+        self.paragraph_state = LazyParagraphState::new(self.lines.len(), true);
+        self.paragraph_state.auto_scroll = auto_scroll;
     }
 
     fn format_lines(log: &'i Log, filters: LogFilters<'i>) -> (Vec<FormattedLine<'i>>, usize) {
@@ -309,8 +311,9 @@ impl<'i, 'j> WithLog<'j> for FormattedLogState<'i> {
     fn with_log(self, log: &'j Log) -> Self::Result {
         let filters = self.filters.with_log(log);
         let (lines, source_width) = FormattedLogState::format_lines(log, filters.clone());
-        let mut paragraph_state = LazyParagraphState::new(lines.len());
+        let mut paragraph_state = LazyParagraphState::new(lines.len(), true);
         paragraph_state.offset = self.paragraph_state.offset;
+        paragraph_state.auto_scroll = self.paragraph_state.auto_scroll;
         FormattedLogState {
             log,
             filters,
@@ -605,23 +608,10 @@ impl<'j> WithLog<'j> for FiltersListState {
                 selected: self.selected,
                 source: FiltersListSource::Levels,
             },
-            FiltersListSource::Sources => {
-                // let mut new_sources = log.sources().into_iter().collect_vec();
-                // new_sources.sort();
-                // let new_selected = if let Some(selected_source) = sources.get(self.selected) {
-                //     new_sources
-                //         .iter()
-                //         .position(|source| source == selected_source)
-                //         .unwrap_or(self.selected)
-                //         .min(new_sources.len().saturating_sub(1))
-                // } else {
-                //     0
-                // };
-                FiltersListState {
-                    selected: self.selected,
-                    source: FiltersListSource::Sources,
-                }
-            }
+            FiltersListSource::Sources => FiltersListState {
+                selected: self.selected,
+                source: FiltersListSource::Sources,
+            },
         }
     }
 }

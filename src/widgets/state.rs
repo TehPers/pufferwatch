@@ -7,6 +7,7 @@ use indexmap::IndexMap;
 
 pub trait State {
     fn update(&mut self, event: &AppEvent) -> bool;
+
     fn add_controls<I: IconPack>(&self, _controls: &mut IndexMap<BindingDisplay<I>, &'static str>) {
     }
 }

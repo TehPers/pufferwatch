@@ -2,7 +2,7 @@ use crate::{
     events::AppEvent,
     widgets::{DefaultIconPack, IconPack, State},
 };
-use crossterm::event::{KeyCode, KeyModifiers, MouseButton};
+use crossterm::event::{Event, KeyCode, KeyEvent, KeyModifiers, MouseButton};
 use indexmap::IndexMap;
 use itertools::Itertools;
 use std::{
@@ -135,54 +135,68 @@ impl StatefulWidget for Controls {
             })
             .map(|label| Span::styled(label, self.style));
 
-        // Group controls into lines
-        let mut lines = labels
-            .scan((0_usize, controls_width), |state, label| {
-                let (line, remaining_width) = *state;
+        // Group labels into lines
+        let mut multi_page = false;
+        let lines = labels
+            .map(|label| {
+                let label_width = label.content.width();
+                (label, label_width)
+            })
+            .peekable()
+            .batching(|labels| {
+                let mut remaining_width = controls_width;
+                let mut line = Vec::new();
+                while let Some(&(_, label_width)) = labels.peek() {
+                    // Check if the label fits on the current line
+                    if let Some(new_remaining_width) = remaining_width.checked_sub(label_width) {
+                        // Label fits on the current line
+                        remaining_width = new_remaining_width.saturating_sub(1);
 
-                // Get label width + padding
-                let label_width = label.content.width().saturating_add(1);
+                        // Add label and padding
+                        let (label, _) = labels.next().unwrap();
+                        line.push(label);
+                        line.push(Span::raw(" "));
+                    } else {
+                        // Check if empty page because area isn't big enough
+                        if line.is_empty() {
+                            return None;
+                        }
 
-                // Add label to either the current line or the next line
-                match remaining_width.checked_sub(label_width) {
-                    // Too big for this line
-                    None => {
-                        *state = (
-                            line.saturating_add(1),
-                            controls_width.saturating_sub(label_width),
-                        );
-                        Some((state.0, label))
-                    }
-                    // Fits on this line
-                    Some(remaining_width) => {
-                        *state = (line, remaining_width);
-                        Some((state.0, label))
+                        // Add "More" label (for next page)
+                        line.push(more_label.clone());
+                        multi_page = true;
+                        return Some(Spans::from(line));
                     }
                 }
+
+                if line.is_empty() {
+                    None
+                } else {
+                    if multi_page {
+                        // Add "More" label (for first page)
+                        line.push(more_label.clone());
+                    }
+
+                    Some(Spans::from(line))
+                }
             })
-            .group_by(|&(line, _)| line)
-            .into_iter()
-            .map(|(line, labels)| {
-                let spans = labels
-                    .map(|(_, label)| label)
-                    .interleave_shortest(std::iter::repeat_with(|| Span::raw(" ")))
-                    .collect_vec();
-                (line, Spans::from(spans))
-            })
+            .enumerate()
             .collect_vec();
-        lines.sort_unstable_by_key(|&(line, _)| line);
 
         // Get which rows to render
-        let start_row = state.page * usize::from(area.height);
-        let line_after_end_row = start_row
-            .saturating_add(area.height.into())
-            .min(lines.len());
-        let start_row = line_after_end_row.saturating_sub(area.height.into());
+        let area_height = usize::from(area.height);
+        let pages = lines.len() / area_height;
+        state.page %= pages;
+        let start_row = state.page * area_height;
 
         // Render the controls
-        let rendered_lines = lines.get(start_row..line_after_end_row);
+        let rendered_lines = lines.get(start_row..(start_row + area_height));
         for (y, spans) in rendered_lines.into_iter().flatten() {
-            buf.set_spans(area.x, area.y.saturating_add(*y as u16), spans, area.width);
+            let y = match u16::try_from(y % area_height) {
+                Ok(y) => y,
+                Err(_) => break,
+            };
+            buf.set_spans(area.x, area.y.saturating_add(y), spans, area.width);
         }
     }
 }
@@ -204,8 +218,16 @@ impl ControlsState {
 }
 
 impl State for ControlsState {
-    fn update(&mut self, _event: &AppEvent) -> bool {
-        // TODO
+    fn update(&mut self, event: &AppEvent) -> bool {
+        if let AppEvent::TermEvent(Event::Key(KeyEvent {
+            code: KeyCode::Char('.'),
+            ..
+        })) = event
+        {
+            self.page = self.page.wrapping_add(1);
+            return true;
+        }
+
         false
     }
 }

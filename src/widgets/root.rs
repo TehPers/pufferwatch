@@ -100,7 +100,8 @@ impl<'i> RootState<'i> {
 impl<'i> State for RootState<'i> {
     fn update(&mut self, event: &AppEvent) -> bool {
         // TODO: mouse events
-        let handled = match event {
+        // Update root state
+        let mut handled = match event {
             AppEvent::TermEvent(Event::Key(key_event)) => match key_event.code {
                 KeyCode::Tab => {
                     match self.selected_widget {
@@ -114,14 +115,20 @@ impl<'i> State for RootState<'i> {
             _ => false,
         };
 
-        if handled {
-            true
-        } else {
-            match self.selected_widget {
+        // Update selected widget
+        if !handled {
+            handled = match self.selected_widget {
                 SelectedWidget::FormattedLog => self.formatted_log_state.update(event),
                 SelectedWidget::RawLog => self.raw_log_state.update(event),
-            }
+            };
         }
+
+        // Update controls state
+        if !handled {
+            handled = self.controls_state.update(event);
+        }
+
+        handled
     }
 
     fn add_controls<I: IconPack>(&self, controls: &mut IndexMap<BindingDisplay<I>, &'static str>) {
