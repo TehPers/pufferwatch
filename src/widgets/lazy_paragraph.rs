@@ -298,9 +298,9 @@ impl AutoScroll {
         }
     }
 
-    pub fn is_scrolling(&self) -> bool {
+    pub fn is_scrolling(self) -> bool {
         if let AutoScroll::Enabled { scrolling } = self {
-            *scrolling
+            scrolling
         } else {
             false
         }
