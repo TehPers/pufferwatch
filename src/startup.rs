@@ -1,7 +1,7 @@
 use crate::{
     events::{AppEvent, EventController},
     log::Log,
-    source::{FollowedLogSource, LogSource, StaticLogSource},
+    source::{FollowedLogSource, LogSource, StaticLogSource, StdinLogSource},
     widgets::{Root, RootState, State, WithLog},
 };
 use anyhow::Context;
@@ -22,6 +22,7 @@ use tui::{
 
 const LOG_ARG: &str = "log";
 const FOLLOW_ARG: &str = "follow";
+const STDIN_ARG: &str = "stdin";
 const OUTPUT_LOG_ARG: &str = "output-log";
 
 pub fn start() -> anyhow::Result<()> {
@@ -38,12 +39,17 @@ pub fn start() -> anyhow::Result<()> {
         .map(PathBuf::from)
         .or_else(default_log_path)
         .context("unable to find log path")?;
-    let mut source: Box<dyn LogSource> = if matches.is_present(FOLLOW_ARG) {
-        let source = FollowedLogSource::new(log_path).context("error creating log source")?;
-        Box::new(source)
+    let (mut source, log): (Box<dyn LogSource>, Log) = if matches.is_present(STDIN_ARG) {
+        let source = StdinLogSource::new();
+        let log = Log::parse(String::new()).context("error parsing empty log")?;
+        (Box::new(source), log)
+    } else if matches.is_present(FOLLOW_ARG) {
+        let (source, log) =
+            FollowedLogSource::new(log_path).context("error creating log source")?;
+        (Box::new(source), log)
     } else {
-        let source = StaticLogSource::new(&log_path).context("error creating log source")?;
-        Box::new(source)
+        let (source, log) = StaticLogSource::new(&log_path).context("error creating log source")?;
+        (Box::new(source), log)
     };
 
     // Initialize TUI
@@ -61,7 +67,6 @@ pub fn start() -> anyhow::Result<()> {
     // TUI event loop
     let mut force_redraw = true;
     let (event_rx, _event_controller) = EventController::start();
-    let log = source.update().context("error getting log from source")?;
     let mut renderer = Renderer::from(log);
     loop {
         // Read event
@@ -84,13 +89,10 @@ pub fn start() -> anyhow::Result<()> {
             _ => {}
         }
 
-        // Check if log was updated
-        if let Some(log) = source.update() {
-            trace!("Log updated");
-            renderer = renderer
-                .update_log(log)
-                .context("error updating renderer with new log")?;
-        }
+        // Update log from source if needed
+        renderer = renderer
+            .update_from(source.as_mut())
+            .context("error updating renderer with new log")?;
 
         // Draw terminal
         renderer
@@ -119,9 +121,14 @@ fn parse_args() -> ArgMatches<'static> {
                 .value_name("LOG PATH"),
         )
         .arg(
+            Arg::with_name(STDIN_ARG)
+                .help("Read from stdin instead of a log file.")
+                .long("stdin")
+        )
+        .arg(
             Arg::with_name(FOLLOW_ARG)
                 .long("follow")
-                .help("Watch the log file for changes.")
+                .help("Watch the log file for changes. This is not needed with --stdin.")
                 .short("f"),
         )
         .arg(
@@ -208,15 +215,20 @@ impl Renderer {
         })
     }
 
-    pub fn update_log(mut self, log: Log) -> anyhow::Result<Self> {
-        self.with_root_state_mut(|root_state| {
-            let root_state = root_state.take().context("missing root state")?;
-            Ok(RendererBuilder {
-                log,
-                root_state_builder: |log| Some(root_state.with_log(log)),
-            }
-            .build())
-        })
+    pub fn update_from(mut self, source: &mut dyn LogSource) -> anyhow::Result<Self> {
+        let new_log = self.with_log(|log| source.update_log(log))?;
+        if let Some(new_log) = new_log {
+            self.with_root_state_mut(|root_state| {
+                let root_state = root_state.take().context("missing root state")?;
+                Ok(RendererBuilder {
+                    log: new_log,
+                    root_state_builder: |log| Some(root_state.with_log(log)),
+                }
+                .build())
+            })
+        } else {
+            Ok(self)
+        }
     }
 }
 
