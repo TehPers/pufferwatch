@@ -102,7 +102,7 @@ impl LogSource for StdinLogSource {
             .stdin
             .fill_buf()
             .ok()
-            .filter(|buf| buf.len() > 0)
+            .filter(|buf| !buf.is_empty())
             .is_none();
         if bytes_available {
             // No changes
@@ -111,7 +111,9 @@ impl LogSource for StdinLogSource {
 
         // Append to the log file
         let mut raw = log.raw().to_string();
-        let _ = self.stdin.read_to_string(&mut raw);
+        self.stdin
+            .read_to_string(&mut raw)
+            .context("error reading from stdin")?;
         Log::parse(raw).context("error parsing log").map(Some)
     }
 }
