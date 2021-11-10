@@ -32,11 +32,7 @@ pub trait IconPack: Clone + Copy + PartialEq + Eq + Debug + Hash + Default + 'st
 pub struct UnicodeIconPack;
 
 impl IconPack for UnicodeIconPack {
-    const CONTROL_ICON: &'static str = if cfg!(target_os = "macos") {
-        "\u{2318}"
-    } else {
-        "\u{2303}"
-    };
+    const CONTROL_ICON: &'static str = "\u{2303}";
     const ALT_ICON: &'static str = "\u{2325}";
     const SHIFT_ICON: &'static str = "\u{21e7}";
 
