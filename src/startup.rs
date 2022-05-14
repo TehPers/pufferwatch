@@ -5,13 +5,14 @@ use crate::{
     widgets::{Root, RootState, State, WithLog},
 };
 use anyhow::Context;
-use clap::{crate_authors, crate_description, crate_version, App, Arg, ArgMatches};
+use clap::{command, Arg, ArgMatches, ValueHint};
 use crossterm::{
     event::{Event, KeyCode, KeyModifiers},
     terminal::{EnterAlternateScreen, LeaveAlternateScreen},
     ExecutableCommand,
 };
 use ouroboros::self_referencing;
+use reqwest::blocking::Client;
 use std::{io::stdout, path::PathBuf, time::Duration};
 use tracing::{info, trace};
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt, EnvFilter, Registry};
@@ -24,6 +25,7 @@ const LOG_ARG: &str = "log";
 const FOLLOW_ARG: &str = "follow";
 const STDIN_ARG: &str = "stdin";
 const OUTPUT_LOG_ARG: &str = "output-log";
+const REMOTE_ARG: &str = "remote";
 
 pub fn start() -> anyhow::Result<()> {
     // Parse options
@@ -34,22 +36,49 @@ pub fn start() -> anyhow::Result<()> {
 
     // Setup log source
     info!("Starting SMAPI Log Parser");
-    let log_path = matches
-        .value_of(LOG_ARG)
-        .map(PathBuf::from)
-        .or_else(default_log_path)
-        .context("unable to find log path")?;
-    let (mut source, log): (Box<dyn LogSource>, Log) = if matches.is_present(STDIN_ARG) {
-        let source = StdinLogSource::new();
-        let log = Log::parse(String::new()).context("error parsing empty log")?;
-        (Box::new(source), log)
-    } else if matches.is_present(FOLLOW_ARG) {
-        let (source, log) =
-            FollowedLogSource::new(log_path).context("error creating log source")?;
-        (Box::new(source), log)
-    } else {
-        let (source, log) = StaticLogSource::new(&log_path).context("error creating log source")?;
-        (Box::new(source), log)
+    let log_path = matches.value_of(LOG_ARG);
+    let stdin_flag = matches.is_present(STDIN_ARG);
+    let follow_flag = matches.is_present(FOLLOW_ARG);
+    let remote_flag = matches.is_present(REMOTE_ARG);
+    let (mut source, log): (Box<dyn LogSource>, Log) = match (stdin_flag, follow_flag) {
+        (true, true) => {
+            anyhow::bail!("expected no more than one of: --{STDIN_ARG}, --{FOLLOW_ARG}");
+        }
+        (true, false) => {
+            let source = StdinLogSource::new();
+            let log = Log::parse(String::new()).context("error parsing empty log")?;
+            (Box::new(source), log)
+        }
+        (false, true) if remote_flag => anyhow::bail!("can't follow a remote source"),
+        (false, true) => {
+            let log_path = log_path
+                .map(PathBuf::from)
+                .or_else(default_log_path)
+                .context("unable to find log path")?;
+            let (source, log) =
+                FollowedLogSource::new(log_path).context("error creating log source")?;
+            (Box::new(source), log)
+        }
+        (false, false) => {
+            let (source, log) = if remote_flag {
+                let log_path = log_path.context("unable to find log path")?;
+                println!("Fetching remote log...");
+                let contents = Client::new()
+                    .get(log_path)
+                    .send()
+                    .context("error retrieving remote log")?
+                    .text()
+                    .context("error reading remote log")?;
+                StaticLogSource::from_string(contents).context("error creating log source")?
+            } else {
+                let log_path = log_path
+                    .map(PathBuf::from)
+                    .or_else(default_log_path)
+                    .context("unable to find log path")?;
+                StaticLogSource::from_file(&log_path).context("error creating log source")?
+            };
+            (Box::new(source), log)
+        }
     };
 
     // Initialize TUI
@@ -108,35 +137,40 @@ pub fn start() -> anyhow::Result<()> {
     Ok(())
 }
 
-fn parse_args() -> ArgMatches<'static> {
-    App::new("Pufferwatch")
-        .version(crate_version!())
-        .author(crate_authors!())
-        .about(crate_description!())
+fn parse_args() -> ArgMatches {
+    command!()
         .arg(
-            Arg::with_name(LOG_ARG)
+            Arg::new(LOG_ARG)
                 .help("The path to the log file.")
                 .index(1)
                 .takes_value(true)
-                .value_name("LOG PATH"),
+                .value_name("LOG PATH")
+                .value_hint(ValueHint::FilePath),
         )
         .arg(
-            Arg::with_name(STDIN_ARG)
+            Arg::new(STDIN_ARG)
                 .help("Read from stdin instead of a log file.")
                 .long("stdin")
         )
         .arg(
-            Arg::with_name(FOLLOW_ARG)
+            Arg::new(FOLLOW_ARG)
                 .long("follow")
                 .help("Watch the log file for changes. This is not needed with --stdin.")
-                .short("f"),
+                .short('f'),
         )
         .arg(
-            Arg::with_name(OUTPUT_LOG_ARG)
+            Arg::new(OUTPUT_LOG_ARG)
                 .help("The path to output this application's logs to (not SMAPI logs). Set RUST_LOG to configure the output.")
                 .long("output-log")
                 .takes_value(true)
-                .value_name("OUTPUT LOG PATH"),
+                .value_name("OUTPUT LOG PATH")
+                .value_hint(ValueHint::FilePath),
+        )
+        .arg(
+            Arg::new(REMOTE_ARG)
+                .help("Request the log from a remote source.")
+                .long("remote")
+                .short('r'),
         )
         .get_matches()
 }

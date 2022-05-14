@@ -12,10 +12,10 @@ publish = false
 anyhow = "1"
 # Parsing
 nom = "7"
-clap = "2"
+clap = { version = "3", features = ["cargo"] }
 # UI
-tui = { version = "0.16", default-features = false, features = ['crossterm'] }
-crossterm = { version = "0.22", features = ["serde"] }
+tui = { version = "0.18", default-features = false, features = ['crossterm'] }
+crossterm = { version = "0.23", features = ["serde"] }
 unicode-width = "0.1"
 # Utility
 itertools = "0.10"
@@ -24,7 +24,16 @@ indexmap = "1"
 dirs = "4"
 notify = "4"
 hotwatch = "0.4"
-ouroboros = "0.13"
+ouroboros = "0.15"
 # Logging
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+# Web client
+reqwest = { version = "0.11", default-features = false, features = [
+    "blocking",
+    "rustls-tls",
+    "gzip",
+    "brotli",
+    "deflate",
+    "socks",
+] }

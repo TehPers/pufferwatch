@@ -2,8 +2,9 @@ use crate::{ast::Message, parse::parse};
 use anyhow::Context;
 use itertools::Itertools;
 use ouroboros::self_referencing;
-use std::{collections::HashMap, fs::File, io::Read, path::Path};
+use std::{collections::HashMap, fs::File, io::Read, path::Path, rc::Rc};
 
+/// A parsed SMAPI log.
 #[self_referencing]
 #[derive(Debug)]
 pub struct Log {
@@ -17,6 +18,7 @@ pub struct Log {
 }
 
 impl Log {
+    /// Parses a log from a string.
     pub fn parse(raw: String) -> anyhow::Result<Self> {
         // Log is self-referential because the messages borrow from the raw string
         LogTryBuilder {
@@ -34,6 +36,7 @@ impl Log {
         .try_build()
     }
 
+    /// Parses a log from a file.
     pub fn parse_file(path: &Path) -> anyhow::Result<Self> {
         // Read log file
         let mut log_file = File::open(&path)
@@ -47,14 +50,17 @@ impl Log {
         Log::parse(log_contents)
     }
 
+    /// Gets the raw log contents.
     pub fn raw(&self) -> &str {
         self.borrow_raw()
     }
 
+    /// Gets the messages in the log.
     pub fn messages(&self) -> &[Message] {
         self.borrow_messages()
     }
 
+    /// Gets the log sources in the log.
     pub fn sources(&self) -> impl Iterator<Item = &str> {
         self.borrow_by_source().keys().copied()
     }

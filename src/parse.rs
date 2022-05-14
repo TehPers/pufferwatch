@@ -11,7 +11,7 @@ use nom::{
     IResult,
 };
 
-pub fn parse_message<'i, E>(i: &'i str) -> IResult<&'i str, Message<'i>, E>
+fn parse_message<'i, E>(i: &'i str) -> IResult<&'i str, Message<'i>, E>
 where
     E: ParseError<&'i str> + FromExternalError<&'i str, anyhow::Error>,
 {
@@ -61,7 +61,7 @@ where
     )(i)
 }
 
-pub fn parse_log<'i, E>(i: &'i str) -> IResult<&'i str, Vec<Message<'i>>, E>
+fn parse_log<'i, E>(i: &'i str) -> IResult<&'i str, Vec<Message<'i>>, E>
 where
     E: ParseError<&'i str> + FromExternalError<&'i str, anyhow::Error>,
 {
@@ -100,7 +100,7 @@ where
     map_res(parse_log, |messages| messages)(i)
 }
 
-pub fn parse_log_complete<'i, E>(i: &'i str) -> IResult<&'i str, Vec<Message<'i>>, E>
+fn parse_log_complete<'i, E>(i: &'i str) -> IResult<&'i str, Vec<Message<'i>>, E>
 where
     E: ParseError<&'i str> + FromExternalError<&'i str, anyhow::Error>,
 {
