@@ -19,8 +19,16 @@ pub trait LogSource {
 pub struct StaticLogSource;
 
 impl StaticLogSource {
-    pub fn new(path: &Path) -> anyhow::Result<(Self, Log)> {
+    /// Creates a new static log source from a file path.
+    pub fn from_file(path: &Path) -> anyhow::Result<(Self, Log)> {
         Log::parse_file(path)
+            .map(|log| (StaticLogSource, log))
+            .context("Error parsing log")
+    }
+
+    /// Creates a new static log source from a string.
+    pub fn from_string(raw: String) -> anyhow::Result<(Self, Log)> {
+        Log::parse(raw)
             .map(|log| (StaticLogSource, log))
             .context("Error parsing log")
     }
