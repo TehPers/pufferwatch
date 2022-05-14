@@ -2,7 +2,7 @@ use crate::{ast::Message, parse::parse};
 use anyhow::Context;
 use itertools::Itertools;
 use ouroboros::self_referencing;
-use std::{collections::HashMap, fs::File, io::Read, path::Path, rc::Rc};
+use std::{collections::HashMap, fs::File, io::Read, path::Path};
 
 /// A parsed SMAPI log.
 #[self_referencing]
