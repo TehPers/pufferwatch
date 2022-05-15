@@ -9,6 +9,7 @@
 )]
 
 mod ast;
+mod encoded_writer;
 mod events;
 mod log;
 mod parse;

@@ -1,19 +1,21 @@
 use crate::{
+    encoded_writer::EncodedWriter,
     events::AppEvent,
     log::Log,
     widgets::{
-        BindingDisplay, Controls, ControlsState, FormattedLog, FormattedLogState, IconPack, RawLog,
-        RawLogState, State, WithLog,
+        BindingDisplay, CommandInput, CommandInputState, Controls, ControlsState, FormattedLog,
+        FormattedLogState, IconPack, RawLog, RawLogState, State, WithLog,
     },
 };
 use crossterm::event::{Event, KeyCode, KeyModifiers};
 use indexmap::IndexMap;
-use std::marker::PhantomData;
+use std::{marker::PhantomData, process::ChildStdin};
+use tracing::debug;
 use tui::{
     buffer::Buffer,
     layout::{Constraint, Direction, Layout, Rect},
     style::{Color, Style},
-    widgets::StatefulWidget,
+    widgets::{Block, BorderType, Borders, StatefulWidget},
 };
 
 #[derive(Clone, Debug, Default)]
@@ -25,24 +27,38 @@ impl<'i> StatefulWidget for Root<'i> {
     type State = RootState<'i>;
 
     fn render(self, area: Rect, buf: &mut Buffer, state: &mut Self::State) {
-        // Get controls area
-        let layout = Layout::default()
+        // Get outer layout
+        let mut layout = Layout::default()
             .direction(Direction::Vertical)
-            .constraints([Constraint::Min(0), Constraint::Length(1)].as_ref())
+            .constraints({
+                let mut constraints = Vec::with_capacity(3);
+                constraints.push(Constraint::Min(0));
+                if state.command_input_state.is_some() {
+                    constraints.push(Constraint::Length(3))
+                }
+                constraints.push(Constraint::Length(1));
+                constraints
+            })
             .split(area);
-        let area = layout[0];
-        let controls_area = layout[1];
+        let controls_area = layout.pop().unwrap();
+        let command_input_area = state
+            .command_input_state
+            .is_some()
+            .then(|| layout.pop().unwrap());
+        let area = layout.pop().unwrap();
 
-        // Get vertical layout
-        let constraints = match state.selected_widget {
-            SelectedWidget::FormattedLog => {
-                [Constraint::Percentage(80), Constraint::Percentage(20)]
-            }
-            SelectedWidget::RawLog => [Constraint::Percentage(20), Constraint::Percentage(80)],
-        };
+        // Get inner layout
         let layout = Layout::default()
             .direction(Direction::Vertical)
-            .constraints(constraints.as_ref())
+            .constraints(match state.selected_widget {
+                SelectedWidget::FormattedLog => {
+                    vec![Constraint::Percentage(80), Constraint::Percentage(20)]
+                }
+                SelectedWidget::RawLog => {
+                    vec![Constraint::Percentage(20), Constraint::Percentage(80)]
+                }
+                _ => vec![Constraint::Percentage(50), Constraint::Percentage(50)],
+            })
             .split(area);
         let formatted_log_area = layout[0];
         let raw_log_area = layout[1];
@@ -59,6 +75,29 @@ impl<'i> StatefulWidget for Root<'i> {
             .set_selected(state.selected_widget == SelectedWidget::RawLog);
         RawLog::default().render(raw_log_area, buf, &mut state.raw_log_state);
 
+        // Draw command input
+        if let Some((command_input_state, _)) = state.command_input_state.as_mut() {
+            let focused = state.selected_widget == SelectedWidget::CommandInput;
+            let style = Style::default()
+                .fg(if focused {
+                    Color::White
+                } else {
+                    Color::DarkGray
+                })
+                .bg(Color::Black);
+            CommandInput::default()
+                .style(style)
+                .block(
+                    Block::default()
+                        .borders(Borders::ALL)
+                        .border_style(style)
+                        .border_type(BorderType::Double)
+                        .title("Command"),
+                )
+                .focused(focused)
+                .render(command_input_area.unwrap(), buf, command_input_state);
+        }
+
         // Draw controls
         let mut controls = IndexMap::new();
         state.add_controls(&mut controls);
@@ -69,19 +108,21 @@ impl<'i> StatefulWidget for Root<'i> {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Debug)]
 pub struct RootState<'i> {
     formatted_log_state: FormattedLogState<'i>,
     raw_log_state: RawLogState<'i>,
+    command_input_state: Option<(CommandInputState, EncodedWriter<ChildStdin>)>,
     controls_state: ControlsState,
     selected_widget: SelectedWidget,
 }
 
 impl<'i> RootState<'i> {
-    pub fn new(log: &'i Log) -> Self {
+    pub fn new(log: &'i Log, command_stdin: Option<EncodedWriter<ChildStdin>>) -> Self {
         let mut state = Self {
             raw_log_state: RawLogState::new(log),
             formatted_log_state: FormattedLogState::new(log),
+            command_input_state: command_stdin.map(|stdin| (CommandInputState::default(), stdin)),
             controls_state: ControlsState::default(),
             selected_widget: SelectedWidget::default(),
         };
@@ -106,7 +147,26 @@ impl<'i> State for RootState<'i> {
                 KeyCode::Tab => {
                     match self.selected_widget {
                         SelectedWidget::FormattedLog => self.select_widget(SelectedWidget::RawLog),
+                        SelectedWidget::RawLog if self.command_input_state.is_none() => {
+                            self.select_widget(SelectedWidget::FormattedLog)
+                        }
+                        SelectedWidget::RawLog => self.select_widget(SelectedWidget::CommandInput),
+                        SelectedWidget::CommandInput => {
+                            self.select_widget(SelectedWidget::FormattedLog)
+                        }
+                    }
+                    true
+                }
+                KeyCode::BackTab => {
+                    match self.selected_widget {
+                        SelectedWidget::FormattedLog if self.command_input_state.is_none() => {
+                            self.select_widget(SelectedWidget::RawLog)
+                        }
+                        SelectedWidget::FormattedLog => {
+                            self.select_widget(SelectedWidget::CommandInput)
+                        }
                         SelectedWidget::RawLog => self.select_widget(SelectedWidget::FormattedLog),
+                        SelectedWidget::CommandInput => self.select_widget(SelectedWidget::RawLog),
                     }
                     true
                 }
@@ -120,7 +180,22 @@ impl<'i> State for RootState<'i> {
             handled = match self.selected_widget {
                 SelectedWidget::FormattedLog => self.formatted_log_state.update(event),
                 SelectedWidget::RawLog => self.raw_log_state.update(event),
+                SelectedWidget::CommandInput => self
+                    .command_input_state
+                    .as_mut()
+                    .map(|(state, _)| state.update(event))
+                    .unwrap_or(false),
             };
+        }
+
+        // Send commands if any
+        if let Some((command_input_state, stdin)) = self.command_input_state.as_mut() {
+            for cmd in command_input_state.take_submitted() {
+                debug!(?cmd, "sending command");
+                stdin.write_all(&cmd).unwrap();
+                stdin.write_all("\n").unwrap();
+                stdin.flush().unwrap();
+            }
         }
 
         // Update controls state
@@ -142,6 +217,11 @@ impl<'i> State for RootState<'i> {
         match self.selected_widget {
             SelectedWidget::FormattedLog => self.formatted_log_state.add_controls(controls),
             SelectedWidget::RawLog => self.raw_log_state.add_controls(controls),
+            SelectedWidget::CommandInput => {
+                if let Some((command_input_state, _)) = self.command_input_state.as_ref() {
+                    command_input_state.add_controls(controls)
+                }
+            }
         }
     }
 }
@@ -153,6 +233,7 @@ impl<'i, 'j> WithLog<'j> for RootState<'i> {
         RootState {
             formatted_log_state: self.formatted_log_state.with_log(log),
             raw_log_state: self.raw_log_state.with_log(log),
+            command_input_state: self.command_input_state,
             controls_state: self.controls_state,
             selected_widget: self.selected_widget,
         }
@@ -163,6 +244,7 @@ impl<'i, 'j> WithLog<'j> for RootState<'i> {
 enum SelectedWidget {
     FormattedLog,
     RawLog,
+    CommandInput,
 }
 
 impl Default for SelectedWidget {

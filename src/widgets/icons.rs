@@ -32,31 +32,31 @@ pub trait IconPack: Clone + Copy + PartialEq + Eq + Debug + Hash + Default + 'st
 pub struct UnicodeIconPack;
 
 impl IconPack for UnicodeIconPack {
-    const CONTROL_ICON: &'static str = "\u{2303}";
-    const ALT_ICON: &'static str = "\u{2325}";
-    const SHIFT_ICON: &'static str = "\u{21e7}";
+    const CONTROL_ICON: &'static str = "⌃";
+    const ALT_ICON: &'static str = "⌥";
+    const SHIFT_ICON: &'static str = "⇧";
 
-    const LEFT_ICON: &'static str = "\u{2190}";
-    const RIGHT_ICON: &'static str = "\u{2192}";
-    const UP_ICON: &'static str = "\u{2191}";
-    const DOWN_ICON: &'static str = "\u{2193}";
+    const LEFT_ICON: &'static str = "←";
+    const RIGHT_ICON: &'static str = "→";
+    const UP_ICON: &'static str = "↑";
+    const DOWN_ICON: &'static str = "↓";
     const INSERT_ICON: &'static str = "INS";
     const NULL_ICON: &'static str = "NUL";
-    const BACKSPACE_ICON: &'static str = "\u{232b}";
-    const ENTER_ICON: &'static str = "\u{23ce}";
-    const HOME_ICON: &'static str = "\u{2196}";
-    const END_ICON: &'static str = "\u{2198}";
-    const PAGEUP_ICON: &'static str = "\u{21de}";
-    const PAGEDOWN_ICON: &'static str = "\u{21df}";
-    const TAB_ICON: &'static str = "\u{21e5}";
-    const BACKTAB_ICON: &'static str = "\u{21e4}";
-    const DELETE_ICON: &'static str = "\u{2326}";
-    const ESC_ICON: &'static str = "\u{238b}";
-    const SPACE_ICON: &'static str = "\u{2423}";
+    const BACKSPACE_ICON: &'static str = "⌫";
+    const ENTER_ICON: &'static str = "⏎";
+    const HOME_ICON: &'static str = "↖";
+    const END_ICON: &'static str = "↘";
+    const PAGEUP_ICON: &'static str = "⇞";
+    const PAGEDOWN_ICON: &'static str = "⇟";
+    const TAB_ICON: &'static str = "⇥";
+    const BACKTAB_ICON: &'static str = "⇤";
+    const DELETE_ICON: &'static str = "⌦";
+    const ESC_ICON: &'static str = "⎋";
+    const SPACE_ICON: &'static str = "␣";
 
-    const UP_DOWN: &'static str = "\u{2191}\u{2193}";
-    const LEFT_RIGHT: &'static str = "\u{2192}\u{2190}";
-    const ARROWS: &'static str = "\u{2191}\u{2193}\u{2192}\u{2190}";
+    const UP_DOWN: &'static str = "↑↓";
+    const LEFT_RIGHT: &'static str = "→←";
+    const ARROWS: &'static str = "↑↓→←";
 }
 
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash, Default)]
