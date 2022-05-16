@@ -7,6 +7,7 @@ on:
     # Enable for testing (for the testing branch)
     # branches:
     #   - cd
+  workflow_dispatch:
 
 env:
   CARGO_TERM_COLOR: always
