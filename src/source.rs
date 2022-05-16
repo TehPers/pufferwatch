@@ -1,15 +1,18 @@
 use crate::log::Log;
 use anyhow::Context;
+use crossbeam::channel::Receiver;
 use hotwatch::{Event, Hotwatch};
 use std::{
     fmt::Debug,
-    io::{BufRead, BufReader, Read, Stdin},
+    io::{BufRead, BufReader, Read},
     path::{Path, PathBuf},
     sync::{
         atomic::{AtomicBool, Ordering},
         Arc,
     },
+    thread::JoinHandle,
 };
+use tracing::debug;
 
 pub trait LogSource {
     fn update_log(&mut self, log: &Log) -> anyhow::Result<Option<Log>>;
@@ -91,37 +94,61 @@ impl LogSource for FollowedLogSource {
 }
 
 #[derive(Debug)]
-pub struct StdinLogSource {
-    stdin: BufReader<Stdin>,
+pub struct ReaderLogSource {
+    unparsed: String,
+    rx: Receiver<anyhow::Result<String>>,
+    _reader_thread: JoinHandle<()>,
 }
 
-impl StdinLogSource {
-    pub fn new() -> Self {
-        StdinLogSource {
-            stdin: BufReader::new(std::io::stdin()),
+impl ReaderLogSource {
+    pub fn new<R: Read + Send + 'static>(reader: R) -> Self {
+        let (tx, rx) = crossbeam::channel::unbounded::<anyhow::Result<String>>();
+        let mut reader = BufReader::new(reader);
+        let reader_thread = std::thread::spawn(move || loop {
+            let mut buffer = String::new();
+            match reader.read_line(&mut buffer) {
+                Ok(0) => continue,
+                Ok(_) => tx.send(Ok(buffer)).unwrap(),
+                Err(error) => tx.send(Err(error.into())).unwrap(),
+            }
+        });
+
+        Self {
+            unparsed: String::new(),
+            rx,
+            _reader_thread: reader_thread,
         }
+    }
+
+    pub fn from_stdin() -> Self {
+        ReaderLogSource::new(std::io::stdin())
     }
 }
 
-impl LogSource for StdinLogSource {
+impl LogSource for ReaderLogSource {
     fn update_log(&mut self, log: &Log) -> anyhow::Result<Option<Log>> {
-        // Try to read a byte from stdin
-        let bytes_available = self
-            .stdin
-            .fill_buf()
-            .ok()
-            .filter(|buf| !buf.is_empty())
-            .is_none();
-        if bytes_available {
-            // No changes
-            return Ok(None);
+        // Try to get the next line
+        let first_line = match self.rx.try_recv() {
+            Ok(line) => line?,
+            Err(_) => return Ok(None),
+        };
+        self.unparsed.push_str(&first_line);
+
+        // Append to the unparsed buffer
+        self.unparsed.push_str(&first_line);
+        while let Ok(line) = self.rx.try_recv() {
+            self.unparsed.push_str(&line?);
         }
 
-        // Append to the log file
+        // Append to the log
         let mut raw = log.raw().to_string();
-        self.stdin
-            .read_to_string(&mut raw)
-            .context("error reading from stdin")?;
-        Log::parse(raw).context("error parsing log").map(Some)
+        raw.push_str(&self.unparsed);
+        if let Ok(log) = Log::parse(raw) {
+            self.unparsed.clear();
+            Ok(Some(log))
+        } else {
+            debug!(?self.unparsed, "Unable to parse");
+            Ok(None)
+        }
     }
 }

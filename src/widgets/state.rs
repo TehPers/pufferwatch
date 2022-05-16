@@ -6,8 +6,10 @@ use crate::{
 use indexmap::IndexMap;
 
 pub trait State {
+    /// Updates this state. Returns `true` if the event was handled.
     fn update(&mut self, event: &AppEvent) -> bool;
 
+    /// Adds controls this state uses to the given map.
     fn add_controls<I: IconPack>(&self, _controls: &mut IndexMap<BindingDisplay<I>, &'static str>) {
     }
 }

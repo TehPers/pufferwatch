@@ -18,6 +18,16 @@ pub struct Log {
 }
 
 impl Log {
+    /// Creates a new empty log.
+    pub fn empty() -> Self {
+        LogBuilder {
+            raw: String::new(),
+            messages_builder: |_| Vec::new(),
+            by_source_builder: |_| HashMap::new(),
+        }
+        .build()
+    }
+
     /// Parses a log from a string.
     pub fn parse(raw: String) -> anyhow::Result<Self> {
         // Log is self-referential because the messages borrow from the raw string

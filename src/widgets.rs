@@ -1,3 +1,4 @@
+mod command_input;
 mod controls;
 mod formatted_log;
 mod icons;
@@ -7,6 +8,7 @@ mod root;
 mod scrollbar;
 mod state;
 
+pub use command_input::*;
 pub use controls::*;
 pub use formatted_log::*;
 pub use icons::*;
