@@ -117,6 +117,10 @@ impl StatefulWidget for Controls {
     type State = ControlsState;
 
     fn render(self, area: Rect, buf: &mut Buffer, state: &mut Self::State) {
+        if area.height == 0 {
+            return;
+        }
+
         // Create the "More" label
         let more_label = Span::styled("More [.]", self.style);
 

@@ -8,34 +8,42 @@ use std::marker::PhantomData;
 use tui::{
     buffer::Buffer,
     layout::Rect,
-    style::{Color, Style},
-    widgets::{Block, BorderType, Borders, StatefulWidget},
+    style::Style,
+    widgets::{Block, StatefulWidget},
 };
 
 #[derive(Clone, Debug, Default)]
 pub struct RawLog<'i> {
+    block: Option<Block<'i>>,
+    style: Style,
     marker: PhantomData<&'i Log>,
+}
+
+impl<'i> RawLog<'i> {
+    #[allow(dead_code)]
+    pub fn block(mut self, block: Block<'i>) -> Self {
+        self.block = Some(block);
+        self
+    }
+
+    pub fn style(mut self, style: Style) -> Self {
+        self.style = style;
+        self
+    }
 }
 
 impl<'i> StatefulWidget for RawLog<'i> {
     type State = RawLogState<'i>;
 
     fn render(self, area: Rect, buf: &mut Buffer, state: &mut Self::State) {
-        let fg_color = if state.selected {
-            Color::White
+        let paragraph = LazyParagraph::new(|index| state.lines.get(index).copied().map(Into::into))
+            .style(self.style);
+        let paragraph = if let Some(block) = self.block {
+            paragraph.block(block)
         } else {
-            Color::DarkGray
+            paragraph
         };
-        LazyParagraph::new(|index| state.lines.get(index).copied().map(Into::into))
-            .block(
-                Block::default()
-                    .title("Raw")
-                    .style(Style::default().fg(fg_color).bg(Color::Black))
-                    .borders(Borders::all())
-                    .border_type(BorderType::Double),
-            )
-            .style(Style::default().fg(fg_color).bg(Color::Black))
-            .render(area, buf, &mut state.paragraph_state);
+        paragraph.render(area, buf, &mut state.paragraph_state);
     }
 }
 
@@ -43,7 +51,6 @@ impl<'i> StatefulWidget for RawLog<'i> {
 pub struct RawLogState<'i> {
     lines: Vec<&'i str>,
     paragraph_state: LazyParagraphState,
-    selected: bool,
 }
 
 impl<'i> RawLogState<'i> {
@@ -53,12 +60,7 @@ impl<'i> RawLogState<'i> {
         RawLogState {
             lines,
             paragraph_state,
-            selected: Default::default(),
         }
-    }
-
-    pub fn set_selected(&mut self, selected: bool) {
-        self.selected = selected;
     }
 }
 
@@ -77,7 +79,6 @@ impl<'i, 'j> WithLog<'j> for RawLogState<'i> {
 
     fn with_log(self, log: &'j Log) -> Self::Result {
         RawLogState {
-            selected: self.selected,
             paragraph_state: LazyParagraphState {
                 offset: self.paragraph_state.offset,
                 auto_scroll: self.paragraph_state.auto_scroll,
