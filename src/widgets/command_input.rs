@@ -54,10 +54,7 @@ impl<'i> StatefulWidget for CommandInput<'i> {
             vec![
                 Span::styled(state.before_cursor(), self.style),
                 Span::styled(
-                    state
-                        .at_cursor()
-                        .map(String::from)
-                        .unwrap_or_else(|| " ".into()),
+                    state.at_cursor().map_or_else(|| " ".into(), String::from),
                     self.style.add_modifier(match state.edit_mode {
                         EditMode::Insert => Modifier::UNDERLINED,
                         EditMode::Overwrite => Modifier::REVERSED,
