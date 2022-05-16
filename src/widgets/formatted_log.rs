@@ -169,12 +169,18 @@ impl<'i> StatefulWidget for FormattedLog<'i> {
             let filters_list_state = state.filters_list_state.as_mut().unwrap();
             let style_override = (!self.show_colors).then(|| self.default_style);
             FiltersList::new(&mut state.filters)
-                .style(style_override.unwrap_or_else(|| self.default_style.bg(Color::White)))
+                .style(
+                    style_override
+                        .unwrap_or_else(|| self.default_style.fg(Color::Black).bg(Color::White)),
+                )
                 .selected_style(
-                    style_override.unwrap_or_else(|| self.default_style.bg(Color::LightRed)),
+                    style_override
+                        .unwrap_or_else(|| self.default_style.fg(Color::White).bg(Color::LightRed)),
                 )
                 .enabled_style(
-                    style_override.unwrap_or_else(|| self.default_style.bg(Color::LightGreen)),
+                    style_override.unwrap_or_else(|| {
+                        self.default_style.fg(Color::Black).bg(Color::LightGreen)
+                    }),
                 )
                 .more_label_style(self.default_style.fg(Color::White))
                 .render(layout[1], buf, filters_list_state);
