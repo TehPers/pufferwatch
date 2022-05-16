@@ -7,23 +7,40 @@ use crate::{
 use crossterm::event::{Event, KeyCode};
 use indexmap::IndexMap;
 use itertools::{Either, Itertools};
-use std::marker::PhantomData;
 use tracing::trace;
 use tui::{
     buffer::Buffer,
     layout::{Constraint, Direction, Layout, Rect},
     style::{Color, Style},
     text::{Span, Spans},
-    widgets::{Block, BorderType, Borders, StatefulWidget},
+    widgets::{Block, StatefulWidget},
 };
 use unicode_width::UnicodeWidthStr;
 
 #[derive(Clone, Debug, Default)]
 pub struct FormattedLog<'i> {
-    marker: PhantomData<&'i Log>,
+    block: Option<Block<'i>>,
+    default_style: Style,
+    show_colors: bool,
 }
 
 impl<'i> FormattedLog<'i> {
+    #[allow(dead_code)]
+    pub fn block(mut self, block: Block<'i>) -> Self {
+        self.block = Some(block);
+        self
+    }
+
+    pub fn default_style(mut self, style: Style) -> Self {
+        self.default_style = style;
+        self
+    }
+
+    pub fn show_colors(mut self, show_colors: bool) -> Self {
+        self.show_colors = show_colors;
+        self
+    }
+
     fn get_level_color(level: Level) -> Color {
         match level {
             Level::Trace | Level::Debug => Color::DarkGray,
@@ -34,57 +51,63 @@ impl<'i> FormattedLog<'i> {
         }
     }
 
-    fn render_logs(area: Rect, buf: &mut Buffer, state: &mut <Self as StatefulWidget>::State) {
-        let fg_override = (!state.selected).then(|| Color::DarkGray);
-        let fg_color = fg_override.unwrap_or(Color::White);
-        LazyParagraph::new(|index| {
+    fn render_logs(
+        &self,
+        area: Rect,
+        buf: &mut Buffer,
+        state: &mut <Self as StatefulWidget>::State,
+    ) {
+        let style_override = (!self.show_colors).then(|| self.default_style);
+        let paragraph = LazyParagraph::new(|index| {
             let formatted_line = state.lines.get(index)?;
             let spans = match *formatted_line {
                 FormattedLine::Start { message, line } => {
                     let mut spans = Vec::with_capacity(7);
 
                     // Timestamp
-                    spans.push(Span::raw(format!("{}", message.timestamp)));
-
-                    // Padding
-                    spans.push(Span::raw(" "));
-
-                    // Level
-                    let level_color =
-                        fg_override.unwrap_or_else(|| Self::get_level_color(message.level));
                     spans.push(Span::styled(
-                        format!("{:5}", message.level),
-                        Style::default().fg(level_color),
+                        format!("{}", message.timestamp),
+                        self.default_style,
                     ));
 
                     // Padding
-                    spans.push(Span::raw(" "));
+                    spans.push(Span::styled(" ", self.default_style));
+
+                    // Level
+                    let level_style = style_override.unwrap_or_else(|| {
+                        self.default_style.fg(Self::get_level_color(message.level))
+                    });
+                    spans.push(Span::styled(format!("{:5}", message.level), level_style));
+
+                    // Padding
+                    spans.push(Span::styled(" ", self.default_style));
 
                     // Source
                     spans.push(Span::styled(
                         message.source.as_ref(),
-                        Style::default().fg(fg_override.unwrap_or(Color::Green)),
+                        style_override.unwrap_or_else(|| self.default_style.fg(Color::Green)),
                     ));
 
                     // Padding
-                    spans.push(Span::raw(
+                    spans.push(Span::styled(
                         " ".repeat(
                             state
                                 .source_width
                                 .saturating_sub(message.source.len())
                                 .saturating_add(1),
                         ),
+                        self.default_style,
                     ));
 
                     // Message
-                    spans.push(Span::styled(line, Style::default().fg(level_color)));
+                    spans.push(Span::styled(line, level_style));
 
                     spans
                 }
                 FormattedLine::Continued { message, line } => {
                     let mut spans = Vec::with_capacity(2);
                     let ellipsis_style =
-                        Style::default().fg(fg_override.unwrap_or(Color::DarkGray));
+                        style_override.unwrap_or_else(|| self.default_style.fg(Color::DarkGray));
 
                     // Timestamp (8)
                     spans.push(Span::styled("...     ", ellipsis_style));
@@ -106,9 +129,12 @@ impl<'i> FormattedLog<'i> {
                     spans.push(Span::raw(" "));
 
                     // Message
-                    let level_color =
-                        fg_override.unwrap_or_else(|| Self::get_level_color(message.level));
-                    spans.push(Span::styled(line, Style::default().fg(level_color)));
+                    spans.push(Span::styled(
+                        line,
+                        style_override.unwrap_or_else(|| {
+                            self.default_style.fg(Self::get_level_color(message.level))
+                        }),
+                    ));
 
                     spans
                 }
@@ -116,15 +142,13 @@ impl<'i> FormattedLog<'i> {
 
             Some(spans.into())
         })
-        .block(
-            Block::default()
-                .title("Logs")
-                .style(Style::default().fg(fg_color).bg(Color::Black))
-                .borders(Borders::all())
-                .border_type(BorderType::Double),
-        )
-        .style(Style::default().fg(fg_color).bg(Color::Black))
-        .render(area, buf, &mut state.paragraph_state);
+        .style(self.default_style.bg(Color::Black));
+        let paragraph = if let Some(block) = self.block.clone() {
+            paragraph.block(block)
+        } else {
+            paragraph
+        };
+        paragraph.render(area, buf, &mut state.paragraph_state);
     }
 }
 
@@ -134,30 +158,25 @@ impl<'i> StatefulWidget for FormattedLog<'i> {
     fn render(self, area: Rect, buf: &mut Buffer, state: &mut Self::State) {
         if state.filters_list_state.is_none() {
             // Logs only
-            Self::render_logs(area, buf, state);
+            self.render_logs(area, buf, state);
         } else {
             // Logs + filters
             let layout = Layout::default()
                 .direction(Direction::Vertical)
                 .constraints([Constraint::Min(0), Constraint::Length(1)].as_ref())
                 .split(area);
-            Self::render_logs(layout[0], buf, state);
+            self.render_logs(layout[0], buf, state);
             let filters_list_state = state.filters_list_state.as_mut().unwrap();
-            let style_override =
-                (!state.selected).then(|| Style::default().fg(Color::Black).bg(Color::DarkGray));
+            let style_override = (!self.show_colors).then(|| self.default_style);
             FiltersList::new(&mut state.filters)
-                .style(
-                    style_override
-                        .unwrap_or_else(|| Style::default().fg(Color::Black).bg(Color::White)),
-                )
+                .style(style_override.unwrap_or_else(|| self.default_style.bg(Color::White)))
                 .selected_style(
-                    style_override.unwrap_or_else(|| Style::default().bg(Color::LightRed)),
+                    style_override.unwrap_or_else(|| self.default_style.bg(Color::LightRed)),
                 )
                 .enabled_style(
-                    style_override
-                        .unwrap_or_else(|| Style::default().fg(Color::Black).bg(Color::LightGreen)),
+                    style_override.unwrap_or_else(|| self.default_style.bg(Color::LightGreen)),
                 )
-                .more_label_style(Style::default().fg(Color::White))
+                .more_label_style(self.default_style.fg(Color::White))
                 .render(layout[1], buf, filters_list_state);
         }
     }
@@ -169,7 +188,6 @@ pub struct FormattedLogState<'i> {
     lines: Vec<FormattedLine<'i>>,
     source_width: usize,
     paragraph_state: LazyParagraphState,
-    selected: bool,
     filters: LogFilters<'i>,
     filters_list_state: Option<FiltersListState>,
 }
@@ -192,14 +210,9 @@ impl<'i> FormattedLogState<'i> {
             lines,
             source_width,
             paragraph_state,
-            selected: false,
             filters,
             filters_list_state: None,
         }
-    }
-
-    pub fn selected(&mut self, selected: bool) {
-        self.selected = selected;
     }
 
     pub fn apply_filter(&mut self) {
@@ -318,7 +331,6 @@ impl<'i, 'j> WithLog<'j> for FormattedLogState<'i> {
             log,
             filters,
             filters_list_state: self.filters_list_state.with_log(log),
-            selected: self.selected,
             lines,
             source_width,
             paragraph_state,
@@ -621,12 +633,3 @@ enum FiltersListSource {
     Levels,
     Sources,
 }
-
-// impl<'i> FiltersListSource<'i> {
-//     pub fn len(&self) -> usize {
-//         match self {
-//             FiltersListSource::Levels => Level::ALL.len(),
-//             FiltersListSource::Sources(sources) => sources.len(),
-//         }
-//     }
-// }
