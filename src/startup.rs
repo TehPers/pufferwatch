@@ -163,6 +163,7 @@ fn get_source(
     let stdin_flag = matches.is_present(STDIN_ARG);
     let follow_flag = matches.is_present(FOLLOW_ARG);
     let remote_flag = matches.is_present(REMOTE_ARG);
+    let execute_flag = matches.is_present(SMAPI_ARG);
     let too_many_sources = [stdin_flag, follow_flag, remote_flag]
         .into_iter()
         .filter(|&f| f)
@@ -182,7 +183,7 @@ fn get_source(
         let source = ReaderLogSource::from_stdin();
         let log = Log::empty();
         (Box::new(source), log)
-    } else if follow_flag {
+    } else if follow_flag || execute_flag {
         let log_path = log_path
             .map(PathBuf::from)
             .or_else(default_log_path)
@@ -240,7 +241,7 @@ fn parse_args() -> ArgMatches {
         .arg(
             Arg::new(FOLLOW_ARG)
                 .long(FOLLOW_ARG)
-                .help("Watch the log file for changes. This is not needed with --stdin.")
+                .help("Watch the log file for changes. This is not needed with --stdin or --execute.")
                 .short('f'),
         )
         .arg(
