@@ -58,7 +58,10 @@ impl<'i> StatefulWidget for CommandInput<'i> {
                         .at_cursor()
                         .map(String::from)
                         .unwrap_or_else(|| " ".into()),
-                    self.style.add_modifier(Modifier::REVERSED),
+                    self.style.add_modifier(match state.edit_mode {
+                        EditMode::Insert => Modifier::UNDERLINED,
+                        EditMode::Overwrite => Modifier::REVERSED,
+                    }),
                 ),
                 Span::styled(state.after_cursor(), self.style),
             ]
