@@ -1,4 +1,7 @@
-use crate::{events::AppEvent, widgets::State};
+use crate::{
+    events::AppEvent,
+    widgets::{BindingDisplay, IconPack, State},
+};
 use crossterm::event::{Event, KeyCode};
 use indexmap::IndexMap;
 use tui::{
@@ -8,8 +11,6 @@ use tui::{
     text::Span,
     widgets::{Block, StatefulWidget, Widget},
 };
-
-use super::{BindingDisplay, IconPack};
 
 #[derive(Clone, Default)]
 pub struct CommandInput<'i> {
@@ -53,7 +54,10 @@ impl<'i> StatefulWidget for CommandInput<'i> {
             vec![
                 Span::styled(state.before_cursor(), self.style),
                 Span::styled(
-                    state.at_cursor().map_or_else(String::default, Into::into),
+                    state
+                        .at_cursor()
+                        .map(String::from)
+                        .unwrap_or_else(|| " ".into()),
                     self.style.add_modifier(Modifier::REVERSED),
                 ),
                 Span::styled(state.after_cursor(), self.style),
