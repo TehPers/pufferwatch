@@ -208,9 +208,9 @@ impl<'i> State for RootState<'i> {
         if let Some((command_input_state, stdin)) = self.command_input_state.as_mut() {
             for cmd in command_input_state.take_submitted() {
                 debug!(?cmd, "sending command");
-                stdin.write_all(&cmd).unwrap();
-                stdin.write_all("\n").unwrap();
-                stdin.flush().unwrap();
+                let _ = stdin.write_all(&cmd);
+                let _ = stdin.write_all("\n");
+                let _ = stdin.flush();
             }
         }
 
