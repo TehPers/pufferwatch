@@ -167,8 +167,7 @@ fn get_source(
     let too_many_sources = [stdin_flag, follow_flag, remote_flag]
         .into_iter()
         .filter(|&f| f)
-        .skip(1)
-        .next()
+        .nth(1)
         .is_some();
     if too_many_sources {
         bail!(

@@ -53,10 +53,7 @@ impl<'i> StatefulWidget for CommandInput<'i> {
             vec![
                 Span::styled(state.before_cursor(), self.style),
                 Span::styled(
-                    state
-                        .at_cursor()
-                        .map(Into::into)
-                        .unwrap_or_else(String::default),
+                    state.at_cursor().map_or_else(String::default, Into::into),
                     self.style.add_modifier(Modifier::REVERSED),
                 ),
                 Span::styled(state.after_cursor(), self.style),
@@ -108,7 +105,7 @@ impl CommandInputState {
         self.text.chars().skip(self.cursor + 1).collect()
     }
 
-    pub fn take_submitted<'s>(&'s mut self) -> impl IntoIterator<Item = String> + 's {
+    pub fn take_submitted(&mut self) -> impl IntoIterator<Item = String> + '_ {
         self.submitted.drain(..)
     }
 }
@@ -117,7 +114,7 @@ impl State for CommandInputState {
     fn update(&mut self, event: &AppEvent) -> bool {
         let event = match event {
             AppEvent::TermEvent(event) => event,
-            _ => return false,
+            AppEvent::Ping => return false,
         };
 
         match event {

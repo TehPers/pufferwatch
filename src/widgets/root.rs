@@ -34,7 +34,7 @@ impl<'i> StatefulWidget for Root<'i> {
                 let mut constraints = Vec::with_capacity(3);
                 constraints.push(Constraint::Min(0));
                 if state.command_input_state.is_some() {
-                    constraints.push(Constraint::Length(3))
+                    constraints.push(Constraint::Length(3));
                 }
                 constraints.push(Constraint::Length(1));
                 constraints
@@ -57,7 +57,9 @@ impl<'i> StatefulWidget for Root<'i> {
                 SelectedWidget::RawLog => {
                     vec![Constraint::Percentage(20), Constraint::Percentage(80)]
                 }
-                _ => vec![Constraint::Percentage(50), Constraint::Percentage(50)],
+                SelectedWidget::CommandInput => {
+                    vec![Constraint::Percentage(50), Constraint::Percentage(50)]
+                }
             })
             .split(area);
         let formatted_log_area = layout[0];
@@ -146,13 +148,17 @@ impl<'i> State for RootState<'i> {
             AppEvent::TermEvent(Event::Key(key_event)) => match key_event.code {
                 KeyCode::Tab => {
                     match self.selected_widget {
-                        SelectedWidget::FormattedLog => self.select_widget(SelectedWidget::RawLog),
-                        SelectedWidget::RawLog if self.command_input_state.is_none() => {
-                            self.select_widget(SelectedWidget::FormattedLog)
+                        SelectedWidget::FormattedLog => {
+                            self.select_widget(SelectedWidget::RawLog);
                         }
-                        SelectedWidget::RawLog => self.select_widget(SelectedWidget::CommandInput),
+                        SelectedWidget::RawLog if self.command_input_state.is_none() => {
+                            self.select_widget(SelectedWidget::FormattedLog);
+                        }
+                        SelectedWidget::RawLog => {
+                            self.select_widget(SelectedWidget::CommandInput);
+                        }
                         SelectedWidget::CommandInput => {
-                            self.select_widget(SelectedWidget::FormattedLog)
+                            self.select_widget(SelectedWidget::FormattedLog);
                         }
                     }
                     true
@@ -160,13 +166,17 @@ impl<'i> State for RootState<'i> {
                 KeyCode::BackTab => {
                     match self.selected_widget {
                         SelectedWidget::FormattedLog if self.command_input_state.is_none() => {
-                            self.select_widget(SelectedWidget::RawLog)
+                            self.select_widget(SelectedWidget::RawLog);
                         }
                         SelectedWidget::FormattedLog => {
-                            self.select_widget(SelectedWidget::CommandInput)
+                            self.select_widget(SelectedWidget::CommandInput);
                         }
-                        SelectedWidget::RawLog => self.select_widget(SelectedWidget::FormattedLog),
-                        SelectedWidget::CommandInput => self.select_widget(SelectedWidget::RawLog),
+                        SelectedWidget::RawLog => {
+                            self.select_widget(SelectedWidget::FormattedLog);
+                        }
+                        SelectedWidget::CommandInput => {
+                            self.select_widget(SelectedWidget::RawLog);
+                        }
                     }
                     true
                 }
@@ -183,8 +193,7 @@ impl<'i> State for RootState<'i> {
                 SelectedWidget::CommandInput => self
                     .command_input_state
                     .as_mut()
-                    .map(|(state, _)| state.update(event))
-                    .unwrap_or(false),
+                    .map_or(false, |(state, _)| state.update(event)),
             };
         }
 
@@ -219,7 +228,7 @@ impl<'i> State for RootState<'i> {
             SelectedWidget::RawLog => self.raw_log_state.add_controls(controls),
             SelectedWidget::CommandInput => {
                 if let Some((command_input_state, _)) = self.command_input_state.as_ref() {
-                    command_input_state.add_controls(controls)
+                    command_input_state.add_controls(controls);
                 }
             }
         }

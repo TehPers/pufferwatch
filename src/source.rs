@@ -143,15 +143,12 @@ impl LogSource for ReaderLogSource {
         // Append to the log
         let mut raw = log.raw().to_string();
         raw.push_str(&self.unparsed);
-        match Log::parse(raw) {
-            Ok(log) => {
-                self.unparsed.clear();
-                Ok(Some(log))
-            }
-            Err(_) => {
-                debug!(?self.unparsed, "Unable to parse");
-                Ok(None)
-            }
+        if let Ok(log) = Log::parse(raw) {
+            self.unparsed.clear();
+            Ok(Some(log))
+        } else {
+            debug!(?self.unparsed, "Unable to parse");
+            Ok(None)
         }
     }
 }

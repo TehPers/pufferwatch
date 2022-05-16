@@ -42,8 +42,7 @@ where
 
     pub fn flush(&mut self) -> std::io::Result<()> {
         match self {
-            EncodedWriter::Utf8 { writer } => writer.flush(),
-            EncodedWriter::Utf16 { writer, .. } => writer.flush(),
+            EncodedWriter::Utf8 { writer } | EncodedWriter::Utf16 { writer, .. } => writer.flush(),
         }
     }
 }
