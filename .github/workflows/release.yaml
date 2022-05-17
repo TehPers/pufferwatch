@@ -43,7 +43,7 @@ jobs:
   release:
     name: Create release
     needs: [create-release]
-    runs-on: ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
     env:
       RUST_BACKTRACE: 1
       TARGET_DIR: ./target/${{ matrix.target }}
