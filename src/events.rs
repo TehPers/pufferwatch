@@ -9,7 +9,7 @@ use std::{
     time::Duration,
 };
 
-#[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
+#[derive(Clone, PartialEq, Eq, Debug, Hash)]
 pub enum AppEvent {
     Ping,
     TermEvent(Event),

@@ -57,7 +57,7 @@ impl<'i> FormattedLog<'i> {
         buf: &mut Buffer,
         state: &mut <Self as StatefulWidget>::State,
     ) {
-        let style_override = (!self.show_colors).then(|| self.default_style);
+        let style_override = (!self.show_colors).then_some(self.default_style);
         let paragraph = LazyParagraph::new(|index| {
             let formatted_line = state.lines.get(index)?;
             let spans = match *formatted_line {
@@ -167,7 +167,7 @@ impl<'i> StatefulWidget for FormattedLog<'i> {
                 .split(area);
             self.render_logs(layout[0], buf, state);
             let filters_list_state = state.filters_list_state.as_mut().unwrap();
-            let style_override = (!self.show_colors).then(|| self.default_style);
+            let style_override = (!self.show_colors).then_some(self.default_style);
             FiltersList::new(&mut state.filters)
                 .style(
                     style_override
