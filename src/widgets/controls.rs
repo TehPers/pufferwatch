@@ -90,6 +90,7 @@ impl<I: IconPack> Display for BindingDisplay<I> {
                     KeyCode::Right => write!(f, "{}", I::RIGHT_ICON),
                     KeyCode::Tab => write!(f, "{}", I::TAB_ICON),
                     KeyCode::Up => write!(f, "{}", I::UP_ICON),
+                    _ => Ok(()),
                 }
             }
             BindingDisplay::Mouse(MouseButton::Left) => write!(f, "M1"),
