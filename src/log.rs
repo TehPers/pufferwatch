@@ -49,7 +49,7 @@ impl Log {
     /// Parses a log from a file.
     pub fn parse_file(path: &Path) -> anyhow::Result<Self> {
         // Read log file
-        let mut log_file = File::open(&path)
+        let mut log_file = File::open(path)
             .with_context(|| format!("Failed to open log file: {}", path.display()))?;
         let mut log_contents = String::new();
         log_file
