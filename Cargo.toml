@@ -14,15 +14,15 @@ anyhow = "1"
 nom = "7"
 clap = { version = "3", features = ["cargo"] }
 # UI
-tui = { version = "0.18", default-features = false, features = ['crossterm'] }
-crossterm = { version = "0.23", features = ["serde"] }
+tui = { version = "0.19", default-features = false, features = ['crossterm'] }
+crossterm = { version = "0.25", features = ["serde"] }
 unicode-width = "0.1"
 # Utility
 itertools = "0.10"
 crossbeam = "0.8"
 indexmap = "1"
 dirs = "4"
-notify = "4"
+notify = "5"
 hotwatch = "0.4"
 ouroboros = "0.15"
 # Logging
