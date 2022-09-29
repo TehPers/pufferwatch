@@ -9,8 +9,10 @@
 )]
 
 mod ast;
+mod config;
 mod encoded_writer;
 mod events;
+mod install_path;
 mod log;
 mod parse;
 mod source;
@@ -18,5 +20,9 @@ mod startup;
 mod widgets;
 
 fn main() -> anyhow::Result<()> {
-    startup::start()
+    use crate::config::App;
+    use clap::Parser;
+
+    let config = App::parse();
+    startup::start(config)
 }

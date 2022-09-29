@@ -1,22 +1,25 @@
 [package]
 name = "pufferwatch"
-version = "0.1.3"
+version = "0.2.0"
 edition = "2021"
-description = """
-A CLI application for filtering and monitoring SMAPI logs.
-"""
+description = "A CLI application for filtering and monitoring SMAPI logs."
 publish = false
 
 [dependencies]
 # Errors
 anyhow = "1"
+
 # Parsing
 nom = "7"
-clap = { version = "3", features = ["cargo"] }
+clap = { version = "4", features = ["derive", "cargo"] }
+serde = { version = "1", features = ["derive"] }
+quick-xml = { version = "0.25", features = ["encoding", "serialize"] }
+
 # UI
 tui = { version = "0.19", default-features = false, features = ['crossterm'] }
 crossterm = { version = "0.25", features = ["serde"] }
 unicode-width = "0.1"
+
 # Utility
 itertools = "0.10"
 crossbeam = "0.8"
@@ -25,9 +28,11 @@ dirs = "4"
 notify = "5"
 hotwatch = "0.4"
 ouroboros = "0.15"
+
 # Logging
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
 # Web client
 reqwest = { version = "0.11", default-features = false, features = [
     "blocking",
@@ -37,3 +42,12 @@ reqwest = { version = "0.11", default-features = false, features = [
     "deflate",
     "socks",
 ] }
+
+[target.'cfg(windows)'.dependencies]
+# Utility
+winreg = { version = "0.10" }
+
+[profile.release]
+opt-level = 3
+codegen-units = 1
+lto = true
