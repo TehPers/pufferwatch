@@ -30,13 +30,8 @@ pub fn get_install_paths() -> impl IntoIterator<Item = PathBuf> {
         .chain(default_paths)
         .flat_map(|path| path.canonicalize().ok())
         .inspect(|path| trace!(?path, "possible SDV path"))
-        .filter(|path| looks_like_game_folder(&path))
-        .inspect(|path| trace!(?path, "SDV path verified"))
-}
-
-fn looks_like_game_folder(_dir: &Path) -> bool {
-    // TODO
-    true
+        .filter(|path| path.join("Stardew Valley.dll").is_file())
+        .inspect(|path| trace!(?path, "looks like SDV path"))
 }
 
 fn get_custom_install_path(home: &Path) -> Option<PathBuf> {
