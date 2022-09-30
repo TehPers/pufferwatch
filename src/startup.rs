@@ -153,9 +153,8 @@ fn get_source(
         }) => {
             // Start SMAPI
             let smapi_path = smapi_path
-                .or_else(|| get_install_paths().into_iter().next())
-                .context("unable to find game path")?
-                .join("StardewModdingAPI.exe");
+                .or_else(|| get_install_paths().into_iter().next().map(executable_path))
+                .context("unable to find game path")?;
             info!(smapi_path=?smapi_path.display(), "starting SMAPI");
             let process = spawn_smapi(&smapi_path, smapi_args.iter().map(AsRef::as_ref))?;
 
@@ -172,6 +171,16 @@ fn get_source(
             )
         }
     })
+}
+
+#[cfg(windows)]
+fn executable_path(install_path: impl AsRef<Path>) -> PathBuf {
+    install_path.as_ref().join("StardewModdingAPI.exe")
+}
+
+#[cfg(unix)]
+fn executable_path(install_path: impl AsRef<Path>) -> PathBuf {
+    install_path.as_ref().join("StardewValley")
 }
 
 fn spawn_smapi<'a>(
