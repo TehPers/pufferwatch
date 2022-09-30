@@ -11,7 +11,7 @@ anyhow = "1"
 
 # Parsing
 nom = "7"
-clap = { version = "4", features = ["derive", "cargo"] }
+clap = { version = "4", features = ["derive", "cargo", "deprecated"] }
 serde = { version = "1", features = ["derive"] }
 quick-xml = { version = "0.25", features = ["encoding", "serialize"] }
 
