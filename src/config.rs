@@ -54,6 +54,7 @@ pub struct RunCommand {
     /// The path to the SMAPI executable.
     pub smapi_path: Option<PathBuf>,
     /// The arguments to pass to SMAPI.
+    #[arg(trailing_var_arg = true, allow_hyphen_values = true)]
     pub smapi_args: Vec<OsString>,
     // The path to the log file.
     #[arg(short, long)]
