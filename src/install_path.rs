@@ -40,6 +40,7 @@ fn get_custom_install_path(home: &Path) -> Option<PathBuf> {
     Some(targets.property_group.game_path)
 }
 
+#[allow(clippy::used_underscore_binding)]
 fn get_default_install_paths(_home: Option<&Path>) -> impl IntoIterator<Item = PathBuf> + 'static {
     #[cfg(unix)]
     fn unix_paths(home: Option<&Path>) -> impl IntoIterator<Item = PathBuf> + 'static {
