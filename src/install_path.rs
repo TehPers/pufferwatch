@@ -21,14 +21,12 @@ struct PropertyGroup {
 #[instrument(level = "trace")]
 pub fn get_install_paths() -> impl IntoIterator<Item = PathBuf> {
     let home = dirs::home_dir();
-    let custom_paths = home
-        .as_ref()
-        .and_then(|home| get_custom_install_path(&home));
+    let custom_paths = home.as_ref().and_then(|home| get_custom_install_path(home));
     let default_paths = get_default_install_paths(home.as_ref().map(AsRef::as_ref));
     custom_paths
         .into_iter()
         .chain(default_paths)
-        .flat_map(|path| path.canonicalize().ok())
+        .filter_map(|path| path.canonicalize().ok())
         .inspect(|path| trace!(?path, "possible SDV path"))
         .filter(|path| path.join("Stardew Valley.dll").is_file())
         .inspect(|path| trace!(?path, "looks like SDV path"))
@@ -75,19 +73,14 @@ fn get_default_install_paths(_home: Option<&Path>) -> impl IntoIterator<Item = P
             RegKey,
         };
 
-        // Collect paths
-        let paths = std::iter::empty();
-
         // Get relevant registry values
         let hklm = RegKey::predef(HKEY_LOCAL_MACHINE);
         let hkcu = RegKey::predef(HKEY_CURRENT_USER);
-        let paths = paths.chain(
-            hklm.open_subkey(
-                r"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 413150",
-            )
+        let paths = hklm
+            .open_subkey(r"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 413150")
             .and_then(|key| key.get_value("InstallLocation"))
-            .map(OsString::into),
-        );
+            .map(OsString::into)
+            .into_iter();
         let paths = paths.chain(
             hklm.open_subkey(r"SOFTWARE\WOW6432Node\GOG.com\Games\1453375253")
                 .and_then(|key| key.get_value("PATH"))
@@ -117,13 +110,11 @@ fn get_default_install_paths(_home: Option<&Path>) -> impl IntoIterator<Item = P
         );
 
         // Xbox paths
-        let paths = paths.chain(('C'..='H').into_iter().map(|drive| {
+        paths.chain(('C'..='H').into_iter().map(|drive| {
             PathBuf::from(format!(
                 r"{drive}:\Program Files\ModifiableWindowsApps\Stardew Valley"
             ))
-        }));
-
-        paths
+        }))
     }
 
     // Collect paths

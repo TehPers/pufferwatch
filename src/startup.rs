@@ -221,7 +221,7 @@ fn setup_tracing(log_path: Option<&Path>) -> anyhow::Result<()> {
         let log_file = std::fs::OpenOptions::new()
             .create(true)
             .write(true)
-            .open(&log_path)
+            .open(log_path)
             .with_context(|| format!("failed to open output logs file: {}", log_path.display()))?;
         let fmt_layer = tracing_subscriber::fmt::layer()
             .compact()
