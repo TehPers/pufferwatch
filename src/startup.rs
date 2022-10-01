@@ -148,7 +148,7 @@ fn get_source(
         AppCommand::Run(RunCommand {
             smapi_path,
             smapi_args,
-            log: path,
+            log,
             encoding,
         }) => {
             // Start SMAPI
@@ -159,7 +159,7 @@ fn get_source(
             let process = spawn_smapi(&smapi_path, smapi_args.iter().map(AsRef::as_ref))?;
 
             // Follow log file
-            let log_path = resolve_log_path(path)?;
+            let log_path = resolve_log_path(log)?;
             let (source, log) =
                 FollowedLogSource::new(log_path).context("error creating log source")?;
             (
