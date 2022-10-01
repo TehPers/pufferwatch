@@ -18,6 +18,7 @@ struct PropertyGroup {
     pub game_path: PathBuf,
 }
 
+/// Gets the possible installation paths for Stardew Valley.
 #[instrument(level = "trace")]
 pub fn get_install_paths() -> impl IntoIterator<Item = PathBuf> {
     let home = dirs::home_dir();

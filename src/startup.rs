@@ -155,7 +155,7 @@ fn get_source(
             let smapi_path = smapi_path
                 .or_else(|| get_install_paths().into_iter().next().map(executable_path))
                 .context("unable to find game path")?;
-            info!(smapi_path=?smapi_path.display(), "starting SMAPI");
+            info!(smapi_path=%smapi_path.display(), "starting SMAPI");
             let process = spawn_smapi(&smapi_path, smapi_args.iter().map(AsRef::as_ref))?;
 
             // Follow log file
