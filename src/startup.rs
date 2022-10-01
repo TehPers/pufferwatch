@@ -1,6 +1,6 @@
 use crate::{
     config::{
-        App, AppCommand, CommandEncoding, LogCommand, RemoteCommand, RunCommand, StdinCommand,
+        App, AppCommand, CommandEncoding, MonitorCommand, RemoteCommand, RunCommand, StdinCommand,
     },
     encoded_writer::{ByteOrder, EncodedWriter},
     events::{AppEvent, EventController},
@@ -115,7 +115,7 @@ fn get_source(
     }
 
     Ok(match command {
-        AppCommand::Log(LogCommand { log: path, follow }) => {
+        AppCommand::Monitor(MonitorCommand { log: path, follow }) => {
             let log_path = resolve_log_path(path)?;
             if follow {
                 let (source, log) =

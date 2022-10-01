@@ -3,8 +3,21 @@ use reqwest::Url;
 use std::{ffi::OsString, path::PathBuf};
 
 /// A CLI application for filtering and monitoring SMAPI logs.
+///
+/// Pufferwatch can be used as an alternative terminal to the SMAPI console, as
+/// a standalone log viewer/monitor, or as a debugging tool during mod
+/// development.
+///
+/// To use pufferwatch automatically from Steam, update your launch options by
+/// adding "pufferwatch run -- " to the beginning of the existing options. For
+/// example, on Windows, your launch options might look like this:
+///
+/// pufferwatch run -- "C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\StardewModdingAPI.exe" %command%
+///
+/// If you uninstall pufferwatch, remove the "pufferwatch run -- " part from
+/// your launch options.
 #[derive(Clone, Debug, Parser)]
-#[command(author, version, about, long_about = None)]
+#[command(author, version, about)]
 pub struct App {
     /// The command to execute.
     #[command(subcommand)]
@@ -15,24 +28,50 @@ pub struct App {
     pub output_log: Option<PathBuf>,
 }
 
+/// A command to execute.
 #[derive(Clone, Debug, Subcommand)]
 pub enum AppCommand {
-    /// Read from a local log file.
-    Log(LogCommand),
+    /// Read or monitor a local log file.
+    ///
+    /// If no log file is specified, pufferwatch will search for it. On Windows,
+    /// it checks %APPDATA%. On Linux, it checks $XDG_DATA_HOME or
+    /// $HOME/.config. On Mac, it checks $HOME/.config.
+    Monitor(MonitorCommand),
     /// Read from stdin.
+    ///
+    /// The log will be parsed directly from stdin as it is received. On
+    /// Windows, many applications used from Powershell and cmd buffer their
+    /// output, so you might not see any logs until the application is closed.
     Stdin(StdinCommand),
     /// Read from a remote log file.
+    ///
+    /// Logs from https://smapi.io/log/ are supported, but the URL must have
+    /// ?format=RawDownload added to the end of it. In other words, those URLs
+    /// should be in the format https://smapi.io/log/123456?format=RawDownload.
     Remote(RemoteCommand),
     /// Run SMAPI and monitor the logs.
+    ///
+    /// If no path to SMAPI is specified, pufferwatch will search for it. On
+    /// Windows, it will search for the path in the registry and in common
+    /// installation directories. On Linux and Mac, it will search in common
+    /// installation directories only.
+    ///
+    /// In all operating systems, pufferwatch will respect the
+    /// stardewvalley.targets file if it exists in the user's home directory.
+    ///
+    /// Additionally, the log file will be monitored for changes automatically.
+    /// The rules for searching for the log file are specified in the monitor
+    /// command.
     Run(RunCommand),
 }
 
+/// Read or monitor a local log file.
 #[derive(Clone, Debug, Args)]
-pub struct LogCommand {
+pub struct MonitorCommand {
     // The path to the log file.
     #[arg(short, long)]
     pub log: Option<PathBuf>,
-    /// Watch the log file for changes. This is enabled when executing a command.
+    /// Watch the log file for changes.
     #[arg(short, long)]
     pub follow: bool,
 }
