@@ -6,7 +6,7 @@ Changelog for [pufferwatch](https://github.com/TehPers/pufferwatch). This change
 
 ### Added
 
-- Added a changelog. (TODO)
+- Added a changelog. ([#27])
 
 ### Changed
 
@@ -17,6 +17,7 @@ Changelog for [pufferwatch](https://github.com/TehPers/pufferwatch). This change
 - Fixed the `--output-log` log file not being truncated. ([#26])
 
 [#26]: https://github.com/TehPers/pufferwatch/pull/26
+[#27]: https://github.com/TehPers/pufferwatch/pull/27
 
 ## 0.2.0 (2022-09-30)
 
