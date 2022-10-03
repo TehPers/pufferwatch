@@ -7,7 +7,6 @@ use notify::{
 };
 use std::{
     fmt::Debug,
-    fs::File,
     io::{BufRead, BufReader, Read},
     path::{Path, PathBuf},
     thread::JoinHandle,
@@ -27,18 +26,15 @@ impl StaticLogSource {
     #[instrument(skip_all)]
     pub fn from_file(path: &Path) -> anyhow::Result<(Self, Log)> {
         info!(?path, "creating static log source");
-
-        let file = File::open(path).context("failed to open log file")?;
-        Log::parse_reader(file)
+        Log::parse_file(path)
             .map(|log| (StaticLogSource, log))
-            .context("Error parsing log")
+            .context("error parsing log")
     }
 
     /// Creates a new static log source from a string.
     #[instrument(skip_all)]
     pub fn from_string(raw: String) -> anyhow::Result<(Self, Log)> {
         info!(len=%raw.len(), "creating static log source");
-
         Log::parse(raw)
             .map(|log| (StaticLogSource, log))
             .context("Error parsing log")
@@ -88,13 +84,18 @@ impl FollowedLogSource {
 
                     // Handle event
                     match event.kind {
-                        EventKind::Remove(_) => drop(tx.send(FileUpdate::Removed)),
+                        EventKind::Remove(_) => {
+                            let _ = tx.send(FileUpdate::Removed);
+                        }
                         EventKind::Create(_)
-                        | EventKind::Modify(ModifyKind::Metadata(MetadataKind::WriteTime))
-                        | EventKind::Modify(ModifyKind::Metadata(MetadataKind::Any))
-                        | EventKind::Modify(ModifyKind::Data(_))
-                        | EventKind::Modify(ModifyKind::Any)
-                        | EventKind::Any => drop(tx.send(FileUpdate::Updated)),
+                        | EventKind::Modify(
+                            ModifyKind::Metadata(MetadataKind::WriteTime | MetadataKind::Any)
+                            | ModifyKind::Data(_)
+                            | ModifyKind::Any,
+                        )
+                        | EventKind::Any => {
+                            let _ = tx.send(FileUpdate::Updated);
+                        }
                         _ => {}
                     }
                 }
@@ -109,8 +110,7 @@ impl FollowedLogSource {
             .context("error starting file watcher")?;
 
         // Parse log
-        let file = File::open(&path).context("failed to open log file")?;
-        let log = Log::parse_reader(file).context("error parsing log file")?;
+        let log = Log::parse_file(&path).context("error parsing log file")?;
         let source = FollowedLogSource {
             path,
             _watcher: watcher,
@@ -123,18 +123,6 @@ impl FollowedLogSource {
 impl LogSource for FollowedLogSource {
     #[instrument(skip_all, fields(path=?self.path))]
     fn update_log(&mut self, _log: &Log) -> anyhow::Result<Option<Log>> {
-        macro_rules! try_or_warn {
-            ($f:expr, $prev:expr, $($args:tt)*) => {
-                match $f {
-                    Ok(value) => value,
-                    Err(_) => {
-                        warn!($($args)*);
-                        return Ok($prev);
-                    }
-                }
-            }
-        }
-
         // Check for updates
         self.rx.try_iter().try_fold(None, |new_log, event| {
             let _span = debug_span!("file_event", file_event=?event).entered();
@@ -142,16 +130,18 @@ impl LogSource for FollowedLogSource {
             match event {
                 FileUpdate::Removed => {
                     // Reset
-                    Ok(Some(Log::default()))
+                    Ok(Some(Log::empty()))
                 }
                 FileUpdate::Updated => {
-                    // Open file and measure size
-                    let file =
-                        try_or_warn!(File::open(&self.path), new_log, "failed to open log file");
-
-                    // Parse log
-                    let log =
-                        try_or_warn!(Log::parse_reader(file), new_log, "error parsing log file");
+                    // Try to parse log
+                    let log = if let Ok(log) = Log::parse_file(&self.path) {
+                        log
+                    } else {
+                        // Don't error out on failure - the file might be in the process of being
+                        // written to.
+                        warn!("error parsing log file");
+                        return Ok(new_log);
+                    };
 
                     Ok(Some(log))
                 }
