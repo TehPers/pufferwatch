@@ -24,7 +24,10 @@ pub struct StaticLogSource;
 
 impl StaticLogSource {
     /// Creates a new static log source from a file path.
+    #[instrument(skip_all)]
     pub fn from_file(path: &Path) -> anyhow::Result<(Self, Log)> {
+        info!(?path, "creating static log source");
+
         let file = File::open(path).context("failed to open log file")?;
         Log::parse_reader(file)
             .map(|log| (StaticLogSource, log))
@@ -32,7 +35,10 @@ impl StaticLogSource {
     }
 
     /// Creates a new static log source from a string.
+    #[instrument(skip_all)]
     pub fn from_string(raw: String) -> anyhow::Result<(Self, Log)> {
+        info!(len=%raw.len(), "creating static log source");
+
         Log::parse(raw)
             .map(|log| (StaticLogSource, log))
             .context("Error parsing log")
@@ -60,12 +66,16 @@ pub struct FollowedLogSource {
 
 impl FollowedLogSource {
     pub fn new(path: PathBuf) -> anyhow::Result<(Self, Log)> {
+        info!(?path, "creating followed log source");
+
         // Create file watcher
         let (tx, rx) = crossbeam::channel::bounded(10);
         let mut watcher = PollWatcher::new(
             {
                 let path = path.clone();
                 move |event| {
+                    let _span = debug_span!("file_watcher", ?path, watcher_event=?event).entered();
+
                     // Get event
                     let event: Event = match event {
                         Ok(event) => event,
@@ -74,6 +84,7 @@ impl FollowedLogSource {
                             return;
                         }
                     };
+                    trace!("received file watcher event");
 
                     // Handle event
                     match event.kind {
@@ -126,6 +137,8 @@ impl LogSource for FollowedLogSource {
 
         // Check for updates
         self.rx.try_iter().try_fold(None, |new_log, event| {
+            let _span = debug_span!("file_event", file_event=?event).entered();
+            trace!("handling file event");
             match event {
                 FileUpdate::Removed => {
                     // Reset
