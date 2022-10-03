@@ -1,18 +1,19 @@
 use crate::log::Log;
 use anyhow::Context;
 use crossbeam::channel::Receiver;
-use hotwatch::{Event, Hotwatch};
+use notify::{
+    event::{MetadataKind, ModifyKind},
+    Config, Event, EventKind, PollWatcher, RecursiveMode, Watcher,
+};
 use std::{
     fmt::Debug,
+    fs::File,
     io::{BufRead, BufReader, Read},
     path::{Path, PathBuf},
-    sync::{
-        atomic::{AtomicBool, Ordering},
-        Arc,
-    },
     thread::JoinHandle,
+    time::Duration,
 };
-use tracing::debug;
+use tracing::{debug, debug_span, info, instrument, trace, warn};
 
 pub trait LogSource {
     fn update_log(&mut self, log: &Log) -> anyhow::Result<Option<Log>>;
@@ -24,7 +25,8 @@ pub struct StaticLogSource;
 impl StaticLogSource {
     /// Creates a new static log source from a file path.
     pub fn from_file(path: &Path) -> anyhow::Result<(Self, Log)> {
-        Log::parse_file(path)
+        let file = File::open(path).context("failed to open log file")?;
+        Log::parse_reader(file)
             .map(|log| (StaticLogSource, log))
             .context("Error parsing log")
     }
@@ -43,53 +45,105 @@ impl LogSource for StaticLogSource {
     }
 }
 
+#[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
+enum FileUpdate {
+    Removed,
+    Updated,
+}
+
 #[derive(Debug)]
 pub struct FollowedLogSource {
     path: PathBuf,
-    _hotwatch: Hotwatch,
-    needs_reload: Arc<AtomicBool>,
+    _watcher: PollWatcher,
+    rx: Receiver<FileUpdate>,
 }
 
 impl FollowedLogSource {
     pub fn new(path: PathBuf) -> anyhow::Result<(Self, Log)> {
         // Create file watcher
-        let needs_reload = Arc::new(AtomicBool::new(false));
-        let mut hotwatch = Hotwatch::new().context("error initializing file watcher")?;
-        hotwatch
-            .watch(&path, {
-                let needs_reload = needs_reload.clone();
-                move |event| match event {
-                    Event::NoticeWrite(_) | Event::Create(_) | Event::Write(_) => {
-                        needs_reload.store(true, Ordering::Relaxed);
+        let (tx, rx) = crossbeam::channel::bounded(10);
+        let mut watcher = PollWatcher::new(
+            {
+                let path = path.clone();
+                move |event| {
+                    // Get event
+                    let event: Event = match event {
+                        Ok(event) => event,
+                        Err(error) => {
+                            warn!(?error, "error watching log file");
+                            return;
+                        }
+                    };
+
+                    // Handle event
+                    match event.kind {
+                        EventKind::Remove(_) => drop(tx.send(FileUpdate::Removed)),
+                        EventKind::Create(_)
+                        | EventKind::Modify(ModifyKind::Metadata(MetadataKind::WriteTime))
+                        | EventKind::Modify(ModifyKind::Metadata(MetadataKind::Any))
+                        | EventKind::Modify(ModifyKind::Data(_))
+                        | EventKind::Modify(ModifyKind::Any)
+                        | EventKind::Any => drop(tx.send(FileUpdate::Updated)),
+                        _ => {}
                     }
-                    Event::Remove(_) => {
-                        needs_reload.store(false, Ordering::Relaxed);
-                    }
-                    _ => {}
                 }
-            })
-            .context("error watching file")?;
+            },
+            Config::default()
+                .with_poll_interval(Duration::from_secs(2))
+                .with_compare_contents(true),
+        )
+        .context("error creating file watcher")?;
+        watcher
+            .watch(&path, RecursiveMode::NonRecursive)
+            .context("error starting file watcher")?;
 
         // Parse log
-        let log = Log::parse_file(&path).context("error parsing log file")?;
+        let file = File::open(&path).context("failed to open log file")?;
+        let log = Log::parse_reader(file).context("error parsing log file")?;
         let source = FollowedLogSource {
             path,
-            _hotwatch: hotwatch,
-            needs_reload,
+            _watcher: watcher,
+            rx,
         };
         Ok((source, log))
     }
 }
 
 impl LogSource for FollowedLogSource {
+    #[instrument(skip_all, fields(path=?self.path))]
     fn update_log(&mut self, _log: &Log) -> anyhow::Result<Option<Log>> {
-        if self.needs_reload.load(Ordering::Relaxed) {
-            if let Ok(log) = Log::parse_file(&self.path) {
-                return Ok(Some(log));
+        macro_rules! try_or_warn {
+            ($f:expr, $prev:expr, $($args:tt)*) => {
+                match $f {
+                    Ok(value) => value,
+                    Err(_) => {
+                        warn!($($args)*);
+                        return Ok($prev);
+                    }
+                }
             }
         }
 
-        Ok(None)
+        // Check for updates
+        self.rx.try_iter().try_fold(None, |new_log, event| {
+            match event {
+                FileUpdate::Removed => {
+                    // Reset
+                    Ok(Some(Log::default()))
+                }
+                FileUpdate::Updated => {
+                    // Open file and measure size
+                    let file =
+                        try_or_warn!(File::open(&self.path), new_log, "failed to open log file");
+
+                    // Parse log
+                    let log =
+                        try_or_warn!(Log::parse_reader(file), new_log, "error parsing log file");
+
+                    Ok(Some(log))
+                }
+            }
+        })
     }
 }
 

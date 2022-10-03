@@ -26,7 +26,6 @@ crossbeam = "0.8"
 indexmap = "1"
 dirs = "4"
 notify = "5"
-hotwatch = "0.4"
 ouroboros = "0.15"
 
 # Logging
