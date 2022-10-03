@@ -23,7 +23,7 @@ use std::{
     path::{Path, PathBuf},
     process::{Child, ChildStdin, Stdio},
 };
-use tracing::{info, trace};
+use tracing::{debug_span, info, info_span, instrument, trace};
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt, EnvFilter, Registry};
 use tui::{
     backend::{Backend, CrosstermBackend},
@@ -33,6 +33,7 @@ use tui::{
 pub fn start(config: App) -> anyhow::Result<()> {
     // Setup tracing
     setup_tracing(config.output_log.as_ref().map(AsRef::as_ref))?;
+    let _span = info_span!("start").entered();
     info!("starting pufferwatch");
 
     // Setup log source
@@ -60,6 +61,7 @@ pub fn start(config: App) -> anyhow::Result<()> {
     result
 }
 
+#[instrument(skip_all)]
 fn render_loop(
     log: Log,
     mut source: Box<dyn LogSource>,
@@ -71,8 +73,8 @@ fn render_loop(
     let mut renderer = Renderer::from_log(log, smapi_stdin);
     loop {
         // Read event
-        trace!("reading event");
         let event = event_rx.recv().context("error reading event")?;
+        let _span = debug_span!("term_event", term_event=?event).entered();
         match event {
             // Check if quitting
             AppEvent::TermEvent(Event::Key(key_event)) => {
@@ -104,6 +106,7 @@ fn render_loop(
     Ok(())
 }
 
+#[instrument(skip_all)]
 fn get_source(
     command: AppCommand,
 ) -> Result<(Box<dyn LogSource>, Log, Option<EncodedWriter<ChildStdin>>), anyhow::Error> {
@@ -221,6 +224,7 @@ fn setup_tracing(log_path: Option<&Path>) -> anyhow::Result<()> {
         let log_file = std::fs::OpenOptions::new()
             .create(true)
             .write(true)
+            .truncate(true)
             .open(log_path)
             .with_context(|| format!("failed to open output logs file: {}", log_path.display()))?;
         let fmt_layer = tracing_subscriber::fmt::layer()
