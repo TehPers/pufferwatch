@@ -45,33 +45,40 @@ application.
 
 ## Usage
 
-By default, pufferwatch will open your last SMAPI log. You can specify a different log file by
-including the path to the file:
+By default, `pufferwatch monitor` will open your last SMAPI log. You can specify a different log
+file by including the path to the file:
 
 ```sh
-pufferwatch "path/to/your/SMAPI-latest.txt"
+pufferwatch monitor --log "path/to/your/SMAPI-latest.txt"
+```
+
+Pufferwatch can also follow an existing play session by using `--follow`:
+
+```sh
+pufferwatch monitor --follow
 ```
 
 You can also specify a remote location by adding `--remote`:
 
 ```sh
-pufferwatch --remote "https://smapi.io/log/yourlogurl?format=RawDownload"
+pufferwatch remote "https://smapi.io/log/yourlogurl?format=RawDownload"
 ```
 
 The remote URL must be raw text, and cannot contain HTML. If you are using a log uploaded to
 `smapi.io`, make sure to add `?format=RawDownload` to the end of the URL.
 
-Pufferwatch can also follow an existing play session by using `--follow`. If you'd rather use
-pufferwatch to launch SMAPI and use pufferwatch as your terminal instead of SMAPI's default
-terminal, you can also use `--execute`:
+If you'd rather use pufferwatch to launch SMAPI and use pufferwatch as your terminal instead
+of SMAPI's default terminal, you can also use `pufferwatch run`:
 
 ```sh
-pufferwatch --execute "path/to/your/StardewModdingAPI.exe"
-# SMAPI arguments must come after --
-pufferwatch --execute "path/to/your/StardewModdingAPI.exe" -- --mods-dir "your/mods/directory"
+pufferwatch run -- "path/to/your/StardewModdingAPI.exe"
+# You can also pass arguments to SMAPI
+pufferwatch run -- "path/to/your/StardewModdingAPI.exe" --mods-dir "your/mods/directory"
 ```
 
-Run `pufferwatch --help` for more information on how to use the application.
+Steam can be configured to launch pufferwatch instead of the default SMAPI console this way.
+
+Run `pufferwatch --help` for the most accurate information on how to use the application.
 
 ## License
 
